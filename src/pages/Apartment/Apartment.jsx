@@ -1,13 +1,13 @@
 import Container from "../../components/shared/Container";
 
-const Home = () => {
+const Apartment = () => {
     return (
         <div>
             <Container>
-                home
+                Apartment
             </Container>
         </div>
     );
 };
 
-export default Home;
+export default Apartment;

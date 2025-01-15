@@ -23,7 +23,7 @@ const Navbar = () => {
             <ul className='flex gap-5 text-xl'>
               <li>
                 <NavLink
-                  to='/home'
+                  to='/'
                   className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500  transition'>Home
                 </NavLink>
               </li>

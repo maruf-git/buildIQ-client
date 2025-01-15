@@ -1,9 +1,10 @@
+import Sidebar from "../components/Dashboard/Sidebar";
 
 
 const Dashboard = () => {
     return (
         <div>
-            Dashboard
+            <Sidebar></Sidebar>
         </div>
     );
 };
