@@ -33,7 +33,7 @@ const Sidebar = () => {
                 // className='hidden md:block'
                 src='https://i.ibb.co/4ZXzmq5/logo.png'
                 alt='logo'
-                width='100'
+                width='70'
                 height='100'
               />
             </Link>
