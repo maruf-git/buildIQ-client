@@ -1,3 +1,23 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-color{
+    background-color: #f4fcf3;
+}
+/*
+    light
+    text: #0a1609
+    background: #f4fcf3
+    primary: #4bd733
+    secondary: #9bf18e
+    accent: #6df755
+*/
+/* 
+    dark
+    text: #eaf6e9
+    background: #040c03
+    primary: #41cc28
+    secondary: #1b710e
+    accent: #20aa08
+*/
