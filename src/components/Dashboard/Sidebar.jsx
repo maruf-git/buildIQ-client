@@ -12,6 +12,9 @@ import { Link } from 'react-router-dom'
 
 import logo from '../../assets/images/home.png'
 import { AuthContext } from '../../providers/AuthProvider'
+import UserMenu from './UserMenu'
+import MemberMenu from './MemberMenu'
+import AdminMenu from './AdminMenu'
 
 const Sidebar = () => {
   const { logOut } = useContext(AuthContext);
@@ -31,9 +34,9 @@ const Sidebar = () => {
             <Link to='/'>
               <img
                 // className='hidden md:block'
-                src='https://i.ibb.co/4ZXzmq5/logo.png'
+                src={logo}
                 alt='logo'
-                width='70'
+                width='50'
                 height='100'
               />
             </Link>
@@ -73,7 +76,9 @@ const Sidebar = () => {
           <div className='flex flex-col justify-between flex-1 mt-6'>
             <nav>
               {/*  Menu Items */}
-              Profile
+                <UserMenu></UserMenu>
+                {/* <MemberMenu></MemberMenu>
+                <AdminMenu></AdminMenu> */}
             </nav>
           </div>
         </div>

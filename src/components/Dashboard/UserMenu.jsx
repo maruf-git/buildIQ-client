@@ -7,7 +7,7 @@ const UserMenu = () => {
     return (
         <div>
             <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />
-            <MenuItem icon={FaUserCog} label='announcements' address='/announcements' />
+            <MenuItem icon={FaUserCog} label='Announcements' address='/dashboard/announcements' />
         </div>
     );
 };

@@ -5,6 +5,8 @@ import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Dashboard from "../layouts/Dashboard";
 import Apartment from "../pages/Apartment/Apartment";
+import Profile from "../pages/Dashboard/Common/Profile";
+import Announcements from "../pages/Dashboard/Common/Announcements";
 
 
 
@@ -36,6 +38,14 @@ const router = createBrowserRouter([
       element:<Dashboard></Dashboard>,
       children:[
         // user routes
+        {
+          index:true,
+          element:<Profile></Profile>
+        },
+        {
+          path:'announcements',
+          element:<Announcements></Announcements>
+        },
 
 
 

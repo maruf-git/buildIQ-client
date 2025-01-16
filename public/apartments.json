@@ -1,0 +1,163 @@
+[
+    {
+      "apartment_no": "A101",
+      "apartment_image": "https://ibb.co.com/ctF5Smb",
+      "floor_no": 1,
+      "block_no": "Block A",
+      "rent": 1500,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "A102",
+      "apartment_image": "https://ibb.co.com/QMjftfW",
+      "floor_no": 1,
+      "block_no": "Block A",
+      "rent": 1600,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "B201",
+      "apartment_image": "https://ibb.co.com/Yj43S7S",
+      "floor_no": 2,
+      "block_no": "Block B",
+      "rent": 1700,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "B202",
+      "apartment_image": "https://ibb.co.com/4T0h0G3",
+      "floor_no": 2,
+      "block_no": "Block B",
+      "rent": 1800,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "C301",
+      "apartment_image": "https://ibb.co.com/6y12XFM",
+      "floor_no": 3,
+      "block_no": "Block C",
+      "rent": 1500,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "C302",
+      "apartment_image": "https://ibb.co.com/SyfZbPn",
+      "floor_no": 3,
+      "block_no": "Block C",
+      "rent": 1600,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "D401",
+      "apartment_image": "https://ibb.co.com/yBbKYgv",
+      "floor_no": 4,
+      "block_no": "Block D",
+      "rent": 1700,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "D402",
+      "apartment_image": "https://ibb.co.com/qR7pwDT",
+      "floor_no": 4,
+      "block_no": "Block D",
+      "rent": 1800,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "E501",
+      "apartment_image": "https://ibb.co.com/wr2MvYy",
+      "floor_no": 5,
+      "block_no": "Block E",
+      "rent": 1500,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "E502",
+      "apartment_image": "https://ibb.co.com/zV8nxRb",
+      "floor_no": 5,
+      "block_no": "Block E",
+      "rent": 1600,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "F601",
+      "apartment_image": "https://ibb.co.com/R6SHPjF",
+      "floor_no": 6,
+      "block_no": "Block F",
+      "rent": 1700,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "F602",
+      "apartment_image": "https://ibb.co.com/FX93HMz",
+      "floor_no": 6,
+      "block_no": "Block F",
+      "rent": 1800,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "G701",
+      "apartment_image": "https://ibb.co.com/Z2fdry7",
+      "floor_no": 7,
+      "block_no": "Block G",
+      "rent": 1500,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "G702",
+      "apartment_image": "https://ibb.co.com/FmrddMj",
+      "floor_no": 7,
+      "block_no": "Block G",
+      "rent": 1600,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "H801",
+      "apartment_image": "https://example.com/images/apartment_h801.jpg",
+      "floor_no": 8,
+      "block_no": "Block H",
+      "rent": 1700,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "H802",
+      "apartment_image": "https://ibb.co.com/kmr8M5S",
+      "floor_no": 8,
+      "block_no": "Block H",
+      "rent": 1800,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "I901",
+      "apartment_image": "https://ibb.co.com/zsKnBxn",
+      "floor_no": 9,
+      "block_no": "Block I",
+      "rent": 1500,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "I902",
+      "apartment_image": "https://ibb.co.com/n3RQvmS",
+      "floor_no": 9,
+      "block_no": "Block I",
+      "rent": 1600,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "J1001",
+      "apartment_image": "https://ibb.co.com/s6kzy2c",
+      "floor_no": 10,
+      "block_no": "Block J",
+      "rent": 1700,
+      "booking_status": "available"
+    },
+    {
+      "apartment_no": "J1002",
+      "apartment_image": "https://ibb.co.com/H28zMHP",
+      "floor_no": 10,
+      "block_no": "Block J",
+      "rent": 1800,
+      "booking_status": "available"
+    }
+  ]
+  
