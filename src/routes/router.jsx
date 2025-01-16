@@ -4,9 +4,9 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Authentication/Login";
 import Register from "../pages/Authentication/Register";
 import Dashboard from "../layouts/Dashboard";
-import Apartment from "../pages/Apartment/Apartment";
 import Profile from "../pages/Dashboard/Common/Profile";
 import Announcements from "../pages/Dashboard/Common/Announcements";
+import Apartments from "../pages/Apartments/Apartments";
 
 
 
@@ -21,7 +21,7 @@ const router = createBrowserRouter([
         },
         {
           path:"/apartment",
-          element:<Apartment></Apartment>
+          element:<Apartments></Apartments>
         },
         {
           path:"/login",
