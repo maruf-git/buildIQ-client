@@ -15,7 +15,7 @@ const Apartments = () => {
     console.log(apartments);
 
     return (
-        <div>
+        <div className="my-10">
             <Container>
                 <div className="grid grid-cols-3 gap-3">
                     {

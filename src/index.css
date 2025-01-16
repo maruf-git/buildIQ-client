@@ -5,6 +5,11 @@
 .bg-color{
     background-color: #f4fcf3;
 }
+.active{
+    border-bottom-color: #16a34a;
+    border-bottom-width: 5px;
+    color:#16a34a;
+}
 /*
     light
     text: #0a1609
