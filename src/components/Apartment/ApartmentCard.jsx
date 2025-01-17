@@ -9,7 +9,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ApartmentCard = ({ apartment }) => {
     const { apartment_image, apartment_no, floor_no, block_no, rent, _id } = apartment;
-    const { user } = useContext(AuthContext);
+    const { user,role } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
     
@@ -28,6 +28,11 @@ const ApartmentCard = ({ apartment }) => {
         accept_date:''
     }
     if (user) {
+        if(role==='admin'){
+            console.log('hi admin');
+            toast.error('Admin can not request for apartments!');
+            return;
+        }
         const { data } = await axiosSecure.post('/request-apartment', requestDetails)
         if (data?.insertedId) {
             toast.success('Request Sent! Please, wait for the confirmation!');

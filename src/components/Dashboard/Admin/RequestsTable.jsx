@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-const RequestsTable = ({ requests }) => {
+const RequestsTable = ({ requests, handleAccept, handleReject }) => {
     console.log(requests);
     return (
         <div>
@@ -69,15 +69,22 @@ const RequestsTable = ({ requests }) => {
                                 <td>
                                     {request?.status === "pending" && <p className="text-yellow-500 font-semibold">Pending</p>}
                                     {request?.status === "accepted" && <p className="text-green-500 font-semibold ">Accepted</p>}
+                                    {request?.status === "rejected" && <p className="text-red-500 font-semibold ">Rejected</p>}
 
                                 </td>
                                 {/* request action button */}
                                 <td>
                                     <div className="flex gap-1 items-center">
                                         {/* accept button  */}
-                                        <button className="btn btn-xs bg-green-500 text-white hover:bg-green-600">Accept</button>
+                                        <button
+                                            disabled={request.status === 'accepted'}
+                                            onClick={() => handleAccept(request)}
+                                            className="btn btn-xs bg-green-500 text-white hover:bg-green-600">Accept</button>
                                         {/* reject button */}
-                                        <button className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Reject</button>
+                                        <button
+                                            disabled={request.status === 'rejected'}
+                                            onClick={() => handleReject(request)}
+                                            className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Reject</button>
                                     </div>
                                 </td>
                             </tr>
