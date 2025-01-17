@@ -14,37 +14,28 @@ const AgreementRequests = () => {
         }
     })
 
-    // update role
-    const updateRole = async (email, role) => {
-        await axiosSecure.patch('/update-role', {email, role });
-      
-    }
 
-    // update request status in database
-    const updateStatus = async (id, status, email) => {
-        const { data } = await axiosSecure.patch('/update-request', { id, status });
-        console.log("update status:", data);
+    const handleAccept = async (request) => {
+
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' });
         if (data.modifiedCount) {
-            if (status === 'accepted') {
-                toast.success('Request Accepted!');
-                // update role
-                updateRole(email, 'member');
-            }
-            else {
-                toast.error('Request Rejected!');
-                // update role
-                updateRole(email, 'user');
-            }
+            toast.success('Accepted the Request!');
+            // load requests again
             refetch();
+            // update user role
+            await axiosSecure.patch('/update-role', { email: request?.email, role: 'member' });
         }
     }
 
-    const handleAccept = (request) => {
-        updateStatus(request._id, 'accepted', request?.email);
-    }
 
-    const handleReject = (request) => {
-        updateStatus(request._id, 'rejected', request?.email);
+    const handleReject = async (request) => {
+        // update request status
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' });
+        if (data.modifiedCount) {
+            toast.success('Rejected the Request!');
+            // load requests again
+            refetch();
+        }
     }
 
 
