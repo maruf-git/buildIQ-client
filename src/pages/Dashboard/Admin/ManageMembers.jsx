@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import MembersTable from "../../../components/Dashboard/Admin/MembersTable";
 
 
 const ManageMembers = () => {
@@ -17,7 +18,7 @@ const ManageMembers = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
-            Manage Members
+            <MembersTable members={members}></MembersTable>
         </div>
     );
 };
