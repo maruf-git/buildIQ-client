@@ -20,7 +20,8 @@ export const AuthContext = createContext()
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
- 
+  const [role, setRole] = useState(null);
+
 
   // create user with email and password
   const createUser = (email, password) => {
@@ -58,6 +59,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async currentUser => {
       console.log('CurrentUser-->', currentUser)
+
       if (currentUser?.email) {
         setUser(currentUser)
         const { data } = await axios.post(
@@ -67,7 +69,16 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         )
-        console.log(data)
+        console.log(data);
+
+        // saving user to the database
+        const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: currentUser.email, name: currentUser.displayName });
+
+        console.log("user data:",userData);
+        setRole(userData.role);
+
+
+
       } else {
         setUser(currentUser)
         const { data } = await axios.get(
@@ -86,6 +97,7 @@ const AuthProvider = ({ children }) => {
 
   const authInfo = {
     user,
+    role,
     setUser,
     loading,
     setLoading,
