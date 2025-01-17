@@ -6,11 +6,10 @@ import { FaUserCog } from "react-icons/fa";
 const MemberMenu = () => {
     return (
         <div>
-                   <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />
-                   
-                   <MenuItem icon={BsGraphUp} label='Make Payment' address='/make-payment' />
-                   <MenuItem icon={BsGraphUp} label='Payment History' address='/payment-history' />
-                   <MenuItem icon={FaUserCog} label='announcements' address='/announcements' />
+                   <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />           
+                   <MenuItem icon={BsGraphUp} label='Make Payment' address='/dashboard/make-payment' />
+                   <MenuItem icon={BsGraphUp} label='Payment History' address='/dashboard/payment-history' />
+                   <MenuItem icon={FaUserCog} label='announcements' address='/dashboard/announcements' />
                </div>
     );
 };

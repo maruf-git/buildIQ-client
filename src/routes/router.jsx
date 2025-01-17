@@ -8,6 +8,12 @@ import Profile from "../pages/Dashboard/Common/Profile";
 import Announcements from "../pages/Dashboard/Common/Announcements";
 import Apartments from "../pages/Apartments/Apartments";
 import PrivateRoute from "./PrivateRoute";
+import MakePayment from "../pages/Dashboard/Member/MakePayment";
+import PaymentHistory from "../pages/Dashboard/Member/PaymentHistory";
+import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
+import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons";
+import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests";
+import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
 
 
 
@@ -39,30 +45,46 @@ const router = createBrowserRouter([
     element: <PrivateRoute>
       <Dashboard></Dashboard>
     </PrivateRoute>,
-    
     children: [
-      // user routes
-      {
-        index: true,
-        element: <Profile></Profile>
-      },
+      // common routes
       {
         path: 'announcements',
         element: <Announcements></Announcements>
       },
 
-
-
-
+      // user routes
+      {
+        index: true,
+        element: <Profile></Profile>
+      },
 
       // member routes
-
-
-
-
-
+      {
+        path: 'make-payment',
+        element: <MakePayment></MakePayment>
+      },
+      {
+        path: 'payment-history',
+        element: <PaymentHistory></PaymentHistory>
+      },
 
       // admin routes
+      {
+        path: 'manage-members',
+        element: <ManageMembers></ManageMembers>
+      },
+      {
+        path: 'manage-coupons',
+        element: <ManageCoupons></ManageCoupons>
+      },
+      {
+        path: 'agreement-requests',
+        element: <AgreementRequests></AgreementRequests>
+      },
+      {
+        path: 'make-announcement',
+        element: <MakeAnnouncement></MakeAnnouncement>
+      },
     ]
   }
 ]);
