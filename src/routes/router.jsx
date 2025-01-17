@@ -44,9 +44,7 @@ const router = createBrowserRouter([
       // user routes
       {
         index: true,
-        element: <PrivateRoute>
-          <Profile></Profile>
-        </PrivateRoute>
+        element: <Profile></Profile>
       },
       {
         path: 'announcements',
