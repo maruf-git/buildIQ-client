@@ -10,7 +10,7 @@ export const axiosSecure = axios.create({
 
 const useAxiosSecure = () => {
   const navigate = useNavigate()
-  const { logOut } = useContext(AuthContext());
+  const { logOut } = useContext(AuthContext);
   useEffect(() => {
     axiosSecure.interceptors.response.use(
       res => {
