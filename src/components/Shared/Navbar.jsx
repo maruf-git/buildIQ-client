@@ -7,8 +7,6 @@ import Container from './Container.jsx';
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
 
-
-
   return (
     <div className=' shadow-sm '>
       <Container>
@@ -31,7 +29,7 @@ const Navbar = () => {
               <li>
                 <NavLink
                   to='/apartment'
-                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartment
+                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartments
                 </NavLink>
               </li>
             </ul>

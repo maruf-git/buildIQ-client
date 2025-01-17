@@ -14,6 +14,9 @@ import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
 import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests";
 import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
+import AdminPrivateRoute from "./AdminPrivateRoute";
+import MemberPrivateRoute from "./MemberPrivateRoute";
+import UserMemberPrivateRoute from "./UserMemberPrivateRoute";
 
 
 
@@ -46,44 +49,58 @@ const router = createBrowserRouter([
       <Dashboard></Dashboard>
     </PrivateRoute>,
     children: [
-      // common routes
-      {
-        path: 'announcements',
-        element: <Announcements></Announcements>
-      },
-
-      // user routes
+      // common routes to all 
       {
         index: true,
         element: <Profile></Profile>
       },
 
-      // member routes
+      // only user and member route
+      {
+        path: 'announcements',
+        element: <UserMemberPrivateRoute>
+          <Announcements></Announcements>
+        </UserMemberPrivateRoute>
+      },
+
+      // only member routes
       {
         path: 'make-payment',
-        element: <MakePayment></MakePayment>
+        element: <MemberPrivateRoute>
+          <MakePayment></MakePayment>
+        </MemberPrivateRoute>
       },
       {
         path: 'payment-history',
-        element: <PaymentHistory></PaymentHistory>
+        element: <MemberPrivateRoute>
+          <PaymentHistory></PaymentHistory>
+        </MemberPrivateRoute>
       },
 
-      // admin routes
+      // only admin routes
       {
         path: 'manage-members',
-        element: <ManageMembers></ManageMembers>
+        element: <AdminPrivateRoute>
+          <ManageMembers></ManageMembers>
+        </AdminPrivateRoute>
       },
       {
         path: 'manage-coupons',
-        element: <ManageCoupons></ManageCoupons>
+        element: <AdminPrivateRoute>
+          <ManageCoupons></ManageCoupons>
+        </AdminPrivateRoute>
       },
       {
         path: 'agreement-requests',
-        element: <AgreementRequests></AgreementRequests>
+        element: <AdminPrivateRoute>
+          <AgreementRequests></AgreementRequests>
+        </AdminPrivateRoute>
       },
       {
         path: 'make-announcement',
-        element: <MakeAnnouncement></MakeAnnouncement>
+        element: <AdminPrivateRoute>
+          <MakeAnnouncement></MakeAnnouncement>
+        </AdminPrivateRoute>
       },
     ]
   }

@@ -11,7 +11,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 const queryClient = new QueryClient()
 
 createRoot(document.getElementById('root')).render(
+
   <StrictMode>
+    
     {/* auth providers */}
     <AuthProvider>
       {/* tanstack query */}
@@ -20,5 +22,6 @@ createRoot(document.getElementById('root')).render(
         <Toaster />
       </QueryClientProvider>
     </AuthProvider>
-  </StrictMode>,
+
+  </StrictMode>
 )

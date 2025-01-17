@@ -5,13 +5,13 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import toast from "react-hot-toast";
 
-const MemberPrivateRoute = ({ children }) => {
+const UserMemberPrivateRoute = ({ children }) => {
     const { user, loading, role,logOut } = useContext(AuthContext);
     const location = useLocation();
-
+    
     if (loading) return <LoadingSpinner />;
     if (user){
-        if (role !== 'member') {
+        if (role !== 'member' && role!=='user') {
             logOut();
             toast.error('Forbidden Access!');
             return <Navigate to='/login' state={location.pathname} />
@@ -21,4 +21,4 @@ const MemberPrivateRoute = ({ children }) => {
     return <Navigate to='/login' state={location.pathname} />
 };
 
-export default MemberPrivateRoute;
+export default UserMemberPrivateRoute;
