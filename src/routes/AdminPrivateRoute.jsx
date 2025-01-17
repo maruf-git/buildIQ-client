@@ -9,16 +9,11 @@ const AdminPrivateRoute = ({ children }) => {
     const { user, loading, role, logOut } = useContext(AuthContext);
     const location = useLocation();
 
-
-    console.log("user from admin route:", user);
-
     if (loading) return <LoadingSpinner />;
     if (user) {
         if (role !== 'admin') {
             logOut();
-            console.log('start for');
             toast.error('Forbidden Access!');
-            console.log('end for');
             return <Navigate to='/login' state={location.pathname} />
         }
         return children;

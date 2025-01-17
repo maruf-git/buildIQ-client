@@ -22,7 +22,10 @@ const ApartmentCard = ({ apartment }) => {
         rent,
         apartment_image,
         name: user?.displayName,
-        email: user?.email
+        email: user?.email,
+        status:'pending',
+        request_date: new Date(),
+        accept_date:''
     }
     if (user) {
         const { data } = await axiosSecure.post('/request-apartment', requestDetails)
