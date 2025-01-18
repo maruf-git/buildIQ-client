@@ -93,9 +93,9 @@ const CheckOutForm = () => {
     }
 
     return (
-        <div className="border border-red-500">
+        <div className="">
             <form onSubmit={handleSubmit}>
-                <CardElement>
+                {/* <CardElement> */}
                     <CardElement
                         options={{
                             style: {
@@ -112,17 +112,17 @@ const CheckOutForm = () => {
                             },
                         }}
                     />
-                </CardElement>
-                <button className="btn btn-primary btn-sm mt-3" type="submit" disabled={!stripe || !clientSecret}>
-                    Pay
+                {/* </CardElement> */}
+                <button className="btn btn-primary w-full mt-5" type="submit" disabled={!stripe || !clientSecret}>
+                    Pay Now
                 </button>
 
                 {/* display error or success */}
-                <p className="text-red-600">display error message here</p>
+                {/* <p className="text-red-600">display error message here</p>
 
                 {transactionId &&
                     <p className="text-green-600">Your Transaction id:{transactionId}</p>
-                }
+                } */}
 
             </form>
         </div>

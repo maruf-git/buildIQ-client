@@ -21,7 +21,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null)
   const [loading, setLoading] = useState(true)
   const [role, setRole] = useState(null);
-
+  const [paymentInfo, setPaymentInfo] = useState({});
 
   // create user with email and password
   const createUser = (email, password) => {
@@ -112,6 +112,8 @@ const AuthProvider = ({ children }) => {
     signInWithGoogle,
     logOut,
     updateUserProfile,
+    paymentInfo,
+    setPaymentInfo
   }
 
   return (

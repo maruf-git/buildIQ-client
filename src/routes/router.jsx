@@ -17,6 +17,7 @@ import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import MemberPrivateRoute from "./MemberPrivateRoute";
 import UserMemberPrivateRoute from "./UserMemberPrivateRoute";
+import PaymentPage from "../pages/Dashboard/Member/PaymentPage";
 
 
 
@@ -103,6 +104,12 @@ const router = createBrowserRouter([
         </AdminPrivateRoute>
       },
     ]
+  },
+  {
+    path: '/payment',
+    element: <MemberPrivateRoute>
+      <PaymentPage></PaymentPage>
+    </MemberPrivateRoute>
   }
 ]);
 
