@@ -78,6 +78,7 @@ const AuthProvider = ({ children }) => {
           email: currentUser?.email
         }
         console.log('find user:', findUser);
+        // get user role
         const { data: userData } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${currentUser?.email}`);
         console.log('now logged in user from db:', userData);
         setRole(userData?.role);
