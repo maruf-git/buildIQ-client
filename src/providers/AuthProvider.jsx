@@ -69,14 +69,18 @@ const AuthProvider = ({ children }) => {
           },
           { withCredentials: true }
         )
-        console.log(data);
+        console.log("jwt status:", data);
 
-        // saving user to the database
-        const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: currentUser.email, name: currentUser.displayName });
-
-        console.log("user data:",userData);
-        setRole(userData.role);
-
+        // behaving like user role get api
+        // const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: currentUser?.email });
+        console.log('current user email:', currentUser?.email);
+        const findUser = {
+          email: currentUser?.email
+        }
+        console.log('find user:', findUser);
+        const { data: userData } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${currentUser?.email}`);
+        console.log('now logged in user from db:', userData);
+        setRole(userData?.role);
 
 
       } else {
@@ -98,6 +102,7 @@ const AuthProvider = ({ children }) => {
   const authInfo = {
     user,
     role,
+    setRole,
     setUser,
     loading,
     setLoading,

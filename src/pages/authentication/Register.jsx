@@ -2,11 +2,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
+import axios from 'axios'
 
 
 const Register = () => {
   const navigate = useNavigate()
-  const { signInWithGoogle, createUser, updateUserProfile, setUser } =
+  const { signInWithGoogle, createUser, updateUserProfile, setUser, setRole } =
     useContext(AuthContext)
 
   const handleSignUp = async (e) => {
@@ -19,11 +20,18 @@ const Register = () => {
 
     try {
       //2. User Registration
-      const result = await createUser(email, pass)
-      console.log(result)
-      await updateUserProfile(name, photo)
-      // optimize user update
+      const result = await createUser(email, pass);
+      // update user
+      await updateUserProfile(name, photo);
+      console.log("result from register:", result);
+      // optimize set user 
       setUser({ ...result.user, photoURL: photo, displayName: name })
+
+      // saving new user in db and assigning role
+      const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email, name });
+      console.log('new user in db:', userData);
+      setRole(userData?.role);
+
       toast.success('Signup Successful')
       navigate('/')
     } catch (err) {
@@ -36,7 +44,15 @@ const Register = () => {
   // Google Signin
   const handleGoogleSignIn = async () => {
     try {
-      await signInWithGoogle()
+      // login in user/signup user
+      const data = await signInWithGoogle();
+      console.log('google login user from register:', data);
+
+      // saving new user in db and assigning role
+      const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: data?.user?.email, name: data?.user?.displayName });
+      console.log('new user in db:', userData);
+      setRole(userData?.role);
+
       toast.success('Signin Successful')
       navigate('/')
     } catch (err) {

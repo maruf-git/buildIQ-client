@@ -19,7 +19,9 @@ const MembersTable = ({ members }) => {
                         {/* rows */}
                         {
                             members.map((member, idx) => <tr key={member._id}>
+                                {/* indexing */}
                                 <td>{idx + 1}</td>
+                                {/* name and photo */}
                                 <td>
                                     <div className="flex justify-center items-center gap-3">
                                         <div className="avatar">
@@ -36,7 +38,9 @@ const MembersTable = ({ members }) => {
                                     </div>
 
                                 </td>
+                                {/* email */}
                                 <td>{member?.email}</td>
+                                {/* remove button */}
                                 <td>
                                     <button
                                         className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Remove
