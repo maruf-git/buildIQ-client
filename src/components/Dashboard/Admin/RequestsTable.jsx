@@ -68,7 +68,7 @@ const RequestsTable = ({ requests, handleAccept, handleReject }) => {
                                 {/* status */}
                                 <td>
                                     {request?.status === "pending" && <p className="text-yellow-500 font-semibold">Pending</p>}
-                                    {request?.status === "checked" && <p className="text-green-500 font-semibold ">Checked</p>}
+                                    {/* {request?.status === "checked" && <p className="text-green-500 font-semibold ">Checked</p>} */}
 
 
                                 </td>

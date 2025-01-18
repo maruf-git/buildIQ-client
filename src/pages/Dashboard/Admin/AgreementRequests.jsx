@@ -17,7 +17,7 @@ const AgreementRequests = () => {
 
     const handleAccept = async (request) => {
 
-        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' });
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'accepted' }); //checked
         if (data.modifiedCount) {
             toast.success('Accepted the Request!');
             // load requests again
@@ -30,7 +30,7 @@ const AgreementRequests = () => {
 
     const handleReject = async (request) => {
         // update request status
-        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' });
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'rejected' }); //checked
         if (data.modifiedCount) {
             toast.success('Rejected the Request!');
             // load requests again
