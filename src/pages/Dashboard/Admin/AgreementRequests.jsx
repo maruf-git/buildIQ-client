@@ -17,11 +17,27 @@ const AgreementRequests = () => {
 
     const handleAccept = async (request) => {
 
-        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'accepted' }); //checked
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' }); //checked
         if (data.modifiedCount) {
             toast.success('Accepted the Request!');
             // load requests again
             refetch();
+            // save the accepted request details to the accepted requests collection
+            const acceptedRequest = {
+                apartment_id: request.apartment_id,
+                apartment_no: request.apartment_no,
+                floor_no: request.floor_no,
+                block_no: request.block_no,
+                rent: request.rent,
+                apartment_image: request.apartment_image,
+                name: request.name,
+                email: request.email,
+                request_date: request.request_date,
+                status: 'accepted',
+                accept_date: new Date(),
+                request_id: request._id
+            }
+            await axiosSecure.post('/accepted-requests', acceptedRequest);
             // update user role
             await axiosSecure.patch('/update-role', { email: request?.email, role: 'member' });
         }
@@ -30,7 +46,7 @@ const AgreementRequests = () => {
 
     const handleReject = async (request) => {
         // update request status
-        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'rejected' }); //checked
+        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' }); //checked
         if (data.modifiedCount) {
             toast.success('Rejected the Request!');
             // load requests again

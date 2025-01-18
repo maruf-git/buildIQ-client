@@ -25,7 +25,6 @@ const ApartmentCard = ({ apartment }) => {
             email: user?.email,
             status: 'pending',
             request_date: new Date(),
-            accept_date: ''
         }
         if (user) {
             if (role === 'admin') {
