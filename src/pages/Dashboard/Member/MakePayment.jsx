@@ -38,7 +38,7 @@ const MakePayment = () => {
             rent,
             month,
             coupon:'',
-            coupon_value:20
+            coupon_value:0
         }
         console.log(paymentInfo);
         setPaymentInfo(paymentInfo);

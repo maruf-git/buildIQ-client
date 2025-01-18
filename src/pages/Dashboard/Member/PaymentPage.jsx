@@ -20,10 +20,12 @@ const PaymentPage = () => {
         event.preventDefault();
         const coupon = event.target.coupon.value;
         console.log('coupon:', coupon);
+
         paymentInfo.coupon = coupon;
-        paymentInfo.coupon_value = 200;
-        setCouponValue(200);
+        paymentInfo.coupon_value = 500;
+        setCouponValue(500);
         setPaymentInfo(paymentInfo);
+
         console.log('with coupon payment info:', paymentInfo);
         toast.success('Coupon Applied!');
     }

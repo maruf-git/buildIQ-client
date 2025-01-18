@@ -7,24 +7,29 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const CheckOutForm = () => {
-    const { user } = useContext(AuthContext);
+    const { user, paymentInfo } = useContext(AuthContext);
+    console.log('Payment info from stripe:', paymentInfo);
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('');
     const [transactionId, setTransactionId] = useState('');
 
     // todo:calculate total price of products from cart
-    const totalPrice = 120;
+    // const totalPrice = 120;
     const axiosSecure = useAxiosSecure();
     useEffect(() => {
-        if (totalPrice) {
-            axiosSecure.post('/create-payment-intent', { price: totalPrice })
+        if (paymentInfo?.rent) {
+            axiosSecure.post('/create-payment-intent', {
+                rent: paymentInfo?.rent,
+                coupon: paymentInfo?.coupon,
+                coupon_value: paymentInfo?.coupon_value
+            })
                 .then(res => {
                     console.log(res.data.clientSecret);
                     setClientSecret(res.data.clientSecret)
                 })
         }
-    }, [axiosSecure, totalPrice])
+    }, [axiosSecure, paymentInfo?.coupon, paymentInfo?.coupon_value, paymentInfo?.rent])
 
 
     const handleSubmit = async (event) => {
@@ -71,13 +76,21 @@ const CheckOutForm = () => {
                 // now save the  payment in the database
 
                 const payment = {
-                    email: user.email,
-                    price: totalPrice,
+                    email: paymentInfo.email,
+                    name: paymentInfo.name,
+                    apartment_no: paymentInfo.apartment_no,
+                    floor_no: paymentInfo.floor_no,
+                    block_no: paymentInfo.block_no,
+                    month: paymentInfo.month,
+                    rent: paymentInfo.rent,
+                    amount: paymentInfo.rent,
+                    coupon: paymentInfo.coupon,
+                    coupon_value: paymentInfo.coupon_value,
                     transactionId: paymentIntent.id,
-                    date: new Date(), // todo: convert it utc date. use moment js to convert
-                    cartIds: [], // todo : map the carts cart.map(item=>item._id)
-                    menuItemIds: [], // todo: cart.map(item=> item.menuId)
-                    status: 'pending'
+                    // date: new Date(), // todo: convert it utc date. use moment js to convert
+                    // cartIds: [], // todo : map the carts cart.map(item=>item._id)
+                    // menuItemIds: [], // todo: cart.map(item=> item.menuId)
+                    status: 'paid'
                 }
 
                 const res = await axiosSecure.post('/payments', payment);
@@ -96,22 +109,22 @@ const CheckOutForm = () => {
         <div className="">
             <form onSubmit={handleSubmit}>
                 {/* <CardElement> */}
-                    <CardElement
-                        options={{
-                            style: {
-                                base: {
-                                    fontSize: '16px',
-                                    color: '#424770',
-                                    '::placeholder': {
-                                        color: '#aab7c4',
-                                    },
-                                },
-                                invalid: {
-                                    color: '#9e2146',
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
                                 },
                             },
-                        }}
-                    />
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                        },
+                    }}
+                />
                 {/* </CardElement> */}
                 <button className="btn btn-primary w-full mt-5" type="submit" disabled={!stripe || !clientSecret}>
                     Pay Now
