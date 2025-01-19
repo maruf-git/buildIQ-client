@@ -2,10 +2,33 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
+import AnnouncementTable from "../../../components/Dashboard/Admin/AnnouncementTable";
 
 const Announcements = () => {
     const { role } = useContext(AuthContext);
     const axiosSecure = useAxiosSecure();
+
+    const { data: announcements = [], isLoading, refetch } = useQuery({
+        queryKey: ['announcements'],
+        queryFn: async () => {
+            const { data } = await axiosSecure.get(`${import.meta.env.VITE_API_URL}/announcements`);
+            return data;
+        }
+    })
+
+    const handleDeleteAnnouncement = async (id) => {
+        console.log('id:', id);
+        const { data } = await axiosSecure.delete( `/announcements/${id}`);
+        if (data.deletedCount) {
+            toast.success('Deleted the Announcement!');
+            refetch();
+        }
+    }
+
+    // handle announcement form submit
     const handleSubmit = async (event) => {
         event.preventDefault();
         if (role !== 'admin') return;
@@ -16,15 +39,18 @@ const Announcements = () => {
             description,
             date: new Date()
         }
-
+        // save the announcement to the database
         const { data } = await axiosSecure.post('/announcements', announcementDetails);
         if (data.insertedId) {
             toast.success('Announcement Successful!');
+            refetch();
             event.target.reset();
         } else {
             toast.error('Something Went Wrong! Please try again!');
         }
     }
+    if (isLoading) <LoadingSpinner></LoadingSpinner>
+
     return (
         <div>
             {/* announcement form */}
@@ -81,7 +107,11 @@ const Announcements = () => {
 
             {/* Announcements */}
             <div>
-                <p className="text-center font-bold text-3xl">All Announcements</p>
+                <p className="text-center font-bold text-3xl mb-5">All Announcements</p>
+                {/* announcement table */}
+                <div>
+                    <AnnouncementTable announcements={announcements} handleDeleteAnnouncement={handleDeleteAnnouncement}></AnnouncementTable>
+                </div>
             </div>
 
         </div>
