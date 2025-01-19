@@ -90,7 +90,7 @@ const AuthProvider = ({ children }) => {
           `${import.meta.env.VITE_API_URL}/logout`,
           { withCredentials: true }
         )
-        // console.log(data);
+        console.log(data);
       }
       setLoading(false)
     })
