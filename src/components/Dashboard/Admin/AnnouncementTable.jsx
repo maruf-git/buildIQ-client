@@ -1,12 +1,20 @@
 /* eslint-disable react/prop-types */
 
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 
 const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
     const { role } = useContext(AuthContext);
+    const [title, setTitle] = useState('');
+    const [description, setDescription] = useState('');
+    const showAnnouncementDetails = (announcement) => {
+        document.getElementById('announcement-modal').showModal()
+        setTitle(announcement?.title);
+        setDescription(announcement?.description);
+    }
     return (
         <div>
+            {/* announcement table */}
             <div>
                 <div className="overflow-x-auto">
                     <table className="table text-center">
@@ -38,6 +46,7 @@ const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
                                         <div className="flex gap-5 justify-center">
                                             {/* announcement details button */}
                                             <button
+                                                onClick={() => showAnnouncementDetails(announcement)}
                                                 className="btn btn-xs bg-green-500 text-white hover:bg-green-600">View Details
                                             </button>
 
@@ -56,6 +65,24 @@ const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
                         </tbody>
                     </table>
                 </div>
+            </div>
+
+            {/* announcement details modal */}
+            <div>
+                {/* You can open the modal using document.getElementById('ID').showModal() method */}
+                <dialog id="announcement-modal" className="modal">
+                    <div className="modal-box">
+                        <form method="dialog">
+                            {/* if there is a button in form, it will close the modal */}
+                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+                        </form>
+                        <div>
+                            <p className="text-2xl mb-2"> <span className="text-2xl font-semibold">Title:</span> {title}</p>
+                            <p className="text-2xl font-semibold">Description:</p>
+                            <p>{description}</p>
+                        </div>
+                    </div>
+                </dialog>
             </div>
         </div >
     );

@@ -20,7 +20,6 @@ const Announcements = () => {
     })
 
     const handleDeleteAnnouncement = async (id) => {
-        console.log('id:', id);
         const { data } = await axiosSecure.delete( `/announcements/${id}`);
         if (data.deletedCount) {
             toast.success('Deleted the Announcement!');
