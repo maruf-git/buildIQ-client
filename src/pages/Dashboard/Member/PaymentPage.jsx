@@ -22,8 +22,8 @@ const PaymentPage = () => {
         console.log('coupon:', coupon);
 
         paymentInfo.coupon = coupon;
-        paymentInfo.coupon_value = 500;
-        setCouponValue(500);
+        paymentInfo.coupon_value = 300;
+        setCouponValue(300);
         setPaymentInfo(paymentInfo);
 
         console.log('with coupon payment info:', paymentInfo);

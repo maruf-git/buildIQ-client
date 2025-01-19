@@ -1,6 +1,6 @@
-import { Elements } from "@stripe/react-stripe-js";
-import { loadStripe } from "@stripe/stripe-js";
-import CheckOutForm from "../../../components/Dashboard/Member/CheckOutForm";
+// import { Elements } from "@stripe/react-stripe-js";
+// import { loadStripe } from "@stripe/stripe-js";
+// import CheckOutForm from "../../../components/Dashboard/Member/CheckOutForm";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useContext } from "react";
@@ -10,7 +10,7 @@ import { useNavigate } from "react-router-dom";
 
 
 // todo : add publishable key
-const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_PK}`);
+// const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_PK}`);
 
 const MakePayment = () => {
     const { user, setPaymentInfo } = useContext(AuthContext);
@@ -48,15 +48,11 @@ const MakePayment = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>;
     return (
         <div>
-            {/* payment system */}
-            <div className="max-w-screen-lg mx-auto">
-                <h1 className="text-2xl font-semibold text-center">Make Payment</h1>
-            </div>
-            <div className="max-w-screen-lg mx-auto">
+            {/* <div className="max-w-screen-lg mx-auto">
                 <Elements stripe={stripePromise}>
                     <CheckOutForm></CheckOutForm>
                 </Elements>
-            </div>
+            </div> */}
             {/* my apartment details and payment form */}
             <div className={`min-h-screen py-10 `}>
                 <div className="max-w-3xl mx-auto px-4">

@@ -90,7 +90,8 @@ const CheckOutForm = () => {
                     // date: new Date(), // todo: convert it utc date. use moment js to convert
                     // cartIds: [], // todo : map the carts cart.map(item=>item._id)
                     // menuItemIds: [], // todo: cart.map(item=> item.menuId)
-                    status: 'paid'
+                    status: 'paid',
+                    date: new Date()
                 }
 
                 const res = await axiosSecure.post('/payments', payment);
