@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 
 
-const MembersTable = ({ members }) => {
+const MembersTable = ({ members, handleRemoveMember }) => {
     return (
         <div>
             <div className="overflow-x-auto">
@@ -43,6 +43,7 @@ const MembersTable = ({ members }) => {
                                 {/* remove button */}
                                 <td>
                                     <button
+                                        onClick={() => handleRemoveMember(member.email)}
                                         className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Remove
                                     </button>
                                 </td>

@@ -24,9 +24,6 @@ const PaymentHistoryTable = () => {
                     {/* head */}
                     <thead className="">
                         <tr>
-                            {/* <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th> */}
                             <th>Apartment No</th>
                             <th>Floor No</th>
                             <th>Block</th>
@@ -42,9 +39,7 @@ const PaymentHistoryTable = () => {
                     <tbody>
                         {/* rows */}
                         {
-                            payments.map((payment, idx) => <tr key={payment._id}>
-
-
+                            payments.map((payment) => <tr key={payment._id}>
                                 {/* apartment no */}
                                 <td>{payment?.apartment_no}</td>
                                 {/* floor no */}
