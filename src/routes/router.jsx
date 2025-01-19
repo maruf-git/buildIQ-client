@@ -13,12 +13,9 @@ import PaymentHistory from "../pages/Dashboard/Member/PaymentHistory";
 import ManageMembers from "../pages/Dashboard/Admin/ManageMembers";
 import ManageCoupons from "../pages/Dashboard/Admin/ManageCoupons";
 import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests";
-import MakeAnnouncement from "../pages/Dashboard/Admin/MakeAnnouncement";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import MemberPrivateRoute from "./MemberPrivateRoute";
-import UserMemberPrivateRoute from "./UserMemberPrivateRoute";
 import PaymentPage from "../pages/Dashboard/Member/PaymentPage";
-
 
 
 const router = createBrowserRouter([
@@ -59,9 +56,9 @@ const router = createBrowserRouter([
       // only user and member route
       {
         path: 'announcements',
-        element: <UserMemberPrivateRoute>
+        element:
           <Announcements></Announcements>
-        </UserMemberPrivateRoute>
+
       },
 
       // only member routes
@@ -97,12 +94,12 @@ const router = createBrowserRouter([
           <AgreementRequests></AgreementRequests>
         </AdminPrivateRoute>
       },
-      {
-        path: 'make-announcement',
-        element: <AdminPrivateRoute>
-          <MakeAnnouncement></MakeAnnouncement>
-        </AdminPrivateRoute>
-      },
+      // {
+      //   path: 'make-announcement',
+      //   element: <AdminPrivateRoute>
+      //     <MakeAnnouncement></MakeAnnouncement>
+      //   </AdminPrivateRoute>
+      // },
     ]
   },
   {

@@ -9,7 +9,7 @@ const MemberMenu = () => {
                    <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />           
                    <MenuItem icon={BsGraphUp} label='Make Payment' address='/dashboard/make-payment' />
                    <MenuItem icon={BsGraphUp} label='Payment History' address='/dashboard/payment-history' />
-                   <MenuItem icon={FaUserCog} label='announcements' address='/dashboard/announcements' />
+                   <MenuItem icon={FaUserCog} label='Announcements' address='/dashboard/announcements' />
                </div>
     );
 };
