@@ -38,7 +38,7 @@ const MakePayment = () => {
             rent,
             month,
             coupon:'',
-            coupon_value:0
+            discount:0
         }
         console.log(paymentInfo);
         setPaymentInfo(paymentInfo);
@@ -48,12 +48,7 @@ const MakePayment = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>;
     return (
         <div>
-            {/* <div className="max-w-screen-lg mx-auto">
-                <Elements stripe={stripePromise}>
-                    <CheckOutForm></CheckOutForm>
-                </Elements>
-            </div> */}
-            {/* my apartment details and payment form */}
+            {/* payment details form */}
             <div className={`min-h-screen py-10 `}>
                 <div className="max-w-3xl mx-auto px-4">
                     <div className={`bg-white shadow-lg rounded-lg overflow-hidden`}>

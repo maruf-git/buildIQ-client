@@ -7,24 +7,47 @@ import { loadStripe } from "@stripe/stripe-js";
 import CheckOutForm from "../../../components/Dashboard/Member/CheckOutForm";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 // todo : add publishable key
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_PK}`);
 
 const PaymentPage = () => {
     const { paymentInfo, setPaymentInfo } = useContext(AuthContext);
-    const [couponValue, setCouponValue] = useState(0);
+    const [discount, setDiscount] = useState(0);
+    const [isCouponApplied, setIsCouponApplied] = useState(false);
     console.log("now payment info:", paymentInfo);
 
-    const handleApplyCoupon = (event) => {
+    const handleApplyCoupon = async (event) => {
         event.preventDefault();
+       
+        // reset paymentInfo to default(without discount);
+        paymentInfo.discount = (0);
+        setDiscount(paymentInfo.discount);
+        setPaymentInfo(paymentInfo);
+        setIsCouponApplied(false);
+
+        // taking coupon input value
         const coupon = event.target.coupon.value;
         console.log('coupon:', coupon);
-
         paymentInfo.coupon = coupon;
-        paymentInfo.coupon_value = 300;
-        setCouponValue(300);
+
+        // finding the coupon in the data base
+        const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/coupons/${coupon}`);
+        console.log('coupon find data:', data);
+        if (!data) {
+            toast.error('Invalid coupon');
+            return;
+        }
+        if (data?.validity === 'Invalid') {
+            toast.error('Coupon validity expired!');
+            return;
+        }
+        // calculating discount amount from percentage
+        paymentInfo.discount = (data?.discount * paymentInfo?.rent / 100);
+        setDiscount(paymentInfo.discount);
         setPaymentInfo(paymentInfo);
+        setIsCouponApplied(true);
 
         console.log('with coupon payment info:', paymentInfo);
         toast.success('Coupon Applied!');
@@ -63,7 +86,21 @@ const PaymentPage = () => {
                         </form>
 
                         <div className="card-body">
-                            <p className="font-semibold text-xl">Payment Amount: {paymentInfo.rent - couponValue} $</p>
+                            {
+                                isCouponApplied === false &&
+                                <p className="font-semibold text-xl">Payment Amount: {paymentInfo.rent - discount} $</p>
+                            }
+                            {
+                                isCouponApplied === true &&
+                                <div>
+                                    <p className="font-semibold text-xl">Payment Amount: <span className="line-through text-red-600" >{paymentInfo.rent} </span>$ </p>
+                                    <p className="font-semibold text-xl">Pay Now: {paymentInfo.rent - discount} $</p>
+                                </div>
+
+
+                            }
+
+
                         </div>
 
                         {/* stripe payment */}

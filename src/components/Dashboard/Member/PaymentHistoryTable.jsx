@@ -60,7 +60,7 @@ const PaymentHistoryTable = () => {
                                 </td>
                                 {/* discount */}
                                 <td>
-                                    {payment?.coupon_value}$
+                                    {payment?.discount}$
                                 </td>
                                 {/* paid amount  */}
                                 <td>
