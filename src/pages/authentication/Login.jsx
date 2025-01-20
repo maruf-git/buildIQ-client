@@ -9,10 +9,10 @@ import useAxiosSecure from '../../hooks/useAxiosSecure'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
-  const axiosSecure=useAxiosSecure();
+  const axiosSecure = useAxiosSecure();
   const from = location?.state || '/'
   // console.log(from)
-  const { signIn, signInWithGoogle,setRole } = useContext(AuthContext)
+  const { signIn, signInWithGoogle, setRole } = useContext(AuthContext)
 
 
 
@@ -39,16 +39,20 @@ const Login = () => {
     try {
       // login in user/signup user
       const data = await signInWithGoogle();
-      console.log('google login user from login:', data);
-      
-       // generating jwt
-       await axios.post(
+    
+
+      // generating jwt
+      const { token } = await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
         {
           email: data?.user?.email,
         },
         { withCredentials: true }
       )
+      if (token) {
+        localStorage.setItem('access-token', data?.token);
+      }
+
 
       // saving new user in db and assigning role
       // ${import.meta.env.VITE_API_URL}

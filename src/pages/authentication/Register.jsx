@@ -49,16 +49,18 @@ const Register = () => {
     try {
       // login in user/signup user
       const data = await signInWithGoogle();
-      console.log('google login user from register:', data);
 
       // generating jwt
-      await axios.post(
+      const { token } = await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
         {
           email: data?.user?.email,
         },
         { withCredentials: true }
       )
+      if (token) {
+        localStorage.setItem('access-token', data?.token);
+      }
 
       // saving new user in db and assigning role
       // ${import.meta.env.VITE_API_URL}

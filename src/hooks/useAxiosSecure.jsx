@@ -13,14 +13,14 @@ const useAxiosSecure = () => {
   const { logOut } = useContext(AuthContext);
 
   // request interceptor to add authorization header for every secure call to the api
-  // axiosSecure.interceptors.request.use(function (config) {
-  //   const token = localStorage.getItem('access-token');
-  //   config.headers.authorization=`Bearer ${token}`
-  //   return config;
-  // }, function (error) {
-  //   Do something with request error
-  //   return Promise.reject(error);
-  // })
+  axiosSecure.interceptors.request.use(function (config) {
+    const token = localStorage.getItem('access-token');
+    config.headers.authorization = `Bearer ${token}`
+    return config;
+  }, function (error) {
+    // Do something with request error
+    return Promise.reject(error);
+  })
 
   // response interceptor
   useEffect(() => {

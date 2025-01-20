@@ -66,6 +66,7 @@ const AuthProvider = ({ children }) => {
 
       if (currentUser?.email) {
         setUser(currentUser)
+        // creating jwt
         const { data } = await axios.post(
           `${import.meta.env.VITE_API_URL}/jwt`,
           {
@@ -74,8 +75,9 @@ const AuthProvider = ({ children }) => {
           { withCredentials: true }
         )
         console.log("jwt status:", data);
-
-        console.log('current user email:', currentUser?.email);
+        if (data?.token) {
+          localStorage.setItem('access-token', data?.token);
+        }
 
         // get user role
         // ${import.meta.env.VITE_API_URL}
@@ -88,13 +90,10 @@ const AuthProvider = ({ children }) => {
         // setRole(userData?.role);
 
 
-      } else {
-        setUser(currentUser)
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/logout`,
-          { withCredentials: true }
-        )
-        console.log(data);
+      }
+      else {
+        setUser(currentUser);
+        localStorage.removeItem('access-token');
       }
       setLoading(false)
     })

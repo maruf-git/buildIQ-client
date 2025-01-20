@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-import coverImg from '../../../assets/images/home.png'
 import { AuthContext } from '../../../providers/AuthProvider'
 
 const Profile = () => {

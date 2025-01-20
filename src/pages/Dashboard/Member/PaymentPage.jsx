@@ -20,7 +20,7 @@ const PaymentPage = () => {
 
     const handleApplyCoupon = async (event) => {
         event.preventDefault();
-       
+
         // reset paymentInfo to default(without discount);
         paymentInfo.discount = (0);
         setDiscount(paymentInfo.discount);
@@ -71,6 +71,7 @@ const PaymentPage = () => {
                             <div>
                                 <label htmlFor="coupon" className="block text-base font-medium mb-3">Have a Coupon?</label>
                                 <input
+                                    required
                                     id="coupon"
                                     type="text"
                                     name="coupon"

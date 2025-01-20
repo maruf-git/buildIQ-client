@@ -13,7 +13,7 @@ const CheckOutForm = () => {
     const stripe = useStripe();
     const elements = useElements();
     const [clientSecret, setClientSecret] = useState('');
-   
+
 
 
     // todo:calculate total price of products from cart
@@ -43,7 +43,8 @@ const CheckOutForm = () => {
         const card = elements.getElement(CardElement);
         if (card == null) return;
         // Use your card Element with other Stripe.js APIs
-        const { error, paymentMethod } = await stripe.createPaymentMethod({
+        // paymentMethod
+        const { error } = await stripe.createPaymentMethod({
             type: 'card',
             card,
         });
