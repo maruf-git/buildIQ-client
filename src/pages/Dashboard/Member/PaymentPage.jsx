@@ -16,7 +16,7 @@ const PaymentPage = () => {
     const { paymentInfo, setPaymentInfo } = useContext(AuthContext);
     const [discount, setDiscount] = useState(0);
     const [isCouponApplied, setIsCouponApplied] = useState(false);
-    console.log("now payment info:", paymentInfo);
+    // console.log("now payment info:", paymentInfo);
 
     const handleApplyCoupon = async (event) => {
         event.preventDefault();
@@ -29,12 +29,12 @@ const PaymentPage = () => {
 
         // taking coupon input value
         const coupon = event.target.coupon.value;
-        console.log('coupon:', coupon);
+        // console.log('coupon:', coupon);
         paymentInfo.coupon = coupon;
 
         // finding the coupon in the data base
         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/coupons/${coupon}`);
-        console.log('coupon find data:', data);
+        // console.log('coupon find data:', data);
         if (!data) {
             toast.error('Invalid coupon');
             return;
@@ -49,7 +49,7 @@ const PaymentPage = () => {
         setPaymentInfo(paymentInfo);
         setIsCouponApplied(true);
 
-        console.log('with coupon payment info:', paymentInfo);
+        // console.log('with coupon payment info:', paymentInfo);
         toast.success('Coupon Applied!');
     }
 

@@ -3,11 +3,13 @@ import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
 
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
+  const axiosSecure=useAxiosSecure();
   const from = location?.state || '/'
   // console.log(from)
   const { signIn, signInWithGoogle,setRole } = useContext(AuthContext)
@@ -38,9 +40,19 @@ const Login = () => {
       // login in user/signup user
       const data = await signInWithGoogle();
       console.log('google login user from login:', data);
+      
+       // generating jwt
+       await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: data?.user?.email,
+        },
+        { withCredentials: true }
+      )
 
       // saving new user in db and assigning role
-      const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: data?.user?.email, name: data?.user?.displayName });
+      // ${import.meta.env.VITE_API_URL}
+      const { data: userData } = await axiosSecure.post(`/users`, { email: data?.user?.email, name: data?.user?.displayName });
       console.log('new user in db:', userData);
       setRole(userData?.role);
 

@@ -12,6 +12,8 @@ import {
   updateProfile,
 } from 'firebase/auth'
 import axios from 'axios'
+// import useAxiosSecure from '../hooks/useAxiosSecure'
+
 
 export const AuthContext = createContext()
 // const auth = getAuth(app)
@@ -22,6 +24,8 @@ const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true)
   const [role, setRole] = useState(null);
   const [paymentInfo, setPaymentInfo] = useState({});
+  // const axiosSecure = useAxiosSecure();
+
 
   // create user with email and password
   const createUser = (email, password) => {
@@ -71,17 +75,17 @@ const AuthProvider = ({ children }) => {
         )
         console.log("jwt status:", data);
 
-        // behaving like user role get api
-        // const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: currentUser?.email });
         console.log('current user email:', currentUser?.email);
-        const findUser = {
-          email: currentUser?.email
-        }
-        console.log('find user:', findUser);
+
         // get user role
+        // ${import.meta.env.VITE_API_URL}
         const { data: userData } = await axios.get(`${import.meta.env.VITE_API_URL}/user/${currentUser?.email}`);
         console.log('now logged in user from db:', userData);
         setRole(userData?.role);
+
+        // const { data: userData } = await axiosSecure.get(`/user/${currentUser?.email}`);
+        // console.log('now logged in user from db:', userData);
+        // setRole(userData?.role);
 
 
       } else {

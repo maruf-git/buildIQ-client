@@ -23,7 +23,7 @@ const MakePayment = () => {
             return data;
         }
     })
-    console.log("my apartment details:", myApartment);
+    // console.log("my apartment details:", myApartment);
     const { name, email, apartment_no, floor_no, block_no, rent } = myApartment;
 
     const handleSubmit = (event) => {
@@ -40,7 +40,7 @@ const MakePayment = () => {
             coupon:'',
             discount:0
         }
-        console.log(paymentInfo);
+        // console.log(paymentInfo);
         setPaymentInfo(paymentInfo);
         navigate('/payment');
     }

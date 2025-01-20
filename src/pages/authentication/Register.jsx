@@ -3,12 +3,14 @@ import { useContext } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import axios from 'axios'
+import useAxiosSecure from '../../hooks/useAxiosSecure'
 
 
 const Register = () => {
   const navigate = useNavigate()
   const { signInWithGoogle, createUser, updateUserProfile, setUser, setRole } =
-    useContext(AuthContext)
+    useContext(AuthContext);
+  const axiosSecure = useAxiosSecure();
 
   const handleSignUp = async (e) => {
     e.preventDefault()
@@ -28,7 +30,8 @@ const Register = () => {
       setUser({ ...result.user, photoURL: photo, displayName: name })
 
       // saving new user in db and assigning role
-      const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email, name });
+      // ${import.meta.env.VITE_API_URL}
+      const { data: userData } = await axiosSecure.post(`/users`, { email, name });
       console.log('new user in db:', userData);
       setRole(userData?.role);
 
@@ -48,8 +51,18 @@ const Register = () => {
       const data = await signInWithGoogle();
       console.log('google login user from register:', data);
 
+      // generating jwt
+      await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: data?.user?.email,
+        },
+        { withCredentials: true }
+      )
+
       // saving new user in db and assigning role
-      const { data: userData } = await axios.post(`${import.meta.env.VITE_API_URL}/users`, { email: data?.user?.email, name: data?.user?.displayName });
+      // ${import.meta.env.VITE_API_URL}
+      const { data: userData } = await axiosSecure.post(`/users`, { email: data?.user?.email, name: data?.user?.displayName });
       console.log('new user in db:', userData);
       setRole(userData?.role);
 
