@@ -15,6 +15,7 @@ import { AuthContext } from '../../providers/AuthProvider'
 import UserMenu from './UserMenu'
 import MemberMenu from './MemberMenu'
 import AdminMenu from './AdminMenu'
+import { RxCross2 } from 'react-icons/rx'
 
 const Sidebar = () => {
   const { logOut, user, role } = useContext(AuthContext);
@@ -28,9 +29,9 @@ const Sidebar = () => {
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className='bg-[#4bb32b] text-gray-800 flex justify-between md:hidden'>
+      <div className='bg-[#4bb32b] text-gray-800 flex justify-between md:hidden p-4'>
         <div>
-          <div className='block cursor-pointer p-4 font-bold'>
+          <div className='block cursor-pointer font-bold'>
             <Link to='/'>
               <img
                 // className='hidden md:block'
@@ -42,13 +43,24 @@ const Sidebar = () => {
             </Link>
           </div>
         </div>
-
-        <button
-          onClick={handleToggle}
-          className='mobile-menu-button p-4 focus:outline-none focus:bg-gray-200'
-        >
-          <AiOutlineBars className='h-5 w-5' />
-        </button>
+        {
+          !isActive && <button
+            onClick={handleToggle}
+            // mobile-menu-button
+            className='  focus:outline-none '
+          >
+            <RxCross2 size={30} />
+          </button>
+        }
+        {
+          isActive && <button
+            onClick={handleToggle}
+            // mobile-menu-button
+            className='  focus:outline-none '
+          >
+            <AiOutlineBars size={30} />
+          </button>
+        }
       </div>
 
       {/* Sidebar */}
@@ -71,8 +83,8 @@ const Sidebar = () => {
             </div>
           </div>
 
-         
-          <hr className='text-[#4cd734] border-[#4cd734] border-[2px]' />
+
+          <hr className='text-[#4cd734] border-[#4cd734] border-[2px] hidden md:block' />
           {/* Nav Items */}
           <div className='flex flex-col justify-between flex-1 mt-1'>
             <nav>
