@@ -18,7 +18,7 @@ import AdminMenu from './AdminMenu'
 import { RxCross2 } from 'react-icons/rx'
 
 const Sidebar = () => {
-  const { logOut, user, role } = useContext(AuthContext);
+  const { logOut,  role } = useContext(AuthContext);
   const [isActive, setActive] = useState(false)
 
 

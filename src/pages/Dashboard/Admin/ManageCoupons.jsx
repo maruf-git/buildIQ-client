@@ -137,8 +137,11 @@ const ManageCoupons = () => {
                 </dialog>
             </div>
             {/* coupon table */}
-            <div>
-                <p className="text-3xl text-center font-bold mt-10 mb-5">All Coupons</p>
+            <div className="mb-2">
+                <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                    All Coupons({coupons.length})
+                </p>
+                <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
             </div>
             <div>
                 <CouponsTable coupons={coupons} handleCouponValidity={handleCouponValidity} handleDeleteCoupon={handleDeleteCoupon}></CouponsTable>

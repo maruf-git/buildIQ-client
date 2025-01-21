@@ -4,94 +4,77 @@
 const RequestsTable = ({ requests, handleAccept, handleReject }) => {
 
     return (
-        <div>
-            <div className="overflow-x-auto">
-                <table className="table text-center">
-                    {/* head */}
-                    <thead className="">
+        <div className="p-4">
+            <div className="overflow-x-auto shadow-md rounded-lg">
+                <table className="table w-full text-center">
+                    {/* Head */}
+                    <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
                         <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Apartment No</th>
-                            <th>Floor No</th>
-                            <th>Block</th>
-                            <th>Rent</th>
-                            <th>Request Date</th>
-                            <th>Status</th>
-                            <th>Action</th>
+                            <th className="py-3 px-6">#</th>
+                            <th className="py-3 px-6">Name</th>
+                            <th className="py-3 px-6">Email</th>
+                            <th className="py-3 px-6">Apartment No</th>
+                            <th className="py-3 px-6">Floor No</th>
+                            <th className="py-3 px-6">Block</th>
+                            <th className="py-3 px-6">Rent</th>
+                            <th className="py-3 px-6">Request Date</th>
+                            <th className="py-3 px-6">Status</th>
+                            <th className="py-3 px-6">Action</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {/* rows */}
-                        {
-                            requests.map((request, idx) => <tr key={request._id}>
-                                {/* index */}
-                                <td>{idx + 1}</td>
-                                {/* requester name */}
-                                <td>
+                    <tbody className="text-gray-700 text-sm">
+                        {/* Rows */}
+                        {requests.map((request, idx) => (
+                            <tr
+                                key={request._id}
+                                className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                                    } hover:bg-gray-100 transition duration-150`}
+                            >
+                                <td className="py-3 px-6">{idx + 1}</td>
+                                <td className="py-3 px-6">
                                     <div className="flex items-center gap-3">
-                                        {/* <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
-                                                <img
-                                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                    alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div> */}
-
+                                        {/* Optionally add avatar back */}
                                         <div className="font-semibold">{request?.name}</div>
-
                                     </div>
                                 </td>
-                                {/* email */}
-                                <td>
-                                    {request?.email}
+                                <td className="py-3 px-6">{request?.email}</td>
+                                <td className="py-3 px-6">{request?.apartment_no}</td>
+                                <td className="py-3 px-6">{request?.floor_no}</td>
+                                <td className="py-3 px-6">{request?.block_no}</td>
+                                <td className="py-3 px-6">{request?.rent}$</td>
+                                <td className="py-3 px-6">{request?.request_date}</td>
+                                <td className="py-3 px-6">
+                                    {request?.status === 'pending' && (
+                                        <span className="text-yellow-500 font-semibold">Pending</span>
+                                    )}
+                                    {/* Uncomment this for other statuses */}
+                                    {/* {request?.status === 'checked' && (
+                <span className="text-green-500 font-semibold">Checked</span>
+              )} */}
                                 </td>
-                                {/* apartment no */}
-                                <td>{request?.apartment_no}</td>
-                                {/* floor no */}
-                                <td>
-                                    {request?.floor_no}
-                                </td>
-                                {/* block no */}
-                                <td>
-                                    {request?.block_no}
-                                </td>
-                                {/* rent */}
-                                <td>
-                                    {request?.rent}$
-                                </td>
-                                {/* request date */}
-                                <td>
-                                    {request?.request_date}
-                                </td>
-                                {/* status */}
-                                <td>
-                                    {request?.status === "pending" && <p className="text-yellow-500 font-semibold">Pending</p>}
-                                    {/* {request?.status === "checked" && <p className="text-green-500 font-semibold ">Checked</p>} */}
-
-
-                                </td>
-                                {/* request action button */}
-                                <td>
-                                    <div className="flex gap-1 items-center">
-                                        {/* accept button  */}
+                                <td className="py-3 px-6">
+                                    <div className="flex gap-2 justify-center">
                                         <button
                                             onClick={() => handleAccept(request)}
-                                            className="btn btn-xs bg-green-500 text-white hover:bg-green-600">Accept</button>
-                                        {/* reject button */}
+                                            className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
+                                        >
+                                            Accept
+                                        </button>
                                         <button
                                             onClick={() => handleReject(request)}
-                                            className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Reject</button>
+                                            className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
+                                        >
+                                            Reject
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
-                            )
-                        }
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
+
     );
 };
 

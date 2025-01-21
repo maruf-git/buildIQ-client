@@ -3,56 +3,57 @@
 
 const MembersTable = ({ members, handleRemoveMember }) => {
     return (
-        <div>
-            <div className="overflow-x-auto">
-                <table className="table text-center">
-                    {/* head */}
-                    <thead>
-                        <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {/* rows */}
-                        {
-                            members.map((member, idx) => <tr key={member._id}>
-                                {/* indexing */}
-                                <td>{idx + 1}</td>
-                                {/* name and photo */}
-                                <td>
-                                    <div className="flex justify-center items-center gap-3">
-                                        <div className="avatar">
-                                            <div className="mask mask-squircle h-12 w-12">
-                                                <img
-                                                    src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                                    alt="Avatar Tailwind CSS Component" />
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <div className="font-bold">{member?.name || 'Null'}</div>
-                                            <div className="text-sm opacity-50">United States</div>
-                                        </div>
-                                    </div>
+        <div className="p-4">
+  <div className="overflow-x-auto shadow-md rounded-lg">
+    <table className="table w-full text-center">
+      {/* Table Head */}
+      <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
+        <tr>
+          <th className="py-3 px-6">#</th>
+          <th className="py-3 px-6">Name</th>
+          <th className="py-3 px-6">Email</th>
+          <th className="py-3 px-6">Action</th>
+        </tr>
+      </thead>
+      <tbody className="text-gray-700 text-sm">
+        {members.map((member, idx) => (
+          <tr
+            key={member._id}
+            className={`${
+              idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+            } hover:bg-gray-100 transition duration-150`}
+          >
+            {/* Index */}
+            <td className="py-3 px-6">{idx + 1}</td>
 
-                                </td>
-                                {/* email */}
-                                <td>{member?.email}</td>
-                                {/* remove button */}
-                                <td>
-                                    <button
-                                        onClick={() => handleRemoveMember(member.email)}
-                                        className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Remove
-                                    </button>
-                                </td>
-                            </tr>)
-                        }
-                    </tbody>
-                </table>
-            </div>
-        </div>
+            {/* Name and Photo */}
+            <td className="py-3 px-6">
+              <div className="flex justify-center items-center gap-3">
+                <div>
+                  <div className="font-bold">{member?.name || 'Null'}</div>
+                </div>
+              </div>
+            </td>
+
+            {/* Email */}
+            <td className="py-3 px-6">{member?.email}</td>
+
+            {/* Action Button */}
+            <td className="py-3 px-6">
+              <button
+                onClick={() => handleRemoveMember(member.email)}
+                className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
+              >
+                Remove
+              </button>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+
     );
 };
 

@@ -49,7 +49,7 @@ const AgreementRequests = () => {
             }
             await axiosSecure.post('/accepted-requests', acceptedRequest);
             // update user role
-            await axiosSecure.patch('/update-role', { email: request?.email, role: 'member',apartment_id:request?.apartment_id });
+            await axiosSecure.patch('/update-role', { email: request?.email, role: 'member', apartment_id: request?.apartment_id });
         }
     }
 
@@ -69,12 +69,13 @@ const AgreementRequests = () => {
 
     return (
         <div>
-            <div className="flex justify-between items-center">
-                <p>All Requests: {requests.length}</p>
-                <p>Pending Requests: {requests.length}</p>
-                <p>Accepted Requests: {requests.length}</p>
+            <div className="mb-2">
+                <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                    All Requests({requests.length})
+                </p>
+                <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
             </div>
-            <div className="my-10">
+            <div className="mb-10">
                 <RequestsTable requests={requests} handleAccept={handleAccept} handleReject={handleReject}></RequestsTable>
             </div>
         </div>

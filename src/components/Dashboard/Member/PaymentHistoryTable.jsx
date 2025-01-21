@@ -1,90 +1,83 @@
-import { useQuery } from "@tanstack/react-query";
-import LoadingSpinner from "../../Shared/LoadingSpinner";
-import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import { useContext } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
+
 
 /* eslint-disable react/prop-types */
-const PaymentHistoryTable = () => {
-    const axiosSecure = useAxiosSecure();
-    const { user } = useContext(AuthContext);
-    const { data: payments = [], isLoading } = useQuery({
-        queryKey: ['payments-history'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`/payments-history/${user?.email}`);
-            return data;
-        }
-    })
+const PaymentHistoryTable = ({ payments }) => {
 
-    if (isLoading) return <LoadingSpinner></LoadingSpinner>;
     return (
-        <div>
-            <div className="overflow-x-auto">
-                <table className="table text-center">
-                    {/* head */}
-                    <thead className="">
+        <div className="p-4">
+            <div className="overflow-x-auto shadow-md rounded-lg">
+                <table className="table w-full text-center">
+                    {/* Table Head */}
+                    <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
                         <tr>
-                            <th>Apartment No</th>
-                            <th>Floor No</th>
-                            <th>Block</th>
-                            <th>Month</th>
-                            <th>Rent</th>
-                            <th>Discount</th>
-                            <th>Paid Amount</th>
-                            <th>Status</th>
-                            <th>Payment Date</th>
-                            <th>Transaction ID</th>
+                            <th className="py-3 px-6">#</th>
+                            <th className="py-3 px-6">Apartment No</th>
+                            <th className="py-3 px-6">Floor No</th>
+                            <th className="py-3 px-6">Block</th>
+                            <th className="py-3 px-6">Month</th>
+                            <th className="py-3 px-6">Rent</th>
+                            <th className="py-3 px-6">Discount</th>
+                            <th className="py-3 px-6">Paid Amount</th>
+                            <th className="py-3 px-6">Status</th>
+                            <th className="py-3 px-6">Payment Date</th>
+                            <th className="py-3 px-6">Transaction ID</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        {/* rows */}
-                        {
-                            payments.map((payment) => <tr key={payment._id}>
-                                {/* apartment no */}
-                                <td>{payment?.apartment_no}</td>
-                                {/* floor no */}
-                                <td>
-                                    {payment?.floor_no}
+                    <tbody className="text-gray-700 text-sm">
+                        {payments.map((payment, idx) => (
+                            <tr
+                                key={payment._id}
+                                className={`${payments.indexOf(payment) % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                                    } hover:bg-gray-100 transition duration-150`}
+                            >
+                                {/* Index */}
+                                <td className="py-3 px-6">{idx + 1}</td>
+
+                                {/* Apartment No */}
+                                <td className="py-3 px-6">{payment?.apartment_no}</td>
+
+                                {/* Floor No */}
+                                <td className="py-3 px-6">{payment?.floor_no}</td>
+
+                                {/* Block No */}
+                                <td className="py-3 px-6">{payment?.block_no}</td>
+
+                                {/* Month */}
+                                <td className="py-3 px-6">{payment?.month}</td>
+
+                                {/* Rent */}
+                                <td className="py-3 px-6">{payment?.rent}$</td>
+
+                                {/* Discount */}
+                                <td className="py-3 px-6">{payment?.discount}$</td>
+
+                                {/* Paid Amount */}
+                                <td className="py-3 px-6">{payment?.amount}$</td>
+
+                                {/* Status */}
+                                <td className="py-3 px-6">
+                                    <span
+                                        className={`px-3 py-1 rounded-full text-xs font-semibold ${payment?.status === 'paid'
+                                            ? 'bg-green-100 text-green-600'
+                                            : 'bg-yellow-100 text-yellow-600'
+                                            }`}
+                                    >
+                                        {payment?.status}
+                                    </span>
                                 </td>
-                                {/* block no */}
-                                <td>
-                                    {payment?.block_no}
-                                </td>
-                                {/* Month  */}
-                                <td>
-                                    {payment?.month}
-                                </td>
-                                {/* rent */}
-                                <td>
-                                    {payment?.rent}$
-                                </td>
-                                {/* discount */}
-                                <td>
-                                    {payment?.discount}$
-                                </td>
-                                {/* paid amount  */}
-                                <td>
-                                    {payment?.amount}$
-                                </td>
-                                {/* status */}
-                                <td>
-                                    {payment?.status}
-                                </td>
-                                {/* Date */}
-                                <td>
-                                    {payment?.date}
-                                </td>
-                                {/* transaction id */}
-                                <td>
-                                    {payment?.transactionId}
-                                </td>
+
+                                {/* Payment Date */}
+                                <td className="py-3 px-6">{payment?.date}</td>
+
+                                {/* Transaction ID */}
+                                <td className="py-3 px-6">{payment?.transactionId}</td>
                             </tr>
-                            )
-                        }
+                        ))}
                     </tbody>
                 </table>
             </div>
         </div>
+
     );
 };
 

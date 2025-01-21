@@ -3,7 +3,6 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import AnnouncementTable from "../../../components/Dashboard/Admin/AnnouncementTable";
 
@@ -20,7 +19,7 @@ const Announcements = () => {
     })
 
     const handleDeleteAnnouncement = async (id) => {
-        const { data } = await axiosSecure.delete( `/announcements/${id}`);
+        const { data } = await axiosSecure.delete(`/announcements/${id}`);
         if (data.deletedCount) {
             toast.success('Deleted the Announcement!');
             refetch();
@@ -106,7 +105,12 @@ const Announcements = () => {
 
             {/* Announcements */}
             <div>
-                <p className="text-center font-bold text-3xl mb-5">All Announcements</p>
+                <div className="mb-2">
+                    <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                        All Announcements({announcements.length})
+                    </p>
+                    <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
+                </div>
                 {/* announcement table */}
                 <div>
                     <AnnouncementTable announcements={announcements} handleDeleteAnnouncement={handleDeleteAnnouncement}></AnnouncementTable>

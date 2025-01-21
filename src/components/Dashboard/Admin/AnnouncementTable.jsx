@@ -15,53 +15,64 @@ const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
     return (
         <div>
             {/* announcement table */}
-            <div>
-                <div className="overflow-x-auto">
-                    <table className="table text-center">
-                        {/* head */}
-                        <thead>
+            <div className="p-4">
+                <div className="overflow-x-auto shadow-md rounded-lg">
+                    <table className="table w-full text-center">
+                        {/* Table Head */}
+                        <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
                             <tr>
-                                <th>#</th>
-                                <th>Title</th>
-                                <th>Description</th>
-                                <th>Announcement Date</th>
-                                <th>Action</th>
+                                <th className="py-3 px-6">#</th>
+                                <th className="py-3 px-6">Title</th>
+                                <th className="py-3 px-6">Description</th>
+                                <th className="py-3 px-6">Announcement Date</th>
+                                <th className="py-3 px-6">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            {/* rows */}
-                            {
-                                announcements.map((announcement, idx) => <tr key={announcement._id}>
-                                    {/* indexing */}
-                                    <td>{idx + 1}</td>
-                                    {/* title */}
-                                    <td>{announcement?.title}</td>
-                                    {/* description */}
-                                    <td>{announcement?.description.slice(0, 30)}...</td>
-                                    {/* Date */}
-                                    <td>{announcement?.date}</td>
+                        <tbody className="text-gray-700 text-sm">
+                            {announcements.map((announcement, idx) => (
+                                <tr
+                                    key={announcement._id}
+                                    className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                                        } hover:bg-gray-100 transition duration-150`}
+                                >
+                                    {/* Index */}
+                                    <td className="py-3 px-6">{idx + 1}</td>
 
-                                    {/* actions */}
-                                    <td>
-                                        <div className="flex gap-5 justify-center">
-                                            {/* announcement details button */}
+                                    {/* Title */}
+                                    <td className="py-3 px-6 font-semibold">{announcement?.title}</td>
+
+                                    {/* Description */}
+                                    <td className="py-3 px-6">
+                                        {announcement?.description.slice(0, 30)}...
+                                    </td>
+
+                                    {/* Announcement Date */}
+                                    <td className="py-3 px-6">{announcement?.date}</td>
+
+                                    {/* Actions */}
+                                    <td className="py-3 px-6">
+                                        <div className="flex gap-3 justify-center">
+                                            {/* View Details Button */}
                                             <button
                                                 onClick={() => showAnnouncementDetails(announcement)}
-                                                className="btn btn-xs bg-green-500 text-white hover:bg-green-600">View Details
+                                                className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
+                                            >
+                                                View Details
                                             </button>
 
-                                            {/* announcement delete button */}
-                                            {
-                                                role === 'admin' && <button
+                                            {/* Delete Button (Admin Only) */}
+                                            {role === 'admin' && (
+                                                <button
                                                     onClick={() => handleDeleteAnnouncement(announcement._id)}
-                                                    className="btn btn-xs bg-red-500 text-white hover:bg-red-600">Delete
+                                                    className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
+                                                >
+                                                    Delete
                                                 </button>
-
-                                            }
+                                            )}
                                         </div>
                                     </td>
-                                </tr>)
-                            }
+                                </tr>
+                            ))}
                         </tbody>
                     </table>
                 </div>

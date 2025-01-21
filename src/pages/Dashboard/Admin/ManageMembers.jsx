@@ -30,7 +30,12 @@ const ManageMembers = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
-            <p className="text-3xl font-bold text-center mb-5">Total Members : {members.length}</p>
+           <div className="mb-2">
+                <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                    Total Members({members.length})
+                </p>
+                <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
+            </div>
             <div>
                 <MembersTable members={members} handleRemoveMember={handleRemoveMember}></MembersTable>
             </div>
