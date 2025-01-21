@@ -1,13 +1,14 @@
-import { BsGraphUp } from "react-icons/bs";
 import MenuItem from "./MenuItem";
-import { FaUserCog } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+
+import { GrAnnounce } from "react-icons/gr";
 
 
 const UserMenu = () => {
     return (
         <div>
-            <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />
-            <MenuItem icon={FaUserCog} label='Announcements' address='/dashboard/announcements' />
+            <MenuItem icon={FaUser} label='Profile' address='/dashboard' />
+            <MenuItem icon={GrAnnounce} label='Announcements' address='/dashboard/announcements' />
         </div>
     );
 };

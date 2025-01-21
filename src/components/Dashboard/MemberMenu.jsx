@@ -1,15 +1,17 @@
-import { BsGraphUp } from "react-icons/bs";
+
 import MenuItem from "./MenuItem";
-import { FaUserCog } from "react-icons/fa";
+import { FaHistory, FaUser } from "react-icons/fa";
+import { GrAnnounce } from "react-icons/gr";
+import { MdPayments } from "react-icons/md";
 
 
 const MemberMenu = () => {
     return (
         <div>
-                   <MenuItem icon={BsGraphUp} label='Profile' address='/dashboard' />           
-                   <MenuItem icon={BsGraphUp} label='Make Payment' address='/dashboard/make-payment' />
-                   <MenuItem icon={BsGraphUp} label='Payment History' address='/dashboard/payment-history' />
-                   <MenuItem icon={FaUserCog} label='Announcements' address='/dashboard/announcements' />
+                   <MenuItem icon={FaUser} label='Profile' address='/dashboard' />           
+                   <MenuItem icon={MdPayments} label='Make Payment' address='/dashboard/make-payment' />
+                   <MenuItem icon={FaHistory} label='Payment History' address='/dashboard/payment-history' />
+                   <MenuItem icon={GrAnnounce} label='Announcements' address='/dashboard/announcements' />
                </div>
     );
 };
