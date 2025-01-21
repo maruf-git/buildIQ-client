@@ -18,7 +18,7 @@ const ManageMembers = () => {
     const handleRemoveMember = async (email) => {
         console.log("member id", email);
         // update role
-        const userDetails = { email, role: "user", deleteApartment: true }
+        const userDetails = { email, role: "user", deleteApartment: true,apartment_id:'' };
         const { data } = await axiosSecure.patch('/update-role', userDetails);
         if (data.modifiedCount) {
             toast.success(`Removed Member!`);

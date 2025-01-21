@@ -17,7 +17,17 @@ const AgreementRequests = () => {
 
     const handleAccept = async (request) => {
 
-        const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' }); //checked
+        // check if the room available or not
+        const { data: ApartmentStatus } = await axiosSecure.get(`/apartment-status/${request?.apartment_id}`)
+        if (!ApartmentStatus?.isAvailable) {
+            toast.error('Can not Accept! You have already allocated the Apartment to a user!');
+            return;
+        }
+        // check mark the request
+        await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' }); //checked
+        // if the room is available then allocate the room and set the room status unavailable
+        const { data } = await axiosSecure.patch(`/allocate-apartment/${request?.apartment_id}`, { booking_status: 'unavailable' });
+
         if (data.modifiedCount) {
             toast.success('Accepted the Request!');
             // load requests again
@@ -39,7 +49,7 @@ const AgreementRequests = () => {
             }
             await axiosSecure.post('/accepted-requests', acceptedRequest);
             // update user role
-            await axiosSecure.patch('/update-role', { email: request?.email, role: 'member' });
+            await axiosSecure.patch('/update-role', { email: request?.email, role: 'member',apartment_id:request?.apartment_id });
         }
     }
 
@@ -47,7 +57,7 @@ const AgreementRequests = () => {
     const handleReject = async (request) => {
         // update request status
         const { data } = await axiosSecure.patch('/update-request', { id: request._id, status: 'checked' }); //checked
-        if (data.modifiedCount) {
+        if (data?.modifiedCount) {
             toast.success('Rejected the Request!');
             // load requests again
             refetch();

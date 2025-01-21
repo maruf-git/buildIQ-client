@@ -47,6 +47,11 @@ const ApartmentCard = ({ apartment }) => {
             else if (data?.message === 'already requested') {
                 toast.error('You have an apartment request under pending. Can not request again. Please, wait for confirmation!');
             }
+            else if (data?.message === 'no-apartment') {
+                toast.error('No Such Apartment!');
+            } else if (data?.message === 'unavailable') {
+                toast.error('The Apartment is Already Booked! Please, checkout other apartments');
+            }
         } else {
             toast.error('Please login to Request for the Apartment');
             navigate('/login')
