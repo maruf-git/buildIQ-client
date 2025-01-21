@@ -2,14 +2,38 @@
 @tailwind components;
 @tailwind utilities;
 
-.bg-color{
+.bg-color {
     background-color: #f4fcf3;
 }
-.active{
+
+.active {
     border-bottom-color: #16a34a;
     border-bottom-width: 5px;
-    color:#16a34a;
+    color: #16a34a;
 }
+
+/* admin profile cards  */
+/* total apartments */
+.total-apartments {
+    background: linear-gradient(45deg, #59bcff 21%, #59d7ff 100%) !important;
+}
+
+.available-apartments {
+    background: linear-gradient(45deg, #4ad994 0%, #57f998 100%);
+}
+
+.members {
+    background: linear-gradient(45deg, #fdb765 0%, #ffe485 100%);
+}
+
+.users {
+    background: linear-gradient(45deg, #ff6d59 0%, #ffd584 100%);
+}
+
+.unavailable-apartments {
+    background: linear-gradient(45deg, #ea5459 0%, #f7ba2c 100%);
+}
+
 /*
     light
     text: #0a1609
