@@ -40,8 +40,7 @@ const Apartments = () => {
 
     }
 
-    console.log(minimum, maximum);
-    console.log('page number:',pageNumber);
+
 
 
     return (

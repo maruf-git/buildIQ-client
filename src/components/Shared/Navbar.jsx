@@ -28,7 +28,7 @@ const Navbar = () => {
 
               <li>
                 <NavLink
-                  to='/apartment'
+                  to='/apartments'
                   className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartments
                 </NavLink>
               </li>
