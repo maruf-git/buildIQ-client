@@ -3,9 +3,9 @@ import Container from "../../components/shared/Container";
 import axios from "axios";
 import ApartmentCard from "../../components/Apartment/ApartmentCard";
 import LoadingSpinner from "../../components/Shared/LoadingSpinner";
-import { ScrollRestoration } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useState } from "react";
+import useApartments from "../../hooks/useApartments";
 
 const Apartments = () => {
     const [minimum, setMinimum] = useState('');
@@ -13,14 +13,15 @@ const Apartments = () => {
     const [pageNumber, setPageNumber] = useState(1);
     const [totalPageNumber, setTotalPageNumber] = useState(4);
 
-    const { data: apartments = [], isLoading } = useQuery({
-        queryKey: ['apartments', minimum, maximum, pageNumber],
-        queryFn: async () => {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/apartments?minimum=${minimum}&maximum=${maximum}&limit=${6}&page=${pageNumber}`);
-            setTotalPageNumber(data?.totalPages);
-            return data;
-        }
-    })
+    const {apartments,isLoading}=useApartments(minimum,maximum,pageNumber,setTotalPageNumber)
+    // const { data: apartments = [], isLoading } = useQuery({
+    //     queryKey: ['apartments', minimum, maximum, pageNumber],
+    //     queryFn: async () => {
+    //         const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/apartments?minimum=${minimum}&maximum=${maximum}&limit=${6}&page=${pageNumber}`);
+    //         setTotalPageNumber(data?.totalPages);
+    //         return data;
+    //     }
+    // })
 
 
     const handleSearch = (event) => {
@@ -45,7 +46,7 @@ const Apartments = () => {
 
     return (
         <div className="my-10">
-            <ScrollRestoration></ScrollRestoration>
+        
             {/* search bar */}
             <div className="mb-10 flex gap-3 justify-center items-center ">
                 <form onSubmit={handleSearch} className="" id='search'>
@@ -93,7 +94,7 @@ const Apartments = () => {
                     isLoading ? <LoadingSpinner></LoadingSpinner> :
                         <Container>
                             {
-                                apartments?.result?.length ? <div className="grid grid-cols-3 gap-3 ">
+                                apartments?.result?.length ? <div className="grid grid-cols-3 gap-5 ">
                                     {
                                         apartments?.result?.map(apartment => <ApartmentCard key={apartment._id} apartment={apartment}></ApartmentCard>)
                                     }
