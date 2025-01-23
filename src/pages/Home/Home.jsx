@@ -18,14 +18,14 @@ const Home = () => {
     return (
         <div>
             {/* banner section */}
-            <section className="mt-5 mb-20">
+            <section className="mt-6">
                 <Container>
                     <Banner></Banner>
                 </Container>
             </section>
 
             {/* apartments section */}
-            <section className="my-20">
+            <section className="mt-24">
                 <Container>
                     {/* section title */}
                     <div>
@@ -55,7 +55,7 @@ const Home = () => {
             </section>
 
             {/* about the building section */}
-            <section className="my-20">
+            <section className="mt-24">
                 <Container>
                     {/* section title */}
                     <div>
@@ -90,7 +90,7 @@ const Home = () => {
             </section>
 
             {/* Location */}
-            <section className="my-20">
+            <section className="mt-24">
                 <Container>
                     {/* section title */}
                     <div>
@@ -98,7 +98,25 @@ const Home = () => {
                     </div>
                     {/* display map */}
                     <div>
-                        <LocationMap></LocationMap>
+                        <div className='flex justify-between  min-h-[500px]'>
+                             {/* left */}
+                             <div className='w-1/2'>
+                                <h1 className='font-bold text-6xl leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & Care!</h1>
+                                <p className='mt-5 text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
+
+
+                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Contact Us </Link>
+                            </div>
+                            {/* right */}
+                            <div className='flex gap-3 w-[45%]'>
+                                
+
+                           
+                                   <LocationMap></LocationMap>
+                             
+                            </div>
+                          
+                        </div>
                     </div>
                 </Container>
             </section>

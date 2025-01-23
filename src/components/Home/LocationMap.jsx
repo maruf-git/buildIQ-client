@@ -16,39 +16,37 @@ const LocationMap = () => {
   const position = [23.884130433910936, 90.38799667444884]; // Uttara Sector 10 coordinates
 
   return (
-    <div>
-      <div style={{ height: "500px", width: "100%" }}>
-        <MapContainer
+    <div style={{ height: "500px", width: "100%", borderRadius: "25px", overflow: "hidden" }}>
+      <MapContainer
+        center={position}
+        zoom={13} // Zoom level
+        style={{ height: "100%", width: "100%" }}
+      >
+        {/* Add TileLayer for the map tiles */}
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        />
+
+        {/* Marker with custom red icon */}
+        <Marker position={position} icon={redIcon}>
+          {/* Tooltip that is always visible */}
+          <Tooltip permanent>
+            <span>Uttara Sector 10, Dhaka</span>
+          </Tooltip>
+        </Marker>
+
+        {/* Red dotted circle around the marker */}
+        <Circle
           center={position}
-          zoom={13} // Zoom level
-          style={{ height: "100%", width: "100%" }}
-        >
-          {/* Add TileLayer for the map tiles */}
-          <TileLayer
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          />
-
-          {/* Marker with custom red icon */}
-          <Marker position={position} icon={redIcon}>
-            {/* Tooltip that is always visible */}
-            <Tooltip permanent>
-              <span>Uttara Sector 10, Dhaka</span>
-            </Tooltip>
-          </Marker>
-
-          {/* Red dotted circle around the marker */}
-          <Circle
-            center={position}
-            radius={500} // Radius in meters
-            pathOptions={{
-              color: "red", // Border color
-              fillColor: "transparent", // No fill inside the circle
-              dashArray: "5, 10", // Dotted border
-            }}
-          />
-        </MapContainer>
-      </div>
+          radius={500} // Radius in meters
+          pathOptions={{
+            color: "red", // Border color
+            fillColor: "transparent", // No fill inside the circle
+            dashArray: "5, 10", // Dotted border
+          }}
+        />
+      </MapContainer>
     </div>
   );
 };
