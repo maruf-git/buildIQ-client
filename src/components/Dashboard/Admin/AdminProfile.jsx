@@ -59,7 +59,7 @@ const AdminProfile = () => {
                         {/* <FaRegUser size={65} /> */}
                         <FaUser size={60} />
                         <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.totalUsers}%</p>
+                            <p className="text-6xl font-bold"> {statistics?.totalUsers}</p>
                             <p className="text-2xl">Total Users</p>
                         </div>
                     </div>
@@ -70,7 +70,7 @@ const AdminProfile = () => {
                         {/* <FaRegUser size={65} /> */}
                         <FaUserCheck size={70} />
                         <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.totalMembers}%</p>
+                            <p className="text-6xl font-bold"> {statistics?.totalMembers}</p>
                             <p className="text-2xl">Total Members</p>
                         </div>
                     </div>

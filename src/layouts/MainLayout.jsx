@@ -7,6 +7,7 @@ import Footer from "../components/Shared/Footer";
 const MainLayout = () => {
     return (
         <div>
+            
             {/* header section */}
             <header>
                 {/* <Navbar></Navbar> */}

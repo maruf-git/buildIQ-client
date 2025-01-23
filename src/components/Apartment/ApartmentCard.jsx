@@ -73,7 +73,7 @@ const ApartmentCard = ({ apartment }) => {
                 <p className="card-title mr-0 pr-0">{block_no}, Floor: {floor_no}</p>
                 {/* agreement button */}
                 <div className="card-actions w-full mt-2">
-                    <button onClick={handleRequestAgreement} className="btn btn-primary w-full">Request Agreement</button>
+                    <button onClick={handleRequestAgreement} className="btn text-white  bg-green-500 hover:bg-green-600 w-full">Request Agreement</button>
                 </div>
             </div>
         </div>
