@@ -8,7 +8,7 @@ const Footer = () => {
     return (
         <div>
             <Container>
-                <div className="flex justify-between">
+                <div className="flex justify-between py-10">
                     {/* logo and description and social */}
                     <div className="w-1/2">
                         <div className="flex  justify-center gap-10">
@@ -66,6 +66,10 @@ const Footer = () => {
                             <Link to=''>Tenant Rights </Link>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <div className="divider "></div>
+                    <p className="font-semibold text-center">© All Rights Reserved By BuildIQ</p>
                 </div>
             </Container>
         </div>

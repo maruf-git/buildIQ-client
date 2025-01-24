@@ -32,12 +32,12 @@ const Navbar = () => {
                   className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartments
                 </NavLink>
               </li>
-              <li>
+              {/* <li>
                 <NavLink
-                  to='/contact-us'
-                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Contact Us
+                  to='/About-us'
+                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>About Us
                 </NavLink>
-              </li>
+              </li> */}
             </ul>
           </div>
           <div className="navbar-end">
@@ -74,9 +74,9 @@ const Navbar = () => {
                 </ul>
               </div> : <div className="flex flex-col sm:flex-row items-center gap-3">
 
-                <Link to="/register" className="btn btn-sm outline-none border-none bg-[#009bff] hover:bg-[#0073bd] text-white !font-semibold">Register</Link>
+                <Link to="/register" className="btn btn-sm outline-none border-none bg-green-500 hover:bg-green-600 text-white !font-semibold">Register</Link>
 
-                <Link to="/login" className="btn w-full sm:w-auto btn-sm outline-none border-none bg-[#009bff] hover:bg-[#0073bd] text-white !font-semibold ">Log in</Link>
+                <Link to="/login" className="btn w-full sm:w-auto btn-sm outline-none border-none  bg-green-500 hover:bg-green-600 text-white !font-semibold ">Log in</Link>
               </div>
             }
 

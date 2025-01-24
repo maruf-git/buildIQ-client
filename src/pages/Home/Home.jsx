@@ -18,7 +18,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 // import required modules
-import {  Pagination } from 'swiper/modules';
+import { Pagination } from 'swiper/modules';
 import { AuthContext } from "../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -82,16 +82,17 @@ const Home = () => {
             </section>
 
             {/* coupons section */}
-            <section className="mt-24">
-                <Container>
-                    {/* section title */}
-                    <div>
-                        <Title title='Grab A Coupon' des='Explore a diverse range of apartments, from budget-friendly options to premium luxury residences. Begin your journey with us today and take the first step toward your new home.'></Title>
-                    </div>
+            {
+                role && <section className="mt-24">
+                    <Container>
+                        {/* section title */}
+                        <div>
+                            <Title title='Grab A Coupon' des='Explore a diverse range of apartments, from budget-friendly options to premium luxury residences. Begin your journey with us today and take the first step toward your new home.'></Title>
+                        </div>
 
-                    
+
                         {
-                            CouponsLoading ? <ContentLoadingSpinner></ContentLoadingSpinner>: <div >
+                            CouponsLoading ? <ContentLoadingSpinner></ContentLoadingSpinner> : <div >
                                 <Swiper
                                     slidesPerView={4}
                                     spaceBetween={20}
@@ -99,7 +100,7 @@ const Home = () => {
                                     pagination={{
                                         clickable: true,
                                     }}
-                                   
+
                                     modules={[Pagination]}
                                     className="mySwiper"
                                 >
@@ -113,12 +114,9 @@ const Home = () => {
                                 </Swiper>
                             </div>
                         }
-
-                  
-
-
-                </Container>
-            </section>
+                    </Container>
+                </section>
+            }
 
             {/* about the building section */}
             <section className="mt-24">

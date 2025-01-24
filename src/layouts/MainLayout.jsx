@@ -22,7 +22,7 @@ const MainLayout = () => {
             </main>
 
             {/* footer section */}
-            <footer className="mt-24 py-20 bg-[#e7f5e9]">
+            <footer className="mt-24 py-10 bg-[#e7f5e9]">
                 <Footer></Footer>
             </footer>
         </div>
