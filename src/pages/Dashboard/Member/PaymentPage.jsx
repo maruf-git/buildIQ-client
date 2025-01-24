@@ -8,6 +8,7 @@ import CheckOutForm from "../../../components/Dashboard/Member/CheckOutForm";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import homeLogo from '../../../assets/images/home.png'
 
 // todo : add publishable key
 const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_PK}`);
@@ -61,7 +62,7 @@ const PaymentPage = () => {
                         <figure>
                             <img
                                 className="w-full h-[200px] object-cover"
-                                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                                src={homeLogo}
                                 alt="Shoes" />
                         </figure>
 
@@ -76,13 +77,13 @@ const PaymentPage = () => {
                                     type="text"
                                     name="coupon"
                                     placeholder="Enter coupon code"
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                 />
                             </div>
                             {/* coupon button */}
                             <div className="mt-1">
                                 <button
-                                    className="btn btn-sm btn-primary">Apply Coupon</button>
+                                    className="btn btn-sm text-white bg-green-500 hover:bg-green-600">Apply Coupon</button>
                             </div>
                         </form>
 
@@ -109,7 +110,7 @@ const PaymentPage = () => {
                             <Elements stripe={stripePromise}>
                                 <CheckOutForm></CheckOutForm>
                             </Elements>
-                            <Link to='/dashboard/make-payment' className="btn btn-primary">Cancel & Go Back</Link>
+                            <Link to='/dashboard/make-payment' className="btn text-white bg-red-500 hover:bg-red-600">Cancel & Go Back</Link>
                         </div>
                     </div>
                 </div>

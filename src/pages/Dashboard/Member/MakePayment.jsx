@@ -53,7 +53,7 @@ const MakePayment = () => {
                 <div className="max-w-3xl mx-auto px-4">
                     <div className={`bg-white shadow-lg rounded-lg overflow-hidden`}>
                         <div className={`py-8 px-6 `}>
-                            <h1 className="text-3xl font-semibold text-center mb-6">Make Payment</h1>
+                            <h1 className="text-3xl font-bold text-center mb-6 text-green-600">Make Payment</h1>
                             <form onSubmit={handleSubmit} className={`space-y-6 `}>
 
                                 {/* Name */}
@@ -65,7 +65,7 @@ const MakePayment = () => {
                                         name="name"
                                         readOnly
                                         value={name}
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -79,7 +79,7 @@ const MakePayment = () => {
                                         name="email"
                                         readOnly
                                         value={email}
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -95,7 +95,7 @@ const MakePayment = () => {
                                             name="apartment"
                                             readOnly
                                             value={apartment_no}
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                             required
                                         />
                                     </div>
@@ -109,7 +109,7 @@ const MakePayment = () => {
                                             name="floor"
                                             readOnly
                                             value={floor_no}
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                             required
                                         />
                                     </div>
@@ -123,7 +123,7 @@ const MakePayment = () => {
                                             name="block"
                                             readOnly
                                             value={block_no}
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                             required
                                         />
                                     </div>
@@ -139,7 +139,7 @@ const MakePayment = () => {
                                         name="rent"
                                         readOnly
                                         value={rent}
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     />
                                 </div>
@@ -150,7 +150,7 @@ const MakePayment = () => {
                                     <select
                                         id="month"
                                         name="month"
-                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                        className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                         required
                                     >
                                         <option>January</option>
@@ -172,7 +172,7 @@ const MakePayment = () => {
                                 <div>
                                     <button
                                         type="submit"
-                                        className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+                                        className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-300"
                                     >
                                         Proceed to Pay
                                     </button>

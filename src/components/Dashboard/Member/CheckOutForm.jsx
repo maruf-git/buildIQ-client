@@ -124,7 +124,7 @@ const CheckOutForm = () => {
                 />
 
                 {/* </CardElement> */}
-                <button className="btn btn-primary w-full mt-5" type="submit" disabled={!stripe || !clientSecret}>
+                <button className="btn text-white bg-green-500 hover:bg-green-600 w-full mt-5" type="submit" disabled={!stripe || !clientSecret}>
                     Pay Now
                 </button>
 

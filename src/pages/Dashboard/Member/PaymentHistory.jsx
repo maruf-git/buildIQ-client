@@ -20,7 +20,7 @@ const PaymentHistory = () => {
     return (
         <div>
             <div className="mb-2">
-                    <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                    <p className="text-3xl font-bold text-center  text-green-600">
                         Payments History({payments.length})
                     </p>
                     <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
