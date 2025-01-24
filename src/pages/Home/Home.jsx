@@ -12,7 +12,7 @@ import { MdApartment, MdOutlineSportsGymnastics, MdRoofing } from "react-icons/m
 import { FaBuilding, FaRegBuilding } from "react-icons/fa";
 import { LuCircleParking } from "react-icons/lu";
 import { TbPlayBasketball } from "react-icons/tb";
-import { FaHouseTsunami } from "react-icons/fa6";
+import { FaHouseTsunami, FaLocationDot } from "react-icons/fa6";
 
 const Home = () => {
     const [minimum, setMinimum] = useState('');
@@ -169,8 +169,20 @@ const Home = () => {
                         <div className='flex justify-between  min-h-[500px]'>
                             {/* left */}
                             <div className='w-1/2'>
-                                <h1 className='font-bold text-6xl leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & Care!</h1>
-                                <p className='mt-5 text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
+                                <h1 className='font-bold text-6xl leading-[75px]'>Let's <span className='text-green-600'>Move towards your Dream</span> to make it Reality!</h1>
+                                <p className='mt-5 text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.</p>
+
+                                <address className="mt-5">
+                                    <div className="flex gap-2 items-center">
+                                        <FaLocationDot size={30} />
+                                        <div className="">
+                                            <p className="text-xl"> House 16, Uttara Sector 10</p>
+                                            <p>Dhaka, Bangladesh</p>
+                                        </div>
+
+                                    </div>
+
+                                </address>
 
 
                                 <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Contact Us </Link>
