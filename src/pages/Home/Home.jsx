@@ -9,7 +9,6 @@ import { Link } from "react-router-dom";
 import LocationMap from "../../components/Home/LocationMap";
 import { GiIsland } from "react-icons/gi";
 import { MdApartment, MdOutlineSportsGymnastics, MdRoofing } from "react-icons/md";
-import { FaBuilding, FaRegBuilding } from "react-icons/fa";
 import { LuCircleParking } from "react-icons/lu";
 import { TbPlayBasketball } from "react-icons/tb";
 import { FaHouseTsunami, FaLocationDot } from "react-icons/fa6";

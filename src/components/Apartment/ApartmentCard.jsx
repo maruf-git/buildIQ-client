@@ -5,6 +5,10 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { HiCash } from "react-icons/hi";
+import { MdApartment } from "react-icons/md";
+import { FaDollarSign } from "react-icons/fa";
+import { IoIosPricetags } from "react-icons/io";
 
 
 const ApartmentCard = ({ apartment }) => {
@@ -67,10 +71,24 @@ const ApartmentCard = ({ apartment }) => {
                     src={apartment_image}
                     alt="apartment_image" />
             </figure>
-            <div className="card-body flex-col gap-0">
-                <h2 className="card-title">Rent: {rent}$</h2>
-                <h2 className="card-title">Apartment No: {apartment_no}</h2>
-                <p className="card-title mr-0 pr-0">{block_no}, Floor: {floor_no}</p>
+            <div className="card-body flex-col gap-1">
+                {/* rent */}
+                <div className="flex gap-2 items-center">
+                    {/* <HiCash size={30} /> */}
+                    {/* <FaDollarSign size={30}/> */}
+                    <IoIosPricetags size={30} />
+                    <h2 className="card-title">Rent: {rent}$</h2>
+                </div>
+                {/* Apartment No */}
+                <div className="flex gap-2 items-center">
+                    <MdApartment size={30} />
+                    <h2 className="card-title">Apartment No: {apartment_no}</h2>
+                </div>
+                {/* Block and Floor */}
+                <div className="flex gap-2 items-center">
+                    <MdApartment size={30} />
+                    <p className="card-title mr-0 pr-0">{block_no}, Floor: {floor_no}</p>
+                </div>
                 {/* agreement button */}
                 <div className="card-actions w-full mt-2">
                     <button onClick={handleRequestAgreement} className="btn text-white  bg-green-500 hover:bg-green-600 w-full">Request Agreement</button>
