@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import ApartmentCard from "../../components/Apartment/ApartmentCard";
 import Banner from "../../components/Home/Banner";
 import Container from "../../components/shared/Container";
@@ -13,13 +13,35 @@ import { LuCircleParking } from "react-icons/lu";
 import { TbPlayBasketball } from "react-icons/tb";
 import { FaHouseTsunami, FaLocationDot } from "react-icons/fa6";
 
+// Import Swiper styles
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+// import required modules
+import { Navigation, Pagination } from 'swiper/modules';
+import { AuthContext } from "../../providers/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
+import CouponCard from "../../components/Home/CouponCard";
+import ContentLoadingSpinner from "../../components/Shared/ContentLoadingSpinner";
+
 const Home = () => {
+    const { user, role } = useContext(AuthContext);
     const [minimum, setMinimum] = useState('');
     const [maximum, setMaximum] = useState('');
     const [pageNumber, setPageNumber] = useState(1);
     const [totalPageNumber, setTotalPageNumber] = useState(4);
-
     const { apartments, isLoading } = useApartments(minimum, maximum, pageNumber, setTotalPageNumber);
+
+    const { data: coupons = [], isLoading: CouponsLoading } = useQuery({
+        queryKey: ['coupons'],
+        queryFn: async () => {
+            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/coupons`);
+            return data;
+        }
+    })
+
+
     return (
         <div>
             {/* banner section */}
@@ -56,6 +78,45 @@ const Home = () => {
                     <div className="flex justify-center mt-10">
                         <Link to='/apartments' className="btn  text-white bg-green-500 hover:bg-green-600">See More</Link>
                     </div>
+                </Container>
+            </section>
+
+            {/* coupons section */}
+            <section className="mt-24">
+                <Container>
+                    {/* section title */}
+                    <div>
+                        <Title title='Grab A Coupon' des='Explore a diverse range of apartments, from budget-friendly options to premium luxury residences. Begin your journey with us today and take the first step toward your new home.'></Title>
+                    </div>
+
+                    
+                        {
+                            CouponsLoading ? <ContentLoadingSpinner></ContentLoadingSpinner>: <div >
+                                <Swiper
+                                    slidesPerView={4}
+                                    spaceBetween={20}
+                                    centeredSlides={false}
+                                    pagination={{
+                                        clickable: true,
+                                    }}
+                                   
+                                    modules={[Pagination]}
+                                    className="mySwiper"
+                                >
+                                    {
+                                        coupons.map(coupon => <SwiperSlide key={coupon._id}>
+                                            {coupon?.validity === 'Valid' && <CouponCard coupon={coupon}></CouponCard>}
+                                        </SwiperSlide>)
+                                    }
+
+
+                                </Swiper>
+                            </div>
+                        }
+
+                  
+
+
                 </Container>
             </section>
 
@@ -197,6 +258,13 @@ const Home = () => {
 
                         </div>
                     </div>
+                </Container>
+            </section>
+
+            {/* coupons section */}
+            <section id='coupons' className='mt-24'>
+                <Container>
+                    Coupons
                 </Container>
             </section>
 

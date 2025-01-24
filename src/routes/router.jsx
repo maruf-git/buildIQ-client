@@ -16,6 +16,7 @@ import AgreementRequests from "../pages/Dashboard/Admin/AgreementRequests";
 import AdminPrivateRoute from "./AdminPrivateRoute";
 import MemberPrivateRoute from "./MemberPrivateRoute";
 import PaymentPage from "../pages/Dashboard/Member/PaymentPage";
+import ContactUs from "../pages/Home/ContactUs";
 
 
 const router = createBrowserRouter([
@@ -30,6 +31,10 @@ const router = createBrowserRouter([
       {
         path: "/apartments",
         element: <Apartments></Apartments>
+      },
+      {
+        path:'/contact-us',
+        element:<ContactUs></ContactUs>
       },
       {
         path: "/login",

@@ -32,6 +32,12 @@ const Navbar = () => {
                   className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartments
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to='/contact-us'
+                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Contact Us
+                </NavLink>
+              </li>
             </ul>
           </div>
           <div className="navbar-end">

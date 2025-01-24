@@ -5,9 +5,7 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { HiCash } from "react-icons/hi";
 import { MdApartment } from "react-icons/md";
-import { FaDollarSign } from "react-icons/fa";
 import { IoIosPricetags } from "react-icons/io";
 
 
