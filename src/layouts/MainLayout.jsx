@@ -1,4 +1,4 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, ScrollRestoration } from "react-router-dom";
 import Navbar from "../components/shared/Navbar";
 import Footer from "../components/Shared/Footer";
 
@@ -7,7 +7,7 @@ import Footer from "../components/Shared/Footer";
 const MainLayout = () => {
     return (
         <div>
-            
+            <ScrollRestoration></ScrollRestoration>
             {/* header section */}
             <header>
                 {/* <Navbar></Navbar> */}
@@ -22,7 +22,7 @@ const MainLayout = () => {
             </main>
 
             {/* footer section */}
-            <footer>
+            <footer className="mt-24 py-20 bg-[#e7f5e9]">
                 <Footer></Footer>
             </footer>
         </div>

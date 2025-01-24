@@ -14,7 +14,7 @@ const Navbar = () => {
           <div className="navbar-start">
             <div className='flex items-center gap-5'>
               <img src={homeLogo} className='w-[70px] ' alt="" />
-              <a className="text-3xl font-semibold">BuildIQ</a>
+              <Link to='/' className="text-3xl font-bold">Build<span className='text-green-600'>IQ</span></Link>
             </div>
           </div>
           <div className='navbar-center'>

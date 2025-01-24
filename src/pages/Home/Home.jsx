@@ -18,7 +18,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 // import required modules
-import { Navigation, Pagination } from 'swiper/modules';
+import {  Pagination } from 'swiper/modules';
 import { AuthContext } from "../../providers/AuthProvider";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
@@ -229,7 +229,7 @@ const Home = () => {
                         <div className='flex justify-between  min-h-[500px]'>
                             {/* left */}
                             <div className='w-1/2'>
-                                <h1 className='font-bold text-6xl leading-[75px]'>Let's <span className='text-green-600'>Move towards your Dream</span> to make it Reality!</h1>
+                                <h1 className='font-bold text-5xl '>Let's <span className='text-green-600'>Move towards your Dream</span> to make it Reality!</h1>
                                 <p className='mt-5 text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.</p>
 
                                 <address className="mt-5">
@@ -258,13 +258,6 @@ const Home = () => {
 
                         </div>
                     </div>
-                </Container>
-            </section>
-
-            {/* coupons section */}
-            <section id='coupons' className='mt-24'>
-                <Container>
-                    Coupons
                 </Container>
             </section>
 
