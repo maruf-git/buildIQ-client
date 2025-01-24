@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import AnnouncementTable from "../../../components/Dashboard/Admin/AnnouncementTable";
+import announcementImg from '../../../assets/images/announcement.png'
 
 const Announcements = () => {
     const { role } = useContext(AuthContext);
@@ -54,11 +55,14 @@ const Announcements = () => {
             {/* announcement form */}
             {
                 role === 'admin' &&
-                <div className={`mb-10`}>
-                    <div className="max-w-2xl mx-auto px-4">
+                <div className='mb-10 flex gap-10 justify-between items-center'>
+                    <div className="w-[50%]">
+                        <img className="w-full object-cover" src={announcementImg} alt="" />
+                    </div>
+                    <div className="w-full">
                         <div className={`bg-white shadow-lg rounded-lg overflow-hidden`}>
                             <div className={`py-8 px-6 `}>
-                                <h1 className="text-3xl font-semibold text-center mb-6">Make Announcement</h1>
+                                <h1 className="text-3xl font-bold text-center mb-6 text-green-600">Make Announcement</h1>
                                 {/* form */}
                                 <form onSubmit={handleSubmit} className={`space-y-6 `}>
                                     {/* Name */}
@@ -69,7 +73,7 @@ const Announcements = () => {
                                             type="text"
                                             name="title"
                                             placeholder="Enter announcement title"
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                             required
                                         />
                                     </div>
@@ -81,7 +85,7 @@ const Announcements = () => {
                                             name="description"
                                             rows="5"
                                             placeholder="Write your announcement here"
-                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                             required
                                         ></textarea>
                                     </div>
@@ -90,7 +94,7 @@ const Announcements = () => {
                                     <div>
                                         <button
                                             type="submit"
-                                            className="w-full bg-blue-500 text-white py-3 rounded-lg hover:bg-blue-600 transition duration-300"
+                                            className="w-full bg-green-500 text-white py-3 rounded-lg hover:bg-green-600 transition duration-300"
                                         >
                                             Announce
                                         </button>
@@ -106,7 +110,7 @@ const Announcements = () => {
             {/* Announcements */}
             <div>
                 <div className="mb-2">
-                    <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                    <p className="text-3xl font-bold text-center  text-green-600">
                         All Announcements({announcements.length})
                     </p>
                     <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>

@@ -19,7 +19,7 @@ const Profile = () => {
                             className='mx-auto object-cover rounded-full h-24 w-24  border-2 border-white '
                         />
 
-                        <p className='p-2 px-4 text-xs text-white bg-lime-500 rounded-full'>
+                        <p className='p-2 px-4 text-xs text-white bg-green-500  rounded-full'>
                             {role}
                         </p>
                         <p className='mt-2 text-xl font-medium text-gray-800 '>
@@ -39,10 +39,10 @@ const Profile = () => {
                                 </p>
 
                                 <div>
-                                    <button className='bg-lime-500 px-10 py-1 rounded-lg text-black cursor-pointer hover:bg-lime-800 block mb-1'>
+                                    <button className='text-white bg-green-500 hover:bg-green-600 px-10 py-1 rounded-lg  cursor-pointer  block mb-1'>
                                         Update Profile
                                     </button>
-                                    <button className='bg-lime-500 px-7 py-1 rounded-lg text-black cursor-pointer hover:bg-lime-800'>
+                                    <button className='text-white bg-green-500 hover:bg-green-600 px-7 py-1 rounded-lg cursor-pointer '>
                                         Change Password
                                     </button>
                                 </div>

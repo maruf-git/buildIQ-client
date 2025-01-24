@@ -1,8 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
-import LoadingSpinner from "../../Shared/LoadingSpinner";
 import { TbHome, TbHomeCheck, TbHomeOff } from "react-icons/tb";
 import { FaUser, FaUserCheck } from "react-icons/fa";
+import ContentLoadingSpinner from "../../Shared/ContentLoadingSpinner";
 
 
 const AdminProfile = () => {
@@ -16,7 +16,8 @@ const AdminProfile = () => {
     })
 
     console.log('statistics:', statistics);
-    if (isLoading) return <LoadingSpinner></LoadingSpinner>
+    if (isLoading) return <div className="mt-20"><ContentLoadingSpinner></ContentLoadingSpinner></div>
+
 
     return (
         <div className="mt-10">

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import CouponsTable from "../../../components/Dashboard/Admin/CouponsTable";
+import couponGif from '../../../assets/images/couponGif.gif'
 
 
 const ManageCoupons = () => {
@@ -75,15 +76,22 @@ const ManageCoupons = () => {
     return (
         <div>
             {/* add coupon modal */}
-            <div>
-                <button className="btn" onClick={() => document.getElementById('coupon-modal').showModal()}>Add a New Coupon</button>
+            <div className="mb-5">
+                <div className="flex  justify-center gap-5 items-center py-10 bg-green-100 rounded-lg">
+                    <div>
+                        <img src={couponGif} alt="" />
+                    </div>
+                    <div>
+                        <button className="btn text-white bg-green-500 hover:bg-green-600" onClick={() => document.getElementById('coupon-modal').showModal()}>Add a New Coupon</button>
+                    </div>
+                </div>
                 <dialog id="coupon-modal" className="modal">
                     <div className="modal-box">
 
                         {/* coupon form */}
                         <form id='coupon-form' onSubmit={handleSubmit} className="card-body">
                             <div className="mb-3">
-                                <p className="text-3xl font-bold text-center">Add Coupon</p>
+                                <p className="text-3xl font-bold text-center text-green-600">Add Coupon</p>
                             </div>
                             {/* coupon code */}
                             <div>
@@ -93,7 +101,7 @@ const ManageCoupons = () => {
                                     type="text"
                                     name="coupon"
                                     placeholder="enter coupon code"
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                     required
                                 />
                             </div>
@@ -105,7 +113,7 @@ const ManageCoupons = () => {
                                     type="number"
                                     name="discount"
                                     placeholder="enter discount percentage"
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                     required
                                 />
                             </div>
@@ -117,7 +125,7 @@ const ManageCoupons = () => {
                                     name="description"
                                     rows="5"
                                     placeholder="Write detailed content for the blog"
-                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                    className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
                                     required
                                 ></textarea>
                             </div>
@@ -128,9 +136,9 @@ const ManageCoupons = () => {
                                         document.getElementById('coupon-modal').close();
                                         document.getElementById('coupon-form').reset();
                                     }}
-                                    className="btn ">Cancel
+                                    className="btn text-white bg-red-500 hover:bg-red-600">Cancel
                                 </p>
-                                <button className="btn">Add</button>
+                                <button className="btn  text-white bg-green-500 hover:bg-green-600">Add</button>
                             </div>
                         </form>
                     </div>
@@ -138,7 +146,7 @@ const ManageCoupons = () => {
             </div>
             {/* coupon table */}
             <div className="mb-2">
-                <p className="text-3xl font-bold text-center  text-[#4bb32b]">
+                <p className="text-3xl font-bold text-center  text-green-600">
                     All Coupons({coupons.length})
                 </p>
                 <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
