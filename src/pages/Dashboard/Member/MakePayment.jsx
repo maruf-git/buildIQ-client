@@ -7,22 +7,24 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import { useNavigate } from "react-router-dom";
+import useMyApartmentInfo from "./useMyApartmentInfo";
 
 
 // todo : add publishable key
 // const stripePromise = loadStripe(`${import.meta.env.VITE_PAYMENT_PK}`);
 
 const MakePayment = () => {
-    const { user, setPaymentInfo } = useContext(AuthContext);
-    const axiosSecure = useAxiosSecure();
+    const {  setPaymentInfo } = useContext(AuthContext);
+    // const axiosSecure = useAxiosSecure();
     const navigate = useNavigate();
-    const { data: myApartment = [], isLoading } = useQuery({
-        queryKey: ['my-apartment'],
-        queryFn: async () => {
-            const { data } = await axiosSecure.get(`my-apartment/${user?.email}`);
-            return data;
-        }
-    })
+    const {myApartment,isLoading}=useMyApartmentInfo();
+    // const { data: myApartment = [], isLoading } = useQuery({
+    //     queryKey: ['my-apartment'],
+    //     queryFn: async () => {
+    //         const { data } = await axiosSecure.get(`my-apartment/${user?.email}`);
+    //         return data;
+    //     }
+    // })
     // console.log("my apartment details:", myApartment);
     const { name, email, apartment_no, floor_no, block_no, rent } = myApartment;
 

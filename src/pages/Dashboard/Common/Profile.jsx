@@ -1,9 +1,12 @@
 import { useContext } from 'react'
 import { AuthContext } from '../../../providers/AuthProvider'
 import AdminProfile from '../../../components/Dashboard/Admin/AdminProfile';
+import useMyApartmentInfo from '../Member/useMyApartmentInfo';
+import ContentLoadingSpinner from '../../../components/Shared/ContentLoadingSpinner';
 
 const Profile = () => {
     const { user, role } = useContext(AuthContext);
+    const { myApartment, isLoading } = useMyApartmentInfo();
 
     return (
         <div>
@@ -48,6 +51,22 @@ const Profile = () => {
                                 </div>
                             </div>
                         </div>
+                        {/* user apartment info */}
+                        {
+                            isLoading ? <div className='mt-10'><ContentLoadingSpinner></ContentLoadingSpinner></div> : <div className='mt-10 w-[500px] mx-auto border border-red-600'>
+                                <p className='text-center text-xl font-bold text-green-600'>Apartment Info</p>
+                                <div>
+                                    <div className='flex flex-col justify-center items-center'>
+                                        <p>Request Date : {myApartment?.request_date}</p>
+                                        <p>Accept Date : {myApartment?.request_date || 'Not Accepted Yet'}</p>
+                                        <p>Apartment No: {myApartment?.apartment_no || 'Null'}</p>
+                                        <p>Floor No: {myApartment?.floor_no || 'Null'}</p>
+                                        <p>Block No: {myApartment?.block_no || 'Null'}</p>
+                                        <p>Rent: {myApartment?.rent || 'Null'}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
