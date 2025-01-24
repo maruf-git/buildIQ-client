@@ -39,18 +39,20 @@ const Login = () => {
     try {
       // login in user/signup user
       const data = await signInWithGoogle();
-    
+
 
       // generating jwt
-      const { token } = await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/jwt`,
         {
           email: data?.user?.email,
         },
         { withCredentials: true }
       )
-      if (token) {
-        localStorage.setItem('access-token', data?.token);
+      // console.log("response from user api:",response);
+      if (response?.data?.token) {
+        // console.log('found token is :',response?.data?.token)
+        localStorage.setItem('access-token', response?.data?.token);
       }
 
 
