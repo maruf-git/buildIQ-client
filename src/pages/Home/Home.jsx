@@ -62,15 +62,15 @@ const Home = () => {
                     <div>
                         {
                             isLoading ? <LoadingSpinner></LoadingSpinner> :
-                                <Container>
+                                <div>
                                     {
-                                        apartments?.result?.length ? <div className="grid grid-cols-3 gap-5 ">
+                                        apartments?.result?.length ? <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
                                             {
                                                 apartments?.result?.map(apartment => <ApartmentCard key={apartment._id} apartment={apartment}></ApartmentCard>)
                                             }
                                         </div> : <div className="flex justify-center items-center font-bold text-3xl mt-44">No Apartments Available!</div>
                                     }
-                                </Container>
+                                </div>
                         }
 
 

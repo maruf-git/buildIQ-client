@@ -47,7 +47,7 @@ const Apartments = () => {
                         <div className="flex flex-col lg:flex-row gap-3 items-center">
                             {/* min price */}
                             <div className="flex gap-2 items-center">
-                                <label htmlFor="minimum" className="text-xl font-medium">Min Price :</label>
+                                <label htmlFor="minimum" className="sm:text-xl font-medium">Min Price :</label>
                                 <input
                                     id="minimum"
                                     type="number"
@@ -60,7 +60,7 @@ const Apartments = () => {
                             </div>
                             {/* max price */}
                             <div className="flex gap-2 items-center">
-                                <label htmlFor="maximum" className=" text-xl font-medium ">Max Price : </label>
+                                <label htmlFor="maximum" className=" sm:text-xl font-medium ">Max Price : </label>
                                 <input
                                     id="maximum"
                                     type="number"
