@@ -48,49 +48,52 @@ const Navbar = () => {
           </div>
           <div className="navbar-end">
             {
-              user ? <div className="dropdown dropdown-end">
-                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                  <div className="w-10 rounded-full">
-                    <img
-                      referrerPolicy="no-referrer"
-                      alt={user?.displayName}
-                      src={user?.photoURL} />
+              user ?
+              // user mobile menu
+                <div className="dropdown dropdown-end ">
+                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                    <div className="w-10 rounded-full">
+                      <img
+                        referrerPolicy="no-referrer"
+                        alt={user?.displayName}
+                        src={user?.photoURL} />
+                    </div>
                   </div>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm dropdown-content bg-color rounded-box z-[10] mt-3 w-52 p-2 shadow">
+                    <div
+                      className='px-4 py-3 hover:bg-neutral-100 transition font-semibold '
+                    >
+                      {user?.displayName}
+                    </div>
+                    <NavLink
+                      to='/'
+                      className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    >
+                      Home
+                    </NavLink>
+                    <NavLink
+                      to='/apartments'
+                      className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    >
+                      Apartments
+                    </NavLink>
+                    <NavLink
+                      to='/dashboard'
+                      className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                    >
+                      Dashboard
+                    </NavLink>
+                    <div
+                      onClick={logOut}
+                      className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
+                    >
+                      Logout
+                    </div>
+                  </ul>
                 </div>
-                <ul
-                  tabIndex={0}
-                  className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow">
-                  <div
-                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold '
-                  >
-                    {user?.displayName}
-                  </div>
-                  <NavLink
-                    to='/'
-                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                  >
-                    Home
-                  </NavLink>
-                  <NavLink
-                    to='/apartments'
-                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                  >
-                    Apartments
-                  </NavLink>
-                  <NavLink
-                    to='/dashboard'
-                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
-                  >
-                    Dashboard
-                  </NavLink>
-                  <div
-                    onClick={logOut}
-                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
-                  >
-                    Logout
-                  </div>
-                </ul>
-              </div> :
+                :
                 // no user navbar end
                 <div>
                   {/* general navbar */}
@@ -112,7 +115,7 @@ const Navbar = () => {
                     </div>
                     <ul
                       tabIndex={0}
-                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow">
+                      className="menu menu-sm dropdown-content bg-color rounded-box z-[10] mt-3 w-52 p-2 shadow">
 
                       <NavLink
                         to='/'
