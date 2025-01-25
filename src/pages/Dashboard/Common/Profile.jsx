@@ -4,6 +4,7 @@ import AdminProfile from '../../../components/Dashboard/Admin/AdminProfile';
 import useMyApartmentInfo from '../Member/useMyApartmentInfo';
 import ContentLoadingSpinner from '../../../components/Shared/ContentLoadingSpinner';
 
+
 const Profile = () => {
     const { user, role } = useContext(AuthContext);
     const { myApartment, isLoading } = useMyApartmentInfo();
@@ -14,7 +15,8 @@ const Profile = () => {
                 {/* <Helmet>
         <title>Profile</title>
       </Helmet> */}
-                <div className='bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5'>
+                {/* md:w-4/5 lg:w-3/5 */}
+                <div className='bg-white shadow-lg rounded-2xl w-full'>
                     <div className='flex flex-col items-center justify-center p-4 '>
                         <img
                             alt='profile'
@@ -53,18 +55,59 @@ const Profile = () => {
                         </div>
                         {/* user apartment info */}
                         {
-                            isLoading ? <div className='mt-10'><ContentLoadingSpinner></ContentLoadingSpinner></div> : <div className='mt-10 w-[500px] mx-auto border border-red-600'>
-                                <p className='text-center text-xl font-bold text-green-600'>Apartment Info</p>
-                                <div>
-                                    <div className='flex flex-col justify-center items-center'>
-                                        <p>Request Date : {myApartment?.request_date}</p>
-                                        <p>Accept Date : {myApartment?.request_date || 'Not Accepted Yet'}</p>
-                                        <p>Apartment No: {myApartment?.apartment_no || 'Null'}</p>
-                                        <p>Floor No: {myApartment?.floor_no || 'Null'}</p>
-                                        <p>Block No: {myApartment?.block_no || 'Null'}</p>
-                                        <p>Rent: {myApartment?.rent || 'Null'}</p>
-                                    </div>
-                                </div>
+                            role && role!=='admin' && <div>
+                                {
+                                    isLoading ? <div className='mt-10 '><ContentLoadingSpinner></ContentLoadingSpinner></div> :
+                                        <div className='mt-10 mb-5 w-full'>
+                                            {/* tot;e */}
+                                            <p className='text-center text-xl font-bold text-green-600 mb-3'>Apartment Info</p>
+                                            {/* table */}
+                                            <div className="overflow-x-auto w-full shadow-md rounded-lg">
+                                                <table className="table w-full text-center">
+                                                    {/* Table Head */}
+                                                    <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
+                                                        <tr>
+
+                                                            <th className="py-3 px-6">Request Date</th>
+                                                            <th className="py-3 px-6">Accept Date</th>
+                                                            <th className="py-3 px-6">Apartment No</th>
+                                                            <th className="py-3 px-6">Floor</th>
+                                                            <th className="py-3 px-6">Block</th>
+                                                            <th className="py-3 px-6">Rent($)</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody className="text-gray-700 text-sm">
+
+                                                        <tr >
+
+
+                                                            {/* request */}
+                                                            <td className="py-3 px-6 font-semibold">{myApartment?.request_date || 'Not Requested'}</td>
+
+                                                            {/* accept date */}
+                                                            <td className="py-3 px-6">
+                                                                {myApartment?.accept_date || 'Not Accepted Yet'}
+                                                            </td>
+
+                                                            {/* apartment no */}
+                                                            <td className="py-3 px-6"> {myApartment?.apartment_no || 'Null'}</td>
+
+                                                            {/* floor no  */}
+                                                            <td className="py-3 px-6"> {myApartment?.floor_no || 'Null'}</td>
+
+                                                            {/* block no  */}
+                                                            <td className="py-3 px-6"> {myApartment?.block_no || 'Null'}</td>
+
+                                                            {/* rent */}
+                                                            <td className="py-3 px-6"> {myApartment?.rent || 'Null'}</td>
+
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                }
                             </div>
                         }
                     </div>
