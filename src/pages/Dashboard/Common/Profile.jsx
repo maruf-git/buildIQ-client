@@ -3,6 +3,9 @@ import { AuthContext } from '../../../providers/AuthProvider'
 import AdminProfile from '../../../components/Dashboard/Admin/AdminProfile';
 import useMyApartmentInfo from '../Member/useMyApartmentInfo';
 import ContentLoadingSpinner from '../../../components/Shared/ContentLoadingSpinner';
+import { FaCheck, FaClipboardQuestion } from 'react-icons/fa6';
+import { MdApartment } from 'react-icons/md';
+import { IoIosCash } from 'react-icons/io';
 
 
 const Profile = () => {
@@ -16,22 +19,25 @@ const Profile = () => {
         <title>Profile</title>
       </Helmet> */}
                 {/* md:w-4/5 lg:w-3/5 */}
-                <div className='bg-white shadow-lg rounded-2xl w-full'>
+                <div className='bg-white shadow-lg rounded-2xl w-full  '>
                     <div className='flex flex-col items-center justify-center p-4 '>
-                        <img
-                            alt='profile'
-                            src={user?.photoURL}
-                            className='mx-auto object-cover rounded-full h-24 w-24  border-2 border-white '
-                        />
+                        <div className='flex flex-col justify-center items-center'>
+                            <img
+                                alt='profile'
+                                src={user?.photoURL}
+                                className='mx-auto object-cover rounded-full h-24 w-24  border-2 border-white '
+                            />
 
-                        <p className='p-2 px-4 text-xs text-white bg-green-500  rounded-full'>
-                            {role}
-                        </p>
-                        <p className='mt-2 text-xl font-medium text-gray-800 '>
-                            User Id: {user?.uid}
-                        </p>
-                        <div className='w-full p-2 mt-4 rounded-lg'>
-                            <div className='flex flex-wrap items-center justify-between text-sm text-gray-600 '>
+                            <div className='w-[100px] p-2 px-4 text-center text-xs text-white bg-green-500  rounded-full'>
+                                <p className='text-center'>{role}</p>
+                            </div>
+                            <div className='mt-2  text-[16px] text-center sm:text-xl font-medium text-gray-800 '>
+                                <p>User Id: {user?.uid}</p>
+                            </div>
+                        </div>
+
+                        <div className='w-full  mt-4 rounded-lg'>
+                            <div className='flex gap-5 flex-wrap items-center justify-between text-sm text-gray-600 '>
                                 <p className='flex flex-col'>
                                     Name
                                     <span className='font-bold text-black '>
@@ -44,10 +50,10 @@ const Profile = () => {
                                 </p>
 
                                 <div>
-                                    <button className='text-white bg-green-500 hover:bg-green-600 px-10 py-1 rounded-lg  cursor-pointer  block mb-1'>
+                                    <button className='w-[180px] text-white bg-green-500 hover:bg-green-600 px-10 py-1 rounded-lg  cursor-pointer  block mb-1'>
                                         Update Profile
                                     </button>
-                                    <button className='text-white bg-green-500 hover:bg-green-600 px-7 py-1 rounded-lg cursor-pointer '>
+                                    <button className='w-[180px] text-white bg-green-500 hover:bg-green-600 px-7 py-1 rounded-lg cursor-pointer '>
                                         Change Password
                                     </button>
                                 </div>
@@ -55,56 +61,40 @@ const Profile = () => {
                         </div>
                         {/* user apartment info */}
                         {
-                            role && role!=='admin' && <div>
+                            role && role !== 'admin' && <div>
                                 {
                                     isLoading ? <div className='mt-10 '><ContentLoadingSpinner></ContentLoadingSpinner></div> :
-                                        <div className='mt-10 mb-5 w-full'>
-                                            {/* tot;e */}
+                                        // profile data table
+                                        <div className='mt-10 mb-5 w-full '>
+                                            {/* title */}
                                             <p className='text-center text-xl font-bold text-green-600 mb-3'>Apartment Info</p>
                                             {/* table */}
-                                            <div className="overflow-x-auto w-full shadow-md rounded-lg">
-                                                <table className="table w-full text-center">
-                                                    {/* Table Head */}
-                                                    <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
-                                                        <tr>
-
-                                                            <th className="py-3 px-6">Request Date</th>
-                                                            <th className="py-3 px-6">Accept Date</th>
-                                                            <th className="py-3 px-6">Apartment No</th>
-                                                            <th className="py-3 px-6">Floor</th>
-                                                            <th className="py-3 px-6">Block</th>
-                                                            <th className="py-3 px-6">Rent($)</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody className="text-gray-700 text-sm">
-
-                                                        <tr >
-
-
-                                                            {/* request */}
-                                                            <td className="py-3 px-6 font-semibold">{myApartment?.request_date || 'Not Requested'}</td>
-
-                                                            {/* accept date */}
-                                                            <td className="py-3 px-6">
-                                                                {myApartment?.accept_date || 'Not Accepted Yet'}
-                                                            </td>
-
-                                                            {/* apartment no */}
-                                                            <td className="py-3 px-6"> {myApartment?.apartment_no || 'Null'}</td>
-
-                                                            {/* floor no  */}
-                                                            <td className="py-3 px-6"> {myApartment?.floor_no || 'Null'}</td>
-
-                                                            {/* block no  */}
-                                                            <td className="py-3 px-6"> {myApartment?.block_no || 'Null'}</td>
-
-                                                            {/* rent */}
-                                                            <td className="py-3 px-6"> {myApartment?.rent || 'Null'}</td>
-
-                                                        </tr>
-
-                                                    </tbody>
-                                                </table>
+                                            <div className='flex flex-col gap-2'>
+                                                {/* request date */}
+                                                <div className='flex gap-2'>
+                                                    <FaClipboardQuestion size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Request Date: <span className='font-normal ml-5'>{myApartment?.request_date || 'Not Requested Yet!'}</span></p>
+                                                </div>
+                                                {/* accept date */}
+                                                <div className='flex gap-2'>
+                                                    <FaCheck  size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Accept Date: <span className='font-normal ml-5'>{myApartment?.accept_date || 'Not Accepted Yet!'}</span></p>
+                                                </div>
+                                                {/* floor no */}
+                                                <div className='flex gap-2'>
+                                                    <MdApartment   size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Floor No : <span className='font-normal ml-5'>{myApartment?.floor_no || 'Null'}</span></p>
+                                                </div>
+                                                {/* block no */}
+                                                <div className='flex gap-2'>
+                                                    <MdApartment  size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Block : <span className='font-normal ml-5'>{myApartment?.block_no || 'Null' }</span></p>
+                                                </div>
+                                                {/* Rent  */}
+                                                <div className='flex gap-2'>
+                                                    <IoIosCash   size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Rent($) : <span className='font-normal ml-5'>{myApartment?.rent || 'Null'}</span></p>
+                                                </div>
                                             </div>
                                         </div>
                                 }

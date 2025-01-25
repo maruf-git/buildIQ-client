@@ -22,11 +22,11 @@ const AdminProfile = () => {
     return (
         <div className="mt-10">
             {/* total apartments, available and unavailable percentage */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
                 {/* total apartments */}
                 <div className="w-full border rounded-lg shadow-md flex justify-center items-center total-apartments text-white">
-                    <div className="w-full flex justify-between items-center   px-5 py-10">
-                        <TbHome size={70} />
+                    <div className="w-full flex gap-8 justify-between items-center   px-5 py-10">
+                        <TbHome className="" size={70} />
                         <div className="flex flex-col gap-3">
                             <p className="text-6xl font-bold"> {statistics?.totalApartments}</p>
                             <p className="text-2xl">Total Apartments</p>
@@ -35,7 +35,7 @@ const AdminProfile = () => {
                 </div>
                 {/* available apartments */}
                 <div className="w-full border rounded-lg shadow-md flex justify-center items-center available-apartments text-white">
-                    <div className="w-full flex justify-between items-center px-5 py-10">
+                    <div className="w-full flex gap-8 justify-between items-center px-5 py-10">
                         {/* <GrHome size={70} className="" /> */}
                         <TbHomeCheck size={70} />
                         <div className="flex flex-col gap-3">
@@ -46,7 +46,7 @@ const AdminProfile = () => {
                 </div>
                 {/* unavailable apartments */}
                 <div className="w-full border rounded-lg shadow-md flex justify-center items-center unavailable-apartments text-white">
-                    <div className="w-full flex justify-between items-center px-5 py-10">
+                    <div className="w-full flex gap-8 justify-between items-center px-5 py-10">
                         <TbHomeOff size={70} />
                         <div className="flex flex-col gap-3">
                             <p className="text-6xl font-bold"> {statistics?.unavailablePercentage}%</p>
@@ -56,7 +56,7 @@ const AdminProfile = () => {
                 </div>
                 {/* total Users */}
                 <div className="w-full border rounded-lg shadow-md flex justify-center items-center users text-white">
-                    <div className="w-full flex justify-between items-center px-5 py-10">
+                    <div className="w-full flex gap-14 justify-between items-center px-5 py-10">
                         {/* <FaRegUser size={65} /> */}
                         <FaUser size={60} />
                         <div className="flex flex-col gap-3">
@@ -67,7 +67,7 @@ const AdminProfile = () => {
                 </div>
                 {/* total Members */}
                 <div className="w-full border rounded-lg shadow-md flex justify-center items-center members text-white">
-                    <div className="w-full flex justify-between items-center px-5 py-10">
+                    <div className="w-full flex gap-14 justify-between items-center px-5 py-10">
                         {/* <FaRegUser size={65} /> */}
                         <FaUserCheck size={70} />
                         <div className="flex flex-col gap-3">
