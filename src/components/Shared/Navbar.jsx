@@ -3,6 +3,7 @@ import { Link, NavLink } from 'react-router-dom'
 import { AuthContext } from '../../providers/AuthProvider';
 import homeLogo from '../../assets/images/home.png'
 import Container from './Container.jsx';
+import { GiHamburgerMenu } from 'react-icons/gi';
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
@@ -10,14 +11,24 @@ const Navbar = () => {
   return (
     <div className=' shadow-sm '>
       <Container>
-        <div className="navbar px-0 py-0">
+        {/* navbar mobile */}
+        <div className='hidden'>
           <div className="navbar-start">
             <div className='flex items-center gap-5'>
               <img src={homeLogo} className='w-[70px] ' alt="" />
               <Link to='/' className="text-3xl font-bold">Build<span className='text-green-600'>IQ</span></Link>
             </div>
           </div>
-          <div className='navbar-center'>
+        </div>
+        {/* navbar general */}
+        <div className="navbar px-0 py-0  ">
+          <div className="navbar-start">
+            <div className='flex items-center gap-5'>
+              <img src={homeLogo} className='w-[70px] ' alt="" />
+              <Link to='/' className="text-3xl font-bold">Build<span className='text-green-600'>IQ</span></Link>
+            </div>
+          </div>
+          <div className='navbar-center hidden md:flex'>
             <ul className='flex gap-5 text-xl'>
               <li>
                 <NavLink
@@ -32,12 +43,7 @@ const Navbar = () => {
                   className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>Apartments
                 </NavLink>
               </li>
-              {/* <li>
-                <NavLink
-                  to='/About-us'
-                  className='p-2 font-semibold hover:border-b-[5px] hover:text-green-600 hover:border-green-500 transition'>About Us
-                </NavLink>
-              </li> */}
+
             </ul>
           </div>
           <div className="navbar-end">
@@ -59,12 +65,24 @@ const Navbar = () => {
                   >
                     {user?.displayName}
                   </div>
-                  <Link
+                  <NavLink
+                    to='/'
+                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                  >
+                    Home
+                  </NavLink>
+                  <NavLink
+                    to='/apartments'
+                    className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                  >
+                    Apartments
+                  </NavLink>
+                  <NavLink
                     to='/dashboard'
                     className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
                   >
                     Dashboard
-                  </Link>
+                  </NavLink>
                   <div
                     onClick={logOut}
                     className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
@@ -72,12 +90,62 @@ const Navbar = () => {
                     Logout
                   </div>
                 </ul>
-              </div> : <div className="flex flex-col sm:flex-row items-center gap-3">
+              </div> :
+                // no user navbar end
+                <div>
+                  {/* general navbar */}
+                  <div className=" flex-col sm:flex-row items-center gap-3 hidden md:flex">
+                    <Link to="/register" className="btn btn-sm outline-none border-none bg-green-500 hover:bg-green-600 text-white !font-semibold">Register</Link>
+                    <Link to="/login" className="btn w-full sm:w-auto btn-sm outline-none border-none  bg-green-500 hover:bg-green-600 text-white !font-semibold ">Log in</Link>
+                  </div>
 
-                <Link to="/register" className="btn btn-sm outline-none border-none bg-green-500 hover:bg-green-600 text-white !font-semibold">Register</Link>
+                  {/* mobile navbar */}
+                  <div className="dropdown dropdown-end md:hidden">
+                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                      {/* <div className="w-10 rounded-full">
+                    <img
+                      referrerPolicy="no-referrer"
+                      alt={user?.displayName}
+                      src={user?.photoURL} />
+                  </div> */}
+                      <GiHamburgerMenu size={30} />
+                    </div>
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[10] mt-3 w-52 p-2 shadow">
 
-                <Link to="/login" className="btn w-full sm:w-auto btn-sm outline-none border-none  bg-green-500 hover:bg-green-600 text-white !font-semibold ">Log in</Link>
-              </div>
+                      <NavLink
+                        to='/'
+                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                      >
+                        Home
+                      </NavLink>
+                      <NavLink
+                        to='/apartments'
+                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                      >
+                        Apartments
+                      </NavLink>
+                      <NavLink
+                        to='/register'
+                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                      >
+                        Register
+                      </NavLink>
+                      <NavLink
+                        to='/login'
+                        className='px-4 py-3 hover:bg-neutral-100 transition font-semibold'
+                      >
+                        Login
+                      </NavLink>
+
+
+                    </ul>
+                  </div>
+
+
+                </div>
+
             }
 
           </div>
