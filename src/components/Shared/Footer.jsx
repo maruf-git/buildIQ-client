@@ -8,10 +8,10 @@ const Footer = () => {
     return (
         <div>
             <Container>
-                <div className="flex justify-between py-10">
+                <div className="flex flex-col lg:flex-row justify-between gap-10 py-10">
                     {/* logo and description and social */}
-                    <div className="w-1/2">
-                        <div className="flex  justify-center gap-10">
+                    <div className="lg:w-1/2">
+                        <div className="flex flex-col md:flex-row  justify-center gap-5">
                             <Link to='/' className="w-full">
                                 <img className="h-[200px] w-full object-cover" src={logo} alt="" />
                             </Link>
@@ -38,7 +38,7 @@ const Footer = () => {
 
                         </div>
                     </div>
-                    <div className="grid grid-cols-3 gap-10">
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
                         {/* company */}
                         <div className="flex flex-col gap-2">
                             <h1 className="mb-3 font-bold text-xl">Company</h1>
