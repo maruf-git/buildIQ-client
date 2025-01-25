@@ -87,7 +87,7 @@ const MakePayment = () => {
                                 </div>
 
                                 {/* apartment no,floor,block */}
-                                <div className="flex gap-3 justify-between">
+                                <div className="flex flex-col md:flex-row gap-3 justify-between">
                                     {/* apartment no */}
                                     <div>
                                         <label htmlFor="apartment" className="block text-sm font-medium mb-2">Apartment No</label>

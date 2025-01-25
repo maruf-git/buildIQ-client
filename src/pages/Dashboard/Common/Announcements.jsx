@@ -55,7 +55,7 @@ const Announcements = () => {
             {/* announcement form */}
             {
                 role === 'admin' &&
-                <div className='mb-10 flex gap-10 justify-between items-center'>
+                <div className='mb-10 flex flex-col md:flex-row gap-10 justify-between items-center'>
                     <div className="w-[50%]">
                         <img className="w-full object-cover" src={announcementImg} alt="" />
                     </div>

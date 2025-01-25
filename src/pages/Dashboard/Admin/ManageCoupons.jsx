@@ -151,9 +151,15 @@ const ManageCoupons = () => {
                 </p>
                 <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
             </div>
-            <div>
-                <CouponsTable coupons={coupons} handleCouponValidity={handleCouponValidity} handleDeleteCoupon={handleDeleteCoupon}></CouponsTable>
-            </div>
+            {
+                !coupons.length && <p className="text-center font-semibold text-2xl my-20">No Coupons Available!</p>
+            }
+            {
+                coupons.length && <div>
+                    <CouponsTable coupons={coupons} handleCouponValidity={handleCouponValidity} handleDeleteCoupon={handleDeleteCoupon}></CouponsTable>
+                </div>
+            }
+
         </div>
     );
 };
