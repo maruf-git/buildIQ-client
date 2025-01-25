@@ -104,9 +104,9 @@ const Home = () => {
                                     className="mySwiper"
                                     breakpoints={{
                                         0: { slidesPerView: 1, spaceBetween: 10 },   // 1 slide, 10px gap on small screens
-                                        640: { slidesPerView: 2, spaceBetween: 20 }, // 2 slides, 15px gap on medium screens
-                                        768: { slidesPerView: 3, spaceBetween: 20 }, // 4 slides, 20px gap on large screens
-                                        1024: { slidesPerView: 4, spaceBetween: 20 }
+                                        640: { slidesPerView: 2, spaceBetween: 20 }, // 2 slides, 20px gap on medium screens
+                                        768: { slidesPerView: 3, spaceBetween: 20 }, // 3 slides, 20px gap on large screens
+                                        1024: { slidesPerView: 4, spaceBetween: 20 }  // 4 slides, 20px gap on large screens
                                     }}
                                 >
                                     {
@@ -132,13 +132,12 @@ const Home = () => {
                     </div>
                     {/* building details content */}
                     <div >
-                        <div className='flex justify-between min-h-[500px]'>
+                        <div className='flex flex-col md:flex-row gap-10 justify-between min-h-[500px]'>
                             {/* left */}
-                            <div className='flex gap-3 w-[60%]'>
+                            <div className='flex gap-3 w-full md:w-[60%]'>
                                 <div>
                                     <img className='w-[520px] h-full object-cover rounded-3xl' src="https://i.ibb.co.com/PmL2FVy/1.jpg" alt="" />
                                 </div>
-
                                 <div className='flex flex-col gap-3'>
                                     <img className='w-[200px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/55Bxqwb/road-green.jpg" alt="" />
                                     <img className='w-[200px] h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/52tYYNW/4.jpg" alt="" />
@@ -149,42 +148,42 @@ const Home = () => {
                                 <div className="flex flex-col gap-3">
                                     {/* building at a glance */}
                                     <div className="space-y-1">
-                                        <p className="text-3xl font-bold mb-3">Building <span className="text-green-600">At a Glance:</span></p>
+                                        <p className="text-2xl lg:text-3xl font-bold mb-3">Building <span className="text-green-600">At a Glance:</span></p>
                                         {/* total build up area */}
                                         <div className="flex gap-2 items-center">
                                             <GiIsland size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Total Build-Up Area :</span> Over 50,000 Sq. Ft.</p>
+                                            <p className=" text-xl md:text-base lg:text-xl"><span className="font-semibold">Total Build-Up Area :</span> Over 50,000 Sq. Ft.</p>
                                         </div>
                                         {/* Common Area size */}
                                         <div className="flex gap-2 items-center">
                                             <MdApartment size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Floors :</span> 10-Story Residential Tower</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Floors :</span> 10-Story Residential Tower</p>
                                         </div>
                                         {/* Total Apartments */}
                                         <div className="flex gap-2 items-center">
                                             <MdApartment size={25} />
-                                            <p className="text-xl"><span className="font-semibold"> Apartments :</span> 20 Premium Apartments.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold"> Apartments :</span> 20 Premium Apartments.</p>
                                         </div>
                                         {/* parking Area size */}
                                         <div className="flex gap-2 items-center">
                                             <LuCircleParking size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Parking :</span> Parking for Each Unit, Plus Visitor Parking.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Parking :</span> Parking for Each Unit, Plus Visitor Parking.</p>
                                         </div>
 
                                     </div>
 
                                     {/* apartments at a glance */}
                                     <div className="space-y-1">
-                                        <p className="text-3xl font-bold mb-3">Apartments <span className="text-green-600">At a Glance:</span></p>
+                                        <p className="text-2xl lg:text-3xl  font-bold mb-3">Apartments <span className="text-green-600">At a Glance:</span></p>
                                         {/* apartment size */}
                                         <div className="flex gap-2 items-center">
                                             <MdApartment size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Apartments Size :</span> 1,200 to 2,500 Sq. Ft.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Apartments Size :</span> 1,200 to 2,500 Sq. Ft.</p>
                                         </div>
                                         {/* apartment size */}
                                         <div className="flex gap-2 items-center">
                                             <FaHouseTsunami size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Rooms :</span> 2-4 Rooms in Each Apartment.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Rooms :</span> 2-4 Rooms in Each Apartment.</p>
                                         </div>
 
                                     </div>
@@ -192,21 +191,21 @@ const Home = () => {
 
                                     {/* community features */}
                                     <div className="space-y-1">
-                                        <p className="text-3xl font-bold mb-3">Features <span className="text-green-600">At a Glance:</span></p>
+                                        <p className="text-2xl lg:text-3xl font-bold mb-3">Features <span className="text-green-600">At a Glance:</span></p>
                                         {/* Gym Area size */}
                                         <div className="flex gap-2 items-center">
                                             <MdOutlineSportsGymnastics size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Gym :</span> A Modern well Equipped Gymnasium.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Gym :</span> A Modern well Equipped Gymnasium.</p>
                                         </div>
                                         {/* Gym Area size */}
                                         <div className="flex gap-2 items-center">
                                             <MdRoofing size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Rooftop :</span> Garden and Swimming Pool.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Rooftop :</span> Garden and Swimming Pool.</p>
                                         </div>
                                         {/* children Area size */}
                                         <div className="flex gap-2 items-center">
                                             <TbPlayBasketball size={25} />
-                                            <p className="text-xl"><span className="font-semibold">Kids Zone :</span> Dedicated for Children's Playing.</p>
+                                            <p className="text-xl md:text-base lg:text-xl"><span className="font-semibold">Kids Zone :</span> Dedicated for Children's Playing.</p>
                                         </div>
                                     </div>
 
@@ -229,10 +228,10 @@ const Home = () => {
                     </div>
                     {/* display map */}
                     <div>
-                        <div className='flex justify-between  min-h-[500px]'>
+                        <div className='flex flex-col-reverse md:flex-row gap-10 justify-between min-h-[500px]'>
                             {/* left */}
-                            <div className='w-1/2'>
-                                <h1 className='font-bold text-5xl '>Let's <span className='text-green-600'>Move towards your Dream</span> to make it Reality!</h1>
+                            <div className='w-full md:w-1/2'>
+                                <h1 className='font-bold text-3xl md;text-5xl '>Let's <span className='text-green-600'>Move towards your Dream</span> to make it Reality!</h1>
                                 <p className='mt-5 text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.</p>
 
                                 <address className="mt-5">
@@ -251,10 +250,7 @@ const Home = () => {
                                 <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Contact Us </Link>
                             </div>
                             {/* right */}
-                            <div className='flex gap-3 w-[45%]'>
-
-
-
+                            <div className='flex gap-3 w-full  md:w-[45%]'>
                                 <LocationMap></LocationMap>
 
                             </div>
