@@ -100,9 +100,14 @@ const Home = () => {
                                     pagination={{
                                         clickable: true,
                                     }}
-
                                     modules={[Pagination]}
                                     className="mySwiper"
+                                    breakpoints={{
+                                        0: { slidesPerView: 1, spaceBetween: 10 },   // 1 slide, 10px gap on small screens
+                                        640: { slidesPerView: 2, spaceBetween: 20 }, // 2 slides, 15px gap on medium screens
+                                        768: { slidesPerView: 3, spaceBetween: 20 }, // 4 slides, 20px gap on large screens
+                                        1024: { slidesPerView: 4, spaceBetween: 20 }
+                                    }}
                                 >
                                     {
                                         coupons.map(coupon => <SwiperSlide key={coupon._id}>
