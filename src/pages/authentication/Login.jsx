@@ -1,20 +1,22 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
+import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { PiSpinnerBallFill } from 'react-icons/pi'
 
 
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
   const axiosSecure = useAxiosSecure();
+  const [showPassword, setShowPassword] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
   const from = location?.state || '/'
   // console.log(from)
   const { signIn, signInWithGoogle, setRole } = useContext(AuthContext)
-
-
 
   // Email Password Signin
   const handleSignIn = async e => {
@@ -22,17 +24,26 @@ const Login = () => {
     const form = e.target
     const email = form.email.value
     const pass = form.password.value
+    setIsUploading(true);
     try {
       //User Login
-      await signIn(email, pass)
+      await signIn(email, pass);
+      setIsUploading(false);
       toast.success('Signin Successful')
       navigate(from, { replace: true })
     } catch (err) {
       console.log(err)
+      setIsUploading(false);
       toast.error(err?.message)
     }
 
   }
+
+  // handle password show eye button
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
 
   // Google Signin
   const handleGoogleSignIn = async () => {
@@ -63,10 +74,11 @@ const Login = () => {
       setRole(userData?.role);
 
 
-      toast.success('Signin Successful')
+      toast.success('Signin Successful');
       navigate(from, { replace: true })
     } catch (err) {
-      console.log(err)
+      console.log(err);
+
       toast.error(err?.message)
     }
   }
@@ -138,7 +150,7 @@ const Login = () => {
               />
             </div>
 
-            <div className='mt-4'>
+            <div className='mt-4 relative'>
               <div className='flex justify-between'>
                 <label
                   className='block mb-2 text-sm font-medium text-gray-600 '
@@ -147,21 +159,34 @@ const Login = () => {
                   Password
                 </label>
               </div>
-
               <input
+                type={`${showPassword ? "text" : "password"}`}
                 id='loggingPassword'
                 autoComplete='current-password'
                 name='password'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-green-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-green-300'
-                type='password'
+
               />
+              <button
+                type="button"
+                onClick={handleShowPassword}
+                className="absolute inset-y-0 right-3 top-[25px] text-gray-500"
+                aria-label="Toggle Password Visibility"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
             </div>
             <div className='mt-6'>
               <button
                 type='submit'
-                className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50'
+                className='w-full flex justify-center items-center px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50'
               >
-                Sign In
+                {
+                  isUploading && <PiSpinnerBallFill size={20} className='animate-spin' />
+                }
+                {
+                  !isUploading && <span>Sign Up</span>
+                }
               </button>
             </div>
           </form>

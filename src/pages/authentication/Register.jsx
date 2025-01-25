@@ -5,6 +5,8 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
+import { imageUpload } from '../../apis/utils'
+import { PiSpinnerBallFill } from 'react-icons/pi'
 
 
 const Register = () => {
@@ -14,14 +16,17 @@ const Register = () => {
   const axiosSecure = useAxiosSecure();
   const [validationMessage, setValidationMessage] = useState('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isUploading, setIsUploading] = useState(false);
 
   const handleSignUp = async (e) => {
     e.preventDefault()
     const form = e.target
     const email = form.email.value
     const name = form.name.value
-    const photo = form.photo.value
+    const image = form.photo.files[0];
     const pass = form.password.value
+    console.log('photo:', image);
+
 
     if (pass.length < 6) {
       setValidationMessage("Password must be at least 6 characters");
@@ -31,10 +36,7 @@ const Register = () => {
       setValidationMessage("Name can not be empty");
       return;
     }
-    if (photo.trim() === "") {
-      setValidationMessage("Photo URL can not be empty");
-      return;
-    }
+
     const uppercaseRegex = /[A-Z]/;
     const numberRegex = /\d/;
     const specialRegex = /[^a-zA-Z0-9\s]/;
@@ -56,6 +58,18 @@ const Register = () => {
       setValidationMessage("Password must have at least one number");
       return;
     }
+    if (!image) {
+      setValidationMessage("Please select an image.");
+      return;
+    }
+    if (image?.type !== 'image/jpeg' && image?.type !== 'image/png') {
+      console.log('type: ', image?.type);
+      setValidationMessage('Image must be jpeg/png');
+      return;
+    }
+    setIsUploading(true);
+    const photo = await imageUpload(image);
+    console.log('uploaded photo:', photo);
 
     try {
       //2. User Registration
@@ -66,16 +80,33 @@ const Register = () => {
       // optimize set user 
       setUser({ ...result.user, photoURL: photo, displayName: name })
 
+      // generating jwt
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/jwt`,
+        {
+          email: result?.user?.email,
+        },
+        { withCredentials: true }
+      )
+      // console.log("response from user api:",response);
+      if (response?.data?.token) {
+        // console.log('found token is :',response?.data?.token)
+        localStorage.setItem('access-token', response?.data?.token);
+      }
+
+
       // saving new user in db and assigning role
       // ${import.meta.env.VITE_API_URL}
       const { data: userData } = await axiosSecure.post(`/users`, { email, name });
       console.log('new user in db:', userData);
       setRole(userData?.role);
 
-      toast.success('Signup Successful')
+      setIsUploading(false);
+      toast.success('Signup Successful');
       navigate('/')
     } catch (err) {
       console.log(err)
+      setIsUploading(false);
       toast.error(err?.message)
     }
   }
@@ -83,7 +114,7 @@ const Register = () => {
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   }
-  console.log('validate message:', validationMessage);
+
 
   // Google Signin
   const handleGoogleSignIn = async () => {
@@ -110,14 +141,15 @@ const Register = () => {
       const { data: userData } = await axiosSecure.post(`/users`, { email: data?.user?.email, name: data?.user?.displayName });
       console.log('new user in db:', userData);
       setRole(userData?.role);
+      toast.success('Signin Successful');
 
-      toast.success('Signin Successful')
       navigate('/')
     } catch (err) {
       console.log(err)
       toast.error(err?.message)
     }
   }
+
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
@@ -185,23 +217,25 @@ const Register = () => {
                 type='text'
               />
             </div>
-            {/* photo url */}
+
+            {/* photo upload */}
             <div className='mt-4'>
               <label
                 className='block mb-2 text-sm font-medium text-gray-600 '
                 htmlFor='photo'
               >
-                Photo URL
+                Upload Photo
               </label>
               <input
                 required
                 id='photo'
-                autoComplete='photo'
                 name='photo'
                 className='block w-full px-4 py-2 text-gray-700 bg-white border rounded-lg    focus:border-green-400 focus:ring-opacity-40  focus:outline-none focus:ring focus:ring-green-300'
-                type='url'
+                type='file'
               />
             </div>
+
+
             {/* email */}
             <div className='mt-4'>
               <label
@@ -250,18 +284,25 @@ const Register = () => {
             {/* validation message */}
             <div className='mt-4'>
               {
-                validationMessage && <p className='text-red-600'>{validationMessage} hello</p>
+                validationMessage && <p className='text-red-600'>{validationMessage}</p>
               }
             </div>
             <div className='mt-6'>
               <button
                 type='submit'
-                className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50'
+                className='w-full flex items-center justify-center gap-3 px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none focus:ring focus:ring-green-300 focus:ring-opacity-50'
               >
-                Sign Up
+                {
+                  isUploading && <PiSpinnerBallFill size={20} className='animate-spin' />
+                }
+                {
+                  !isUploading && <span>Sign Up</span>
+                }
+
               </button>
             </div>
           </form>
+
 
           {/* or sign in option */}
           <div className='flex items-center justify-between mt-4'>

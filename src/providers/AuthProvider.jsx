@@ -76,6 +76,7 @@ const AuthProvider = ({ children }) => {
         )
         console.log("jwt status:", data);
         if (data?.token) {
+          console.log('token saved in local storage');
           localStorage.setItem('access-token', data?.token);
         }
 
