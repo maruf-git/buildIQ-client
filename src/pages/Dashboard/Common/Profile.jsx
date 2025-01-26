@@ -3,10 +3,11 @@ import { AuthContext } from '../../../providers/AuthProvider'
 import AdminProfile from '../../../components/Dashboard/Admin/AdminProfile';
 import useMyApartmentInfo from '../Member/useMyApartmentInfo';
 import ContentLoadingSpinner from '../../../components/Shared/ContentLoadingSpinner';
-import { FaCheck, FaClipboardQuestion } from 'react-icons/fa6';
+import { FaCheck } from 'react-icons/fa6';
 import { MdApartment } from 'react-icons/md';
 import { IoIosCash } from 'react-icons/io';
 import { Helmet } from 'react-helmet-async';
+import { format } from 'date-fns';
 
 
 const Profile = () => {
@@ -73,29 +74,35 @@ const Profile = () => {
                                             {/* table */}
                                             <div className='flex flex-col gap-2'>
                                                 {/* request date */}
-                                                <div className='flex gap-2'>
+                                                {/* <div className='flex gap-2'>
                                                     <FaClipboardQuestion size={25} />
                                                     <p className='sm:text-xl font-semibold'>Request Date: <span className='font-normal ml-5'>{myApartment?.request_date || 'Not Requested Yet!'}</span></p>
-                                                </div>
+                                                </div> */}
                                                 {/* accept date */}
                                                 <div className='flex gap-2'>
                                                     <FaCheck size={25} />
-                                                    <p className='sm:text-xl font-semibold'>Accept Date: <span className='font-normal ml-5'>{myApartment?.accept_date || 'Not Accepted Yet!'}</span></p>
+                                                    {/* format(new Date(myApartment?.accept_date), "MMM d, yyyy") */}
+                                                    
+                                                    {
+                                                        myApartment?.accept_date ? <p className='sm:text-xl font-semibold'>Accept Date: <span className='font-normal ml-5'>{format(new Date(myApartment?.accept_date), "MMM d, yyyy")}</span></p> :
+                                                            <p className='sm:text-xl font-semibold'>Accept Date: <span className='font-normal ml-5'>Not Accepted Yet!</span></p>
+                                                    }
+
                                                 </div>
                                                 {/* floor no */}
                                                 <div className='flex gap-2'>
                                                     <MdApartment size={25} />
-                                                    <p className='sm:text-xl font-semibold'>Floor No : <span className='font-normal ml-5'>{myApartment?.floor_no || 'Null'}</span></p>
+                                                    <p className='sm:text-xl font-semibold'>Floor No : <span className='font-normal ml-5'>{myApartment?.floor_no || 'None'}</span></p>
                                                 </div>
                                                 {/* block no */}
                                                 <div className='flex gap-2'>
                                                     <MdApartment size={25} />
-                                                    <p className='sm:text-xl font-semibold'>Block : <span className='font-normal ml-5'>{myApartment?.block_no || 'Null'}</span></p>
+                                                    <p className='sm:text-xl font-semibold'>Block : <span className='font-normal ml-5'>{myApartment?.block_no || 'None'}</span></p>
                                                 </div>
                                                 {/* Rent  */}
                                                 <div className='flex gap-2'>
                                                     <IoIosCash size={25} />
-                                                    <p className='sm:text-xl font-semibold'>Rent($) : <span className='font-normal ml-5'>{myApartment?.rent || 'Null'}</span></p>
+                                                    <p className='sm:text-xl font-semibold'>Rent($) : <span className='font-normal ml-5'>{myApartment?.rent || 'None'}</span></p>
                                                 </div>
                                             </div>
                                         </div>

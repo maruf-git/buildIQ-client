@@ -2,6 +2,7 @@
 
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { format } from "date-fns";
 
 const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
     const { role } = useContext(AuthContext);
@@ -47,7 +48,7 @@ const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
                                     </td>
 
                                     {/* Announcement Date */}
-                                    <td className="py-3 px-6">{announcement?.date}</td>
+                                    <td className="py-3 px-6">{format(new Date(announcement?.date), "MMM d, yyyy")}</td>
 
                                     {/* Actions */}
                                     <td className="py-3 px-6">

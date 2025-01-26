@@ -12,14 +12,14 @@ const Navbar = () => {
     <div className=' shadow-sm '>
       <Container>
         {/* navbar mobile */}
-        <div className='hidden'>
+        {/* <div className='hidden'>
           <div className="navbar-start">
             <div className='flex items-center gap-5'>
               <img src={homeLogo} className='w-[70px] ' alt="" />
               <Link to='/' className="text-3xl font-bold">Build<span className='text-green-600'>IQ</span></Link>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* navbar general */}
         <div className="navbar px-0 py-0  ">
           <div className="navbar-start">

@@ -1,21 +1,14 @@
 import { useContext, useState } from 'react'
 import { GrLogout } from 'react-icons/gr'
 import { AiOutlineBars } from 'react-icons/ai'
-
-
-
-
-
-
 import { Link } from 'react-router-dom'
-
-
 import logo from '../../assets/images/home.png'
 import { AuthContext } from '../../providers/AuthProvider'
 import UserMenu from './UserMenu'
 import MemberMenu from './MemberMenu'
 import AdminMenu from './AdminMenu'
 import { RxCross2 } from 'react-icons/rx'
+import { FaHome } from 'react-icons/fa'
 
 const Sidebar = () => {
   const { logOut,  role } = useContext(AuthContext);
@@ -99,10 +92,19 @@ const Sidebar = () => {
 
         <div>
           <hr className='text-[#4cd734] border-[#4cd734] border-[2px]' />
+          <Link
+          to='/'
+            className='flex w-full items-center px-4 py-2 mt-5 text-white hover:bg-green-700  transition-colors duration-300 transform'
+          >
+           
+            <FaHome className='w-5 h-5'/>
+
+            <span className='mx-4 font-medium'>Home</span>
+          </Link>
 
           <button
             onClick={logOut}
-            className='flex w-full items-center px-4 py-2 mt-5 text-white hover:bg-[#4cd734]   transition-colors duration-300 transform'
+            className='flex w-full items-center px-4 py-2 mt-5 text-white hover:bg-green-700  transition-colors duration-300 transform'
           >
             <GrLogout className='w-5 h-5' />
 

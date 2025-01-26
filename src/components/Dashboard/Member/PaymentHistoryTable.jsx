@@ -1,7 +1,8 @@
-
+import { format } from 'date-fns';
 
 /* eslint-disable react/prop-types */
 const PaymentHistoryTable = ({ payments }) => {
+    
 
     return (
         <div className="p-4">
@@ -67,7 +68,8 @@ const PaymentHistoryTable = ({ payments }) => {
                                 </td>
 
                                 {/* Payment Date */}
-                                <td className="py-3 px-6">{payment?.date}</td>
+                                
+                                <td className="py-3 px-6">{format(new Date(payment?.date), "MMM d, yyyy")}</td>
 
                                 {/* Transaction ID */}
                                 <td className="py-3 px-6">{payment?.transactionId}</td>

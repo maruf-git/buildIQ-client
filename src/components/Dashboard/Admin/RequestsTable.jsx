@@ -1,5 +1,7 @@
 /* eslint-disable react/prop-types */
 
+import { format } from "date-fns";
+
 
 const RequestsTable = ({ requests, handleAccept, handleReject }) => {
 
@@ -42,7 +44,7 @@ const RequestsTable = ({ requests, handleAccept, handleReject }) => {
                                 <td className="py-3 px-6">{request?.floor_no}</td>
                                 <td className="py-3 px-6">{request?.block_no}</td>
                                 <td className="py-3 px-6">{request?.rent}$</td>
-                                <td className="py-3 px-6">{request?.request_date}</td>
+                                <td className="py-3 px-6">{format(new Date(request?.request_date), "MMM d, yyyy")}</td>
                                 <td className="py-3 px-6">
                                     {request?.status === 'pending' && (
                                         <span className="text-yellow-500 font-semibold">Pending</span>

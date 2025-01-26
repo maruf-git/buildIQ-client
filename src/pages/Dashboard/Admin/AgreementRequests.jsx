@@ -81,12 +81,10 @@ const AgreementRequests = () => {
                 <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
             </div>
             {
-                !requests.length && <p className="text-center font-semibold text-2xl my-20">No Requests Yet!</p>
-            }
-            {
-                requests.length && <div className="mb-10">
+                requests.length ? <div className="mb-10">
                     <RequestsTable requests={requests} handleAccept={handleAccept} handleReject={handleReject}></RequestsTable>
-                </div>
+                </div> :
+                    <p className="text-center font-semibold text-2xl my-20">No Requests Yet!</p>
             }
         </div>
     );
