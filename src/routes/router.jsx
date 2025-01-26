@@ -17,6 +17,7 @@ import AdminPrivateRoute from "./AdminPrivateRoute";
 import MemberPrivateRoute from "./MemberPrivateRoute";
 import PaymentPage from "../pages/Dashboard/Member/PaymentPage";
 import AboutUs from "../pages/Home/AboutUs";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -99,12 +100,7 @@ const router = createBrowserRouter([
           <AgreementRequests></AgreementRequests>
         </AdminPrivateRoute>
       },
-      // {
-      //   path: 'make-announcement',
-      //   element: <AdminPrivateRoute>
-      //     <MakeAnnouncement></MakeAnnouncement>
-      //   </AdminPrivateRoute>
-      // },
+      
     ]
   },
   {
@@ -112,6 +108,10 @@ const router = createBrowserRouter([
     element: <MemberPrivateRoute>
       <PaymentPage></PaymentPage>
     </MemberPrivateRoute>
+  },
+  {
+    path:'*',
+    element:<ErrorPage></ErrorPage>
   }
 ]);
 

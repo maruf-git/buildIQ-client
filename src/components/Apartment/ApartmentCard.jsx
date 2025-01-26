@@ -5,12 +5,12 @@ import { AuthContext } from "../../providers/AuthProvider";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { MdApartment } from "react-icons/md";
+import { MdApartment, MdOutlineEventAvailable } from "react-icons/md";
 import { IoIosPricetags } from "react-icons/io";
 
 
 const ApartmentCard = ({ apartment }) => {
-    const { apartment_image, apartment_no, floor_no, block_no, rent, _id } = apartment;
+    const { apartment_image, apartment_no, floor_no, block_no, rent, _id,booking_status } = apartment;
     const { user, role, setRole } = useContext(AuthContext);
     const navigate = useNavigate();
     const axiosSecure = useAxiosSecure();
@@ -86,6 +86,11 @@ const ApartmentCard = ({ apartment }) => {
                 <div className="flex gap-2 items-center">
                     <MdApartment size={30} />
                     <p className="card-title mr-0 pr-0">{block_no}, Floor: {floor_no}</p>
+                </div>
+                {/* Block and Floor */}
+                <div className="flex gap-2 items-center">
+                <MdOutlineEventAvailable size={30} />
+                    <p className="card-title mr-0 pr-0">Status: {booking_status}</p>
                 </div>
                 {/* agreement button */}
                 <div className="card-actions w-full mt-2">
