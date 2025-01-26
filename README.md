@@ -14,7 +14,7 @@ https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-maruf-git
     <li>Used JWT for Extra layer of security</li>
     <li>Stripe Payment Gateway</li>
     <li>Secured APIS and User Specific Actions</li>
-    <li>Responsive UI for mobile, </li>
+    <li>Responsive UI for mobile, tablet and desktop</li>
 </ul>
 
 ## Functionality

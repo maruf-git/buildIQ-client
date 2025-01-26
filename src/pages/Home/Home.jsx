@@ -216,7 +216,7 @@ const Home = () => {
                                     </div>
 
                                     {/* see more details button */}
-                                    <Link to='/apartments' className='mt-3 w-[130px] btn text-white bg-green-500 hover:bg-green-600'>More details </Link>
+                                    <Link to='/' className='mt-3 w-[130px] btn text-white bg-green-500 hover:bg-green-600'>More details </Link>
                                 </div>
                             </div>
 
