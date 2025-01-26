@@ -5,6 +5,7 @@ import axios from "axios";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import CouponsTable from "../../../components/Dashboard/Admin/CouponsTable";
 import couponGif from '../../../assets/images/couponGif.gif'
+import { Helmet } from "react-helmet-async";
 
 
 const ManageCoupons = () => {
@@ -75,6 +76,10 @@ const ManageCoupons = () => {
 
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Manage Coupons</title>
+            </Helmet>
             {/* add coupon modal */}
             <div className="mb-5">
                 <div className="flex  justify-center gap-5 items-center py-10 bg-green-100 rounded-lg">

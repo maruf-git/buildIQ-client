@@ -3,6 +3,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import RequestsTable from "../../../components/Dashboard/Admin/RequestsTable";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const AgreementRequests = () => {
     const axiosSecure = useAxiosSecure();
@@ -69,6 +70,10 @@ const AgreementRequests = () => {
 
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Agreement Requests</title>
+            </Helmet>
             <div className="mb-2">
                 <p className="text-3xl font-bold text-center  text-green-600">
                     All Requests({requests.length})

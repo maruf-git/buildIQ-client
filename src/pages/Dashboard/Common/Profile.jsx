@@ -6,6 +6,7 @@ import ContentLoadingSpinner from '../../../components/Shared/ContentLoadingSpin
 import { FaCheck, FaClipboardQuestion } from 'react-icons/fa6';
 import { MdApartment } from 'react-icons/md';
 import { IoIosCash } from 'react-icons/io';
+import { Helmet } from 'react-helmet-async';
 
 
 const Profile = () => {
@@ -14,10 +15,11 @@ const Profile = () => {
 
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Profile</title>
+            </Helmet>
             <div className='flex justify-center items-center '>
-                {/* <Helmet>
-        <title>Profile</title>
-      </Helmet> */}
                 {/* md:w-4/5 lg:w-3/5 */}
                 <div className='bg-white shadow-lg rounded-2xl w-full  '>
                     <div className='flex flex-col items-center justify-center p-4 '>
@@ -77,22 +79,22 @@ const Profile = () => {
                                                 </div>
                                                 {/* accept date */}
                                                 <div className='flex gap-2'>
-                                                    <FaCheck  size={25} />
+                                                    <FaCheck size={25} />
                                                     <p className='sm:text-xl font-semibold'>Accept Date: <span className='font-normal ml-5'>{myApartment?.accept_date || 'Not Accepted Yet!'}</span></p>
                                                 </div>
                                                 {/* floor no */}
                                                 <div className='flex gap-2'>
-                                                    <MdApartment   size={25} />
+                                                    <MdApartment size={25} />
                                                     <p className='sm:text-xl font-semibold'>Floor No : <span className='font-normal ml-5'>{myApartment?.floor_no || 'Null'}</span></p>
                                                 </div>
                                                 {/* block no */}
                                                 <div className='flex gap-2'>
-                                                    <MdApartment  size={25} />
-                                                    <p className='sm:text-xl font-semibold'>Block : <span className='font-normal ml-5'>{myApartment?.block_no || 'Null' }</span></p>
+                                                    <MdApartment size={25} />
+                                                    <p className='sm:text-xl font-semibold'>Block : <span className='font-normal ml-5'>{myApartment?.block_no || 'Null'}</span></p>
                                                 </div>
                                                 {/* Rent  */}
                                                 <div className='flex gap-2'>
-                                                    <IoIosCash   size={25} />
+                                                    <IoIosCash size={25} />
                                                     <p className='sm:text-xl font-semibold'>Rent($) : <span className='font-normal ml-5'>{myApartment?.rent || 'Null'}</span></p>
                                                 </div>
                                             </div>

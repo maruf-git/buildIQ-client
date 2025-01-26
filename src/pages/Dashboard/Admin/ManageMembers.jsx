@@ -3,6 +3,7 @@ import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MembersTable from "../../../components/Dashboard/Admin/MembersTable";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 
 const ManageMembers = () => {
@@ -30,6 +31,10 @@ const ManageMembers = () => {
     if (isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Manage Members</title>
+            </Helmet>
             <div className="mb-2">
                 <p className="text-3xl font-bold text-center  text-green-600">
                     Total Members({members.length})

@@ -24,6 +24,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import CouponCard from "../../components/Home/CouponCard";
 import ContentLoadingSpinner from "../../components/Shared/ContentLoadingSpinner";
+import { Helmet } from "react-helmet-async";
 
 const Home = () => {
     const { user, role } = useContext(AuthContext);
@@ -44,6 +45,11 @@ const Home = () => {
 
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Home</title>
+            </Helmet>
+
             {/* banner section */}
             <section className="mt-6">
                 <Container>

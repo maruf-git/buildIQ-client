@@ -6,6 +6,7 @@ import axios from 'axios'
 import useAxiosSecure from '../../hooks/useAxiosSecure'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { PiSpinnerBallFill } from 'react-icons/pi'
+import { Helmet } from 'react-helmet-async'
 
 
 const Login = () => {
@@ -85,11 +86,13 @@ const Login = () => {
 
   return (
     <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
+      {/* helmet */}
+      <Helmet>
+        <title>BuildIQ - Login</title>
+      </Helmet>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  '>
 
         <div className='w-full px-6 py-8 md:px-8 '>
-
-
           <p className='mt-3 text-xl text-center text-green-600 '>
             Welcome back!
           </p>

@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import LoadingSpinner from "../../../components/Shared/LoadingSpinner";
 import AnnouncementTable from "../../../components/Dashboard/Admin/AnnouncementTable";
 import announcementImg from '../../../assets/images/announcement.png'
+import { Helmet } from "react-helmet-async";
 
 const Announcements = () => {
     const { role } = useContext(AuthContext);
@@ -52,6 +53,10 @@ const Announcements = () => {
 
     return (
         <div>
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Announcements</title>
+            </Helmet>
             {/* announcement form */}
             {
                 role === 'admin' &&

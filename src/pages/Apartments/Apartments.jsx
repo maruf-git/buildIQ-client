@@ -6,6 +6,7 @@ import LoadingSpinner from "../../components/Shared/LoadingSpinner";
 import toast from "react-hot-toast";
 import { useState } from "react";
 import useApartments from "../../hooks/useApartments";
+import { Helmet } from "react-helmet-async";
 
 const Apartments = () => {
     const [minimum, setMinimum] = useState('');
@@ -39,6 +40,11 @@ const Apartments = () => {
 
     return (
         <div className="my-10">
+
+            {/* helmet */}
+            <Helmet>
+                <title>BuildIQ - Apartments</title>
+            </Helmet>
 
             {/* search bar */}
             <Container>
