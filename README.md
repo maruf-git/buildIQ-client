@@ -5,7 +5,7 @@ BuildIQ is a Building Management System (BMS) that caters to  user, member and a
 ## Live Site Link
 https://build-iq.web.app/
 ## Server Side
-https://github.com/Programming-Hero-Web-Course4/b10a12-server-side-maruf-git
+https://github.com/maruf-git/buildIQ-server-side
 
 ## Key Features
 
