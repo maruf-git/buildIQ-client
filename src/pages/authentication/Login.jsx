@@ -188,7 +188,7 @@ const Login = () => {
                   isUploading && <PiSpinnerBallFill size={20} className='animate-spin' />
                 }
                 {
-                  !isUploading && <span>Sign Up</span>
+                  !isUploading && <span>Login</span>
                 }
               </button>
             </div>

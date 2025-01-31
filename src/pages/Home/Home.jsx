@@ -116,9 +116,11 @@ const Home = () => {
                                     }}
                                 >
                                     {
-                                        coupons.map(coupon => <SwiperSlide key={coupon._id}>
-                                            {coupon?.validity === 'Valid' && <CouponCard coupon={coupon}></CouponCard>}
-                                        </SwiperSlide>)
+                                        coupons.map(coupon =>  (coupon?.validity==='Valid' && (
+                                            <SwiperSlide key={coupon._id}>
+                                                <CouponCard coupon={coupon} />
+                                            </SwiperSlide>
+                                        )))
                                     }
 
 
@@ -253,7 +255,7 @@ const Home = () => {
                                 </address>
 
 
-                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Contact Us </Link>
+                                <Link to='/' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Contact Us </Link>
                             </div>
                             {/* right */}
                             <div className='flex gap-3 w-full  md:w-[45%]'>
