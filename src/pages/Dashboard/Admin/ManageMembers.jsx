@@ -4,7 +4,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import MembersTable from "../../../components/Dashboard/Admin/MembersTable";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
-
+import { FaUserGroup } from "react-icons/fa6";
 
 const ManageMembers = () => {
     const axiosSecure = useAxiosSecure()
@@ -17,38 +17,42 @@ const ManageMembers = () => {
     })
 
     const handleRemoveMember = async (email) => {
-        console.log("member id", email);
-        // update role
         const userDetails = { email, role: "user", deleteApartment: true, apartment_id: '' };
         const { data } = await axiosSecure.patch('/update-role', userDetails);
         if (data.modifiedCount) {
-            toast.success(`Removed Member!`);
+            toast.success('Member removed');
             refetch();
         }
     }
 
+    if (isLoading) return <LoadingSpinner />
 
-    if (isLoading) return <LoadingSpinner></LoadingSpinner>
     return (
         <div>
-            {/* helmet */}
-            <Helmet>
-                <title>BuildIQ - Manage Members</title>
-            </Helmet>
-            <div className="mb-2">
-                <p className="text-3xl font-bold text-center  text-green-600">
-                    Total Members({members.length})
-                </p>
-                <div className="mt-2 h-1 w-24 bg-[#4bb32b] mx-auto rounded"></div>
+            <Helmet><title>BuildIQ - Manage Members</title></Helmet>
+
+            {/* page header */}
+            <div className='mb-6'>
+                <h1 className='text-2xl font-bold text-gray-900'>Manage Members</h1>
+                <p className='text-sm text-gray-500 mt-1'>View and remove building members</p>
             </div>
-            {
-                !members.length && <p className="text-center font-semibold text-2xl my-20">No Members Yet!</p>
-            }
-            {
-                members.length && <div>
-                    <MembersTable members={members} handleRemoveMember={handleRemoveMember}></MembersTable>
+
+            <div className='flex items-center justify-between mb-4'>
+                <h2 className='text-base font-semibold text-gray-800'>
+                    Total Members
+                    <span className='ml-2 text-sm font-normal text-gray-400'>({members.length})</span>
+                </h2>
+            </div>
+
+            {members.length ? (
+                <MembersTable members={members} handleRemoveMember={handleRemoveMember} />
+            ) : (
+                <div className='text-center py-20 text-gray-400'>
+                    <FaUserGroup size={40} className='mx-auto mb-3 opacity-30' />
+                    <p className='font-medium'>No members yet</p>
+                    <p className='text-sm mt-1'>Accepted agreement requests will appear here</p>
                 </div>
-            }
+            )}
         </div>
     );
 };

@@ -2,81 +2,60 @@
 
 import { format } from "date-fns";
 
-
 const RequestsTable = ({ requests, handleAccept, handleReject }) => {
-
     return (
-        <div className="p-4">
-            <div className="overflow-x-auto shadow-md rounded-lg">
-                <table className="table w-full text-center">
-                    {/* Head */}
-                    <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
-                        <tr>
-                            <th className="py-3 px-6">#</th>
-                            <th className="py-3 px-6">Name</th>
-                            <th className="py-3 px-6">Email</th>
-                            <th className="py-3 px-6">Apartment No</th>
-                            <th className="py-3 px-6">Floor No</th>
-                            <th className="py-3 px-6">Block</th>
-                            <th className="py-3 px-6">Rent</th>
-                            <th className="py-3 px-6">Request Date</th>
-                            <th className="py-3 px-6">Status</th>
-                            <th className="py-3 px-6">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody className="text-gray-700 text-sm">
-                        {/* Rows */}
-                        {requests.map((request, idx) => (
-                            <tr
-                                key={request._id}
-                                className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
-                                    } hover:bg-gray-100 transition duration-150`}
-                            >
-                                <td className="py-3 px-6">{idx + 1}</td>
-                                <td className="py-3 px-6">
-                                    <div className="flex items-center gap-3">
-                                        {/* Optionally add avatar back */}
-                                        <div className="font-semibold">{request?.name}</div>
-                                    </div>
-                                </td>
-                                <td className="py-3 px-6">{request?.email}</td>
-                                <td className="py-3 px-6">{request?.apartment_no}</td>
-                                <td className="py-3 px-6">{request?.floor_no}</td>
-                                <td className="py-3 px-6">{request?.block_no}</td>
-                                <td className="py-3 px-6">{request?.rent}$</td>
-                                <td className="py-3 px-6">{format(new Date(request?.request_date), "MMM d, yyyy")}</td>
-                                <td className="py-3 px-6">
-                                    {request?.status === 'pending' && (
-                                        <span className="text-yellow-500 font-semibold">Pending</span>
-                                    )}
-                                    {/* Uncomment this for other statuses */}
-                                    {/* {request?.status === 'checked' && (
-                <span className="text-green-500 font-semibold">Checked</span>
-              )} */}
-                                </td>
-                                <td className="py-3 px-6">
-                                    <div className="flex gap-2 justify-center">
-                                        <button
-                                            onClick={() => handleAccept(request)}
-                                            className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
-                                        >
-                                            Accept
-                                        </button>
-                                        <button
-                                            onClick={() => handleReject(request)}
-                                            className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
-                                        >
-                                            Reject
-                                        </button>
-                                    </div>
-                                </td>
-                            </tr>
+        <div className="overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
+            <table className="w-full text-left text-sm">
+                <thead className="bg-gray-50 border-b border-gray-100">
+                    <tr>
+                        {['#', 'Name', 'Email', 'Apt No', 'Floor', 'Block', 'Rent', 'Date', 'Status', 'Action'].map(h => (
+                            <th key={h} className="px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                {h}
+                            </th>
                         ))}
-                    </tbody>
-                </table>
-            </div>
+                    </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-50 bg-white">
+                    {requests.map((request, idx) => (
+                        <tr key={request._id} className="hover:bg-gray-50 transition-colors duration-150">
+                            <td className="px-4 py-3 text-gray-400">{idx + 1}</td>
+                            <td className="px-4 py-3 font-medium text-gray-800 whitespace-nowrap">{request?.name}</td>
+                            <td className="px-4 py-3 text-gray-500 whitespace-nowrap">{request?.email}</td>
+                            <td className="px-4 py-3 text-gray-700">{request?.apartment_no}</td>
+                            <td className="px-4 py-3 text-gray-700">{request?.floor_no}</td>
+                            <td className="px-4 py-3 text-gray-700">{request?.block_no}</td>
+                            <td className="px-4 py-3 font-medium text-gray-800">${request?.rent}</td>
+                            <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
+                                {format(new Date(request?.request_date), "MMM d, yyyy")}
+                            </td>
+                            <td className="px-4 py-3">
+                                {request?.status === 'pending' && (
+                                    <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-amber-600 bg-amber-50 px-2.5 py-1 rounded-full border border-amber-200">
+                                        Pending
+                                    </span>
+                                )}
+                            </td>
+                            <td className="px-4 py-3">
+                                <div className="flex items-center gap-2">
+                                    <button
+                                        onClick={() => handleAccept(request)}
+                                        className="text-xs font-semibold text-white bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-lg transition-colors duration-200"
+                                    >
+                                        Accept
+                                    </button>
+                                    <button
+                                        onClick={() => handleReject(request)}
+                                        className="text-xs font-semibold text-white bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded-lg transition-colors duration-200"
+                                    >
+                                        Reject
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </div>
-
     );
 };
 

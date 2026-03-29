@@ -4,6 +4,17 @@ import { TbHome, TbHomeCheck, TbHomeOff } from "react-icons/tb";
 import { FaUser, FaUserCheck } from "react-icons/fa";
 import ContentLoadingSpinner from "../../Shared/ContentLoadingSpinner";
 
+const StatCard = ({ icon: Icon, label, value, className }) => (
+    <div className={`rounded-2xl p-6 text-white flex items-center justify-between shadow-sm ${className}`}>
+        <div>
+            <p className='text-4xl font-extrabold tracking-tight'>{value}</p>
+            <p className='text-sm font-medium opacity-90 mt-1'>{label}</p>
+        </div>
+        <div className='opacity-80'>
+            <Icon size={48} />
+        </div>
+    </div>
+);
 
 const AdminProfile = () => {
     const axiosSecure = useAxiosSecure()
@@ -15,67 +26,42 @@ const AdminProfile = () => {
         }
     })
 
-    console.log('statistics:', statistics);
-    if (isLoading) return <div className="mt-20"><ContentLoadingSpinner></ContentLoadingSpinner></div>
-
+    if (isLoading) return <div className="py-12"><ContentLoadingSpinner /></div>
 
     return (
-        <div className="mt-10">
-            {/* total apartments, available and unavailable percentage */}
-            <div className="grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {/* total apartments */}
-                <div className="w-full border rounded-lg shadow-md flex justify-center items-center total-apartments text-white">
-                    <div className="w-full flex gap-8 justify-between items-center   px-5 py-10">
-                        <TbHome className="" size={70} />
-                        <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.totalApartments}</p>
-                            <p className="text-2xl">Total Apartments</p>
-                        </div>
-                    </div>
-                </div>
-                {/* available apartments */}
-                <div className="w-full border rounded-lg shadow-md flex justify-center items-center available-apartments text-white">
-                    <div className="w-full flex gap-8 justify-between items-center px-5 py-10">
-                        {/* <GrHome size={70} className="" /> */}
-                        <TbHomeCheck size={70} />
-                        <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.availablePercentage}%</p>
-                            <p className="text-2xl">Available Apartments</p>
-                        </div>
-                    </div>
-                </div>
-                {/* unavailable apartments */}
-                <div className="w-full border rounded-lg shadow-md flex justify-center items-center unavailable-apartments text-white">
-                    <div className="w-full flex gap-8 justify-between items-center px-5 py-10">
-                        <TbHomeOff size={70} />
-                        <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.unavailablePercentage}%</p>
-                            <p className="text-2xl">Unavailable Apartments</p>
-                        </div>
-                    </div>
-                </div>
-                {/* total Users */}
-                <div className="w-full border rounded-lg shadow-md flex justify-center items-center users text-white">
-                    <div className="w-full flex gap-14 justify-between items-center px-5 py-10">
-                        {/* <FaRegUser size={65} /> */}
-                        <FaUser size={60} />
-                        <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.totalUsers}</p>
-                            <p className="text-2xl">Total Users</p>
-                        </div>
-                    </div>
-                </div>
-                {/* total Members */}
-                <div className="w-full border rounded-lg shadow-md flex justify-center items-center members text-white">
-                    <div className="w-full flex gap-14 justify-between items-center px-5 py-10">
-                        {/* <FaRegUser size={65} /> */}
-                        <FaUserCheck size={70} />
-                        <div className="flex flex-col gap-3">
-                            <p className="text-6xl font-bold"> {statistics?.totalMembers}</p>
-                            <p className="text-2xl">Total Members</p>
-                        </div>
-                    </div>
-                </div>
+        <div>
+            <h3 className='text-base font-semibold text-gray-900 mb-4'>Building Statistics</h3>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <StatCard
+                    icon={TbHome}
+                    label="Total Apartments"
+                    value={statistics?.totalApartments}
+                    className="total-apartments"
+                />
+                <StatCard
+                    icon={TbHomeCheck}
+                    label="Available"
+                    value={`${statistics?.availablePercentage}%`}
+                    className="available-apartments"
+                />
+                <StatCard
+                    icon={TbHomeOff}
+                    label="Unavailable"
+                    value={`${statistics?.unavailablePercentage}%`}
+                    className="unavailable-apartments"
+                />
+                <StatCard
+                    icon={FaUser}
+                    label="Total Users"
+                    value={statistics?.totalUsers}
+                    className="users"
+                />
+                <StatCard
+                    icon={FaUserCheck}
+                    label="Total Members"
+                    value={statistics?.totalMembers}
+                    className="members"
+                />
             </div>
         </div>
     );

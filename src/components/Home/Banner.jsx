@@ -2,161 +2,145 @@
 import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
+import 'swiper/css/effect-fade';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Pagination } from "swiper/modules";
+import { Autoplay, Pagination, EffectFade } from "swiper/modules";
 import { Link } from 'react-router-dom';
+import { HiArrowRight } from 'react-icons/hi2';
+
+// slide data
+const slides = [
+    {
+        tag: 'Premium Residences',
+        headline: 'Find Your Perfect',
+        sub: 'Living Space',
+        desc: 'Explore budget-friendly to premium luxury apartments. Get in-depth details, pricing, and immersive photo walkthroughs.',
+        img: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?q=80&w=2600&auto=format&fit=crop'
+    },
+    {
+        tag: 'Scenic Surroundings',
+        headline: 'Where Nature Meets',
+        sub: 'Modern Comfort',
+        desc: 'Wake up to serene green spaces and lush surroundings. Experience the perfect balance of city living and natural beauty.',
+        img: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2600&auto=format&fit=crop'
+    },
+    {
+        tag: 'Modern Interiors',
+        headline: 'Thoughtfully Designed',
+        sub: 'Spaces For You',
+        desc: 'Designer finishes, open layouts, and every detail crafted for the way you live today.',
+        img: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2600&auto=format&fit=crop'
+    },
+    {
+        tag: 'Luxury Living',
+        headline: 'Elevate Your',
+        sub: 'Everyday Life',
+        desc: 'Premium apartments with world-class amenities, rooftop gardens, and resort-style living.',
+        img: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?q=80&w=2600&auto=format&fit=crop'
+    }
+];
 
 const Banner = () => {
     return (
-        <div>
+        <div className='relative w-full rounded-[32px] overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)]'>
             <Swiper
-                spaceBetween={30}
+                effect={'fade'}
+                fadeEffect={{ crossFade: true }}
                 centeredSlides={true}
-                autoplay={{
-                    delay: 2000,
-                    disableOnInteraction: false,
-                }}
-                pagination={{
+                autoplay={{ delay: 5000, disableOnInteraction: false }}
+                pagination={{ 
                     clickable: true,
+                    bulletClass: 'swiper-custom-bullet',
+                    bulletActiveClass: 'swiper-custom-bullet-active',
                 }}
-                navigation={false}
-                modules={[Autoplay, Pagination]}
-                className="mySwiper"
+                modules={[Autoplay, Pagination, EffectFade]}
+                className='mySwiper h-[500px] sm:h-[600px] lg:h-[700px] w-full'
             >
-                {/* slider 1 */}
-                <SwiperSlide>
-                   
-                        <div className='flex flex-col gap-10 md:flex-row justify-between md:min-h-[450px]  lg:min-h-[500px]'>
-                            {/* left */}
-                            <div className='md:w-1/2'>
-                                <h1 className='font-bold text-4xl md:text-4xl lg:text-6xl lg:leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & care!</h1>
-                                <p className='mt-5 text-[18px] md:text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
+                {slides.map((slide, i) => (
+                    <SwiperSlide key={i} className='relative w-full h-full group overflow-hidden'>
+                        {/* Background Image with slow pan */}
+                        <div className="absolute inset-0 w-full h-full scale-[1.05] group-[.swiper-slide-active]:scale-100 transition-transform duration-[8000ms] ease-out">
+                            <img
+                                className='w-full h-full object-cover'
+                                src={slide.img}
+                                alt={slide.tag}
+                            />
+                            {/* Cinematic Gradients */}
+                            <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/60 to-transparent mix-blend-multiply"></div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 via-transparent to-transparent opacity-80"></div>
+                        </div>
 
-                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Explore Your Dreams </Link>
-
-                            </div>
-                            {/* right */}
-                            <div className='flex gap-3 w-full md:w-[45%] h-[235px] sm:h-[335px] md:h-auto'>
-                                <div className='w-[30%]  md:w-auto flex flex-col gap-3'>
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/PmL2FVy/1.jpg" alt="" />
-                                    <img className='w-full md:w-[167px] h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/52tYYNW/4.jpg" alt="" />
+                        {/* Content Container */}
+                        <div className='relative h-full flex items-center max-w-7xl mx-auto px-6 md:px-12 lg:px-20'>
+                            <div className='w-full md:max-w-xl lg:max-w-2xl text-left'>
+                                {/* Slide-in Tag */}
+                                <div className='inline-block mb-6 overflow-hidden'>
+                                    <div className='inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-green-500/30 bg-green-500/10 backdrop-blur-md text-green-400 text-xs font-bold tracking-widest uppercase translate-y-full opacity-0 group-[.swiper-slide-active]:translate-y-0 group-[.swiper-slide-active]:opacity-100 transition-all duration-700 delay-300'>
+                                        <span className="w-1.5 h-1.5 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,1)]"></span>
+                                        {slide.tag}
+                                    </div>
                                 </div>
-                                <div className='w-full md:w-auto'>
-                                    <img className='w-full h-full  md:w-[396px]   object-cover rounded-3xl' src="https://i.ibb.co.com/52tYYNW/4.jpg" alt="" />
+
+                                {/* Headline Sequence */}
+                                <div className="space-y-2 mb-6 pointer-events-none">
+                                    <div className="overflow-hidden">
+                                        <h1 className='text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] translate-y-full opacity-0 group-[.swiper-slide-active]:translate-y-0 group-[.swiper-slide-active]:opacity-100 transition-all duration-700 delay-500'>
+                                            {slide.headline}
+                                        </h1>
+                                    </div>
+                                    <div className="overflow-hidden">
+                                        <h1 className='text-4xl sm:text-5xl lg:text-7xl font-light text-green-400 tracking-tight leading-[1.1] italic translate-y-full opacity-0 group-[.swiper-slide-active]:translate-y-0 group-[.swiper-slide-active]:opacity-100 transition-all duration-700 delay-700'>
+                                            {slide.sub}
+                                        </h1>
+                                    </div>
+                                </div>
+
+                                {/* Slide-up Description */}
+                                <div className="overflow-hidden mb-10">
+                                    <p className='text-gray-300 text-base md:text-lg font-medium leading-relaxed max-w-lg translate-y-8 opacity-0 group-[.swiper-slide-active]:translate-y-0 group-[.swiper-slide-active]:opacity-100 transition-all duration-700 delay-1000'>
+                                        {slide.desc}
+                                    </p>
+                                </div>
+
+                                {/* Slide-up Buttons */}
+                                <div className='flex flex-wrap items-center gap-4 translate-y-8 opacity-0 group-[.swiper-slide-active]:translate-y-0 group-[.swiper-slide-active]:opacity-100 transition-all duration-700 delay-[1200ms]'>
+                                    <Link
+                                        to='/apartments'
+                                        className='group/btn inline-flex items-center gap-3 bg-green-500 text-gray-900 font-bold px-8 py-4 rounded-full text-sm hover:bg-green-400 transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)]'
+                                    >
+                                        Explore Apartments
+                                        <HiArrowRight size={18} className="group-hover/btn:translate-x-1 transition-transform" />
+                                    </Link>
                                 </div>
                             </div>
                         </div>
-                   
-
-                </SwiperSlide>
-
-                {/* slider 2 */}
-                <SwiperSlide>
-                    <div className='flex flex-col gap-10 md:flex-row justify-between md:min-h-[450px]  lg:min-h-[500px]'>
-                        {/* left */}
-                        <div className='md:w-1/2'>
-                            <h1 className='font-bold text-4xl md:text-4xl lg:text-6xl lg:leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & Care!</h1>
-                            <p className='mt-5 text-[18px] md:text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
-
-
-                            <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Explore Your Dreams </Link>
-                        </div>
-                        {/* right */}
-                        <div className='flex gap-3 w-full md:w-[45%] h-[235px] sm:h-[335px] md:h-auto'>
-                            <div className='w-[30%] md:w-auto flex flex-col gap-3'>
-                                <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/55Bxqwb/road-green.jpg" alt="" />
-                                <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/52tYYNW/4.jpg" alt="" />
-                            </div>
-                            <div className='w-full md:w-auto'>
-                                <img className='w-full md:w-[396px] h-full object-cover rounded-3xl' src="https://i.ibb.co.com/PmL2FVy/1.jpg" alt="" />
-                            </div>
-
-                        </div>
-                    </div>
-                </SwiperSlide>
-
-                {/* slider 3 */}
-                <SwiperSlide>
-                   
-                        <div className='flex flex-col gap-10 md:flex-row justify-between md:min-h-[450px]  lg:min-h-[500px]'>
-                            {/* left */}
-                            <div className='md:w-1/2'>
-                                <h1 className='font-bold text-4xl md:text-4xl lg:text-6xl lg:leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & care!</h1>
-                                <p className='mt-5 text-[18px] md:text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
-
-                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Explore Your Dreams </Link>
-                            </div>
-                            {/* right */}
-                            <div className='flex gap-3 w-full md:w-[45%] h-[235px] sm:h-[335px] md:h-auto'>
-                                <div className='w-[30%] md:w-auto flex flex-col gap-3'>
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/jJKdJmk/space.jpg" alt="" />
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/ZWt3y6c/flower.jpg" alt="" />
-                                </div>
-                                <div className='w-full md:w-auto'>
-                                    <img className='w-full md:w-[396px]  h-full object-cover rounded-3xl' src="https://i.ibb.co.com/zbnFwRw/green-table.jpg" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                   
-                </SwiperSlide>
-
-                {/* slider 4 */}
-                <SwiperSlide>
-                    
-                        <div className='flex flex-col gap-10 md:flex-row justify-between md:min-h-[450px]  lg:min-h-[500px]'>
-                            {/* left */}
-                            <div className='md:w-1/2'>
-                                <h1 className='font-bold text-4xl md:text-4xl lg:text-6xl lg:leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & care!</h1>
-                                <p className='mt-5 text-[18px] md:text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
-
-
-                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Explore Your Dreams </Link>
-                            </div>
-                            {/* right */}
-                            <div className='flex gap-3 w-full md:w-[45%] h-[235px] sm:h-[335px] md:h-auto'>
-                                <div className='w-[30%] md:w-auto flex flex-col gap-3'>
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/MDbTHb6/5.jpg" alt="" />
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/xFwPmvY/3.jpg" alt="" />
-                                </div>
-                                <div className='w-full md:w-auto'>
-                                    <img className='w-full md:w-[396px]  h-full object-cover rounded-3xl' src="https://i.ibb.co.com/b2jc6Yw/2.jpg" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                  
-
-                </SwiperSlide>
-
-                {/* slider 5 */}
-                <SwiperSlide>
-                
-                        <div className='flex flex-col gap-10 md:flex-row justify-between md:min-h-[450px]  lg:min-h-[500px]'>
-                            {/* left */}
-                            <div className='md:w-1/2'>
-                                <h1 className='font-bold text-4xl md:text-4xl lg:text-6xl lg:leading-[75px]'>Bringing <span className='text-green-600'>Dreams to Reality</span> with Love & care!</h1>
-                                <p className='mt-5 text-[18px] md:text-xl'>Explore a diverse range of apartments, from budget-friendly options to premium luxury residences.Get in-depth details on property features, pricing, and neighborhood highlights.Experience properties as if you're there through detailed photos and virtual walkthroughs.</p>
-
-
-                                <Link to='/apartments' className='mt-5 btn text-white bg-green-500 hover:bg-green-600'>Explore Your Dreams </Link>
-                            </div>
-                            {/* right */}
-                            <div className='flex gap-3 w-full md:w-[45%] h-[235px] sm:h-[335px] md:h-auto'>
-                                <div className='w-[30%] md:w-auto flex flex-col gap-3'>
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/KrFkkkk/gym-person.jpg" alt="" />
-                                    <img className='w-full md:w-[167px]  h-[50%] object-cover rounded-3xl' src="https://i.ibb.co.com/yyJC668/gym.jpg" alt="" />
-                                </div>
-                                <div className='w-full md:w-auto'>
-                                    <img className='w-full md:w-[396px]  h-full object-cover rounded-3xl' src="https://i.ibb.co.com/z478Z3w/gym2.jpg" alt="" />
-                                </div>
-                            </div>
-                        </div>
-                   
-                </SwiperSlide>
-
+                    </SwiperSlide>
+                ))}
             </Swiper>
-
-        </div >
+            
+            {/* Custom Pagination Styles */}
+            <style>{`
+                .swiper-custom-bullet {
+                    display: inline-block;
+                    width: 32px;
+                    height: 4px;
+                    background: rgba(255, 255, 255, 0.3);
+                    margin: 0 4px !important;
+                    border-radius: 4px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .swiper-custom-bullet-active {
+                    background: #22c55e;
+                    width: 48px;
+                    box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+                }
+                .swiper-pagination {
+                    bottom: 30px !important;
+                }
+            `}</style>
+        </div>
     );
 };
 

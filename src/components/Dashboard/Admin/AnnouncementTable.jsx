@@ -3,100 +3,126 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { format } from "date-fns";
+import { RxCross2 } from "react-icons/rx";
+import { TbSpeakerphone } from "react-icons/tb";
 
 const AnnouncementTable = ({ announcements, handleDeleteAnnouncement }) => {
     const { role } = useContext(AuthContext);
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const showAnnouncementDetails = (announcement) => {
-        document.getElementById('announcement-modal').showModal()
-        setTitle(announcement?.title);
-        setDescription(announcement?.description);
-    }
+    const [selected, setSelected] = useState(null);
+
     return (
         <div>
-            {/* announcement table */}
-            <div className="p-4">
-                <div className="overflow-x-auto shadow-md rounded-lg">
-                    <table className="table w-full text-center">
-                        {/* Table Head */}
-                        <thead className="bg-gray-100 text-gray-800 uppercase text-sm font-semibold">
-                            <tr>
-                                <th className="py-3 px-6">#</th>
-                                <th className="py-3 px-6">Title</th>
-                                <th className="py-3 px-6">Description</th>
-                                <th className="py-3 px-6">Announcement Date</th>
-                                <th className="py-3 px-6">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody className="text-gray-700 text-sm">
-                            {announcements.map((announcement, idx) => (
-                                <tr
-                                    key={announcement._id}
-                                    className={`${idx % 2 === 0 ? 'bg-gray-50' : 'bg-white'
-                                        } hover:bg-gray-100 transition duration-150`}
-                                >
-                                    {/* Index */}
-                                    <td className="py-3 px-6">{idx + 1}</td>
-
-                                    {/* Title */}
-                                    <td className="py-3 px-6 font-semibold">{announcement?.title}</td>
-
-                                    {/* Description */}
-                                    <td className="py-3 px-6">
-                                        {announcement?.description.slice(0, 30)}...
-                                    </td>
-
-                                    {/* Announcement Date */}
-                                    <td className="py-3 px-6">{format(new Date(announcement?.date), "MMM d, yyyy")}</td>
-
-                                    {/* Actions */}
-                                    <td className="py-3 px-6">
-                                        <div className="flex gap-3 justify-center">
-                                            {/* View Details Button */}
-                                            <button
-                                                onClick={() => showAnnouncementDetails(announcement)}
-                                                className="btn btn-xs bg-green-500 text-white hover:bg-green-600"
-                                            >
-                                                View Details
-                                            </button>
-
-                                            {/* Delete Button (Admin Only) */}
-                                            {role === 'admin' && (
-                                                <button
-                                                    onClick={() => handleDeleteAnnouncement(announcement._id)}
-                                                    className="btn btn-xs bg-red-500 text-white hover:bg-red-600"
-                                                >
-                                                    Delete
-                                                </button>
-                                            )}
-                                        </div>
-                                    </td>
-                                </tr>
+            {/* card grid for small screens, table for md+ */}
+            <div className="hidden md:block overflow-x-auto rounded-xl border border-gray-100 shadow-sm">
+                <table className="w-full text-left text-sm">
+                    <thead className="bg-gray-50 border-b border-gray-100">
+                        <tr>
+                            {['#', 'Title', 'Description', 'Date', 'Actions'].map(h => (
+                                <th key={h} className="px-4 py-3 text-xs font-semibold text-gray-500 uppercase tracking-wider whitespace-nowrap">
+                                    {h}
+                                </th>
                             ))}
-                        </tbody>
-                    </table>
-                </div>
+                        </tr>
+                    </thead>
+                    <tbody className="divide-y divide-gray-50 bg-white">
+                        {announcements.map((announcement, idx) => (
+                            <tr key={announcement._id} className="hover:bg-gray-50 transition-colors duration-150">
+                                <td className="px-4 py-3 text-gray-400">{idx + 1}</td>
+                                <td className="px-4 py-3 font-medium text-gray-800">{announcement?.title}</td>
+                                <td className="px-4 py-3 text-gray-500 max-w-[200px] truncate">
+                                    {announcement?.description}
+                                </td>
+                                <td className="px-4 py-3 text-gray-500 whitespace-nowrap">
+                                    {format(new Date(announcement?.date), "MMM d, yyyy")}
+                                </td>
+                                <td className="px-4 py-3">
+                                    <div className="flex items-center gap-2">
+                                        <button
+                                            onClick={() => setSelected(announcement)}
+                                            className="text-xs font-semibold text-white bg-green-600 hover:bg-green-700 px-3 py-1.5 rounded-lg transition-colors duration-200"
+                                        >
+                                            View
+                                        </button>
+                                        {role === 'admin' && (
+                                            <button
+                                                onClick={() => handleDeleteAnnouncement(announcement._id)}
+                                                className="text-xs font-semibold text-white bg-red-500 hover:bg-red-600 px-3 py-1.5 rounded-lg transition-colors duration-200"
+                                            >
+                                                Delete
+                                            </button>
+                                        )}
+                                    </div>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
             </div>
 
-            {/* announcement details modal */}
-            <div>
-                {/* You can open the modal using document.getElementById('ID').showModal() method */}
-                <dialog id="announcement-modal" className="modal">
-                    <div className="modal-box">
-                        <form method="dialog">
-                            {/* if there is a button in form, it will close the modal */}
-                            <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
-                        </form>
-                        <div>
-                            <p className="text-2xl mb-2"> <span className="text-2xl font-semibold">Title:</span> {title}</p>
-                            <p className="text-2xl font-semibold">Description:</p>
-                            <p>{description}</p>
+            {/* mobile cards */}
+            <div className="md:hidden space-y-3">
+                {announcements.map((announcement) => (
+                    <div key={announcement._id} className="bg-white rounded-xl border border-gray-100 shadow-sm p-4">
+                        <div className="flex items-start justify-between gap-3">
+                            <div className="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center shrink-0">
+                                <TbSpeakerphone size={16} className="text-green-600" />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                                <p className="font-semibold text-gray-800 truncate">{announcement?.title}</p>
+                                <p className="text-xs text-gray-400 mt-0.5">{format(new Date(announcement?.date), "MMM d, yyyy")}</p>
+                                <p className="text-sm text-gray-500 mt-1 line-clamp-2">{announcement?.description}</p>
+                            </div>
+                        </div>
+                        <div className="flex gap-2 mt-3">
+                            <button
+                                onClick={() => setSelected(announcement)}
+                                className="flex-1 text-xs font-semibold text-white bg-green-600 hover:bg-green-700 py-2 rounded-lg transition-colors"
+                            >
+                                View Details
+                            </button>
+                            {role === 'admin' && (
+                                <button
+                                    onClick={() => handleDeleteAnnouncement(announcement._id)}
+                                    className="flex-1 text-xs font-semibold text-white bg-red-500 hover:bg-red-600 py-2 rounded-lg transition-colors"
+                                >
+                                    Delete
+                                </button>
+                            )}
                         </div>
                     </div>
-                </dialog>
+                ))}
             </div>
-        </div >
+
+            {/* details modal */}
+            {selected && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+                    <div className="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden">
+                        <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+                            <h3 className="font-semibold text-gray-900">Announcement</h3>
+                            <button
+                                onClick={() => setSelected(null)}
+                                className="text-gray-400 hover:text-gray-600 transition"
+                            >
+                                <RxCross2 size={18} />
+                            </button>
+                        </div>
+                        <div className="px-6 py-5 space-y-3">
+                            <p className="text-lg font-bold text-gray-900">{selected?.title}</p>
+                            <p className="text-xs text-gray-400">{format(new Date(selected?.date), "MMMM d, yyyy")}</p>
+                            <p className="text-sm text-gray-600 leading-relaxed">{selected?.description}</p>
+                        </div>
+                        <div className="px-6 pb-5">
+                            <button
+                                onClick={() => setSelected(null)}
+                                className="w-full text-sm font-semibold text-gray-700 bg-gray-100 hover:bg-gray-200 py-2.5 rounded-lg transition"
+                            >
+                                Close
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+        </div>
     );
 };
 

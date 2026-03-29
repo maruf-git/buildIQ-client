@@ -6,51 +6,48 @@ html {
     scroll-behavior: smooth;
 }
 
-.bg-color {
-    background-color: #f4fcf3;
+/* brand color token */
+:root {
+    --brand: #16a34a;
+    --brand-light: #f0fdf4;
+    --brand-dark: #15803d;
 }
 
+.bg-color {
+    background-color: #f8fffe;
+}
+
+/* active navlink */
 .active {
     border-bottom-color: #16a34a;
-    border-bottom-width: 5px;
+    border-bottom-width: 2px;
     color: #16a34a;
 }
 
-/* admin profile cards  */
-/* total apartments */
+/* page section spacing */
+.section-gap {
+    margin-top: 5rem;
+}
+
+/* stat cards – admin profile */
 .total-apartments {
-    background: linear-gradient(45deg, #59bcff 21%, #59d7ff 100%) !important;
+    background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%);
 }
-
 .available-apartments {
-    background: linear-gradient(45deg, #4ad994 0%, #57f998 100%);
+    background: linear-gradient(135deg, #16a34a 0%, #4ade80 100%);
 }
-
 .members {
-    background: linear-gradient(45deg, #fdb765 0%, #ffe485 100%);
+    background: linear-gradient(135deg, #f59e0b 0%, #fcd34d 100%);
 }
-
 .users {
-    background: linear-gradient(45deg, #ff6d59 0%, #ffd584 100%);
+    background: linear-gradient(135deg, #ef4444 0%, #fb923c 100%);
 }
-
 .unavailable-apartments {
-    background: linear-gradient(45deg, #ea5459 0%, #f7ba2c 100%);
+    background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
 }
 
-/*
-    light
-    text: #0a1609
-    background: #f4fcf3
-    primary: #4bd733
-    secondary: #9bf18e
-    accent: #6df755
-*/
-/* 
-    dark
-    text: #eaf6e9
-    background: #040c03
-    primary: #41cc28
-    secondary: #1b710e
-    accent: #20aa08
-*/
+/* smooth focus ring for inputs */
+input:focus, textarea:focus, select:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}

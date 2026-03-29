@@ -1,78 +1,91 @@
 import { Link } from "react-router-dom";
 import logo from '../../assets/images/home.png'
-import Container from "./Container";
+import Container from "../../components/shared/Container";
 import { FaFacebook, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa6";
-
 
 const Footer = () => {
     return (
-        <div>
+        <footer className="bg-gray-950 text-gray-400 mt-20">
             <Container>
-                <div className="flex flex-col lg:flex-row justify-between gap-10 py-10">
-                    {/* logo and description and social */}
-                    <div className="lg:w-1/2">
-                        <div className="flex flex-col md:flex-row  justify-center gap-5">
-                            <Link to='/' className="w-full">
-                                <img className="h-[200px] w-full object-cover" src={logo} alt="" />
+                <div className="pt-14 pb-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+                        {/* brand */}
+                        <div className="lg:col-span-1">
+                            <Link to='/' className="flex items-center gap-2 mb-4">
+                                <img className="w-8 h-8 object-contain brightness-0 invert" src={logo} alt="BuildIQ" />
+                                <span className="text-xl font-bold text-white">
+                                    Build<span className="text-green-500">IQ</span>
+                                </span>
                             </Link>
-                            <div>
-                                <Link to='/' className="font-bold text-3xl">Build<span className="text-green-600">IQ</span></Link>
-                                <p className="mt-5">Explore a diverse range of apartments, from budget-friendly options to premium luxury residences. Begin your journey with us today and take the first step toward your new home.</p>
-                                <div>
-                                    <div className="flex mt-4 space-x-4">
-                                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className=" text-slate-600 hover:text-slate-900">
-                                            <FaFacebook size={30} />
-                                        </a>
-                                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-900">
-                                            <FaTwitter size={30} />
-                                        </a>
-                                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-900">
-                                            <FaYoutube size={30} />
-                                        </a>
-                                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-600 hover:text-slate-900">
-                                            <FaLinkedin size={30} />
-                                        </a>
-                                    </div>
-                                </div>
+                            <p className="text-sm leading-relaxed text-gray-400">
+                                Explore a diverse range of apartments, from budget-friendly options to premium luxury residences. Begin your journey today.
+                            </p>
+                            <div className="flex mt-5 gap-3">
+                                {[
+                                    { Icon: FaFacebook, href: 'https://www.facebook.com/mdmaruf55', label: 'Facebook' },
+                                    { Icon: FaTwitter, href: 'https://twitter.com', label: 'Twitter' },
+                                    { Icon: FaYoutube, href: 'https://youtube.com', label: 'YouTube' },
+                                    { Icon: FaLinkedin, href: 'https://www.linkedin.com/in/md-maruf-ur-rahman-munna/', label: 'LinkedIn' },
+                                ].map(({ Icon, href, label }) => (
+                                    <a
+                                        key={label}
+                                        href={href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={label}
+                                        className="w-8 h-8 flex items-center justify-center rounded-lg bg-gray-800 hover:bg-green-600 text-gray-400 hover:text-white transition-colors duration-200"
+                                    >
+                                        <Icon size={15} />
+                                    </a>
+                                ))}
                             </div>
-
                         </div>
-                    </div>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-10">
+
                         {/* company */}
-                        <div className="flex flex-col gap-2">
-                            <h1 className="mb-3 font-bold text-xl">Company</h1>
-                            <Link to=''>About Us</Link>
-                            <Link to=''>Careers</Link>
-                            <Link to=''>Blog</Link>
-                            <Link to=''>Contact Us</Link>
+                        <div>
+                            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h3>
+                            <ul className="space-y-2.5">
+                                {['About Us', 'Careers', 'Blog', 'Contact Us'].map(item => (
+                                    <li key={item}>
+                                        <Link to='' className="text-sm hover:text-green-400 transition-colors duration-200">{item}</Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
+                        {/* services */}
+                        <div>
+                            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h3>
+                            <ul className="space-y-2.5">
+                                {['Popular Locations', 'New Listings', 'Tenant Reviews', 'Neighborhood Guide'].map(item => (
+                                    <li key={item}>
+                                        <Link to='' className="text-sm hover:text-green-400 transition-colors duration-200">{item}</Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
-                        {/* Services */}
-                        <div className="flex flex-col gap-2">
-                            <h1 className="mb-3 font-bold text-xl">Services</h1>
-                            <Link to=''>Popular Locations</Link>
-                            <Link to=''>New Listing</Link>
-                            <Link to=''>Careers</Link>
-                            <Link to=''>Tenant Reviews</Link>
-                            <Link to=''>Neighborhood Guide</Link>
-                        </div>
+
                         {/* legal */}
-                        <div className="flex flex-col gap-2">
-                            <h1 className="mb-3 font-bold text-xl">Privacy Policy</h1>
-                            <Link to=''>Terms & Conditions</Link>
-                            <Link to=''>Privacy Policy</Link>
-                            <Link to=''>Refund Policy</Link>
-                            <Link to=''>Tenant Rights </Link>
+                        <div>
+                            <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Legal</h3>
+                            <ul className="space-y-2.5">
+                                {['Terms & Conditions', 'Privacy Policy', 'Refund Policy', 'Tenant Rights'].map(item => (
+                                    <li key={item}>
+                                        <Link to='' className="text-sm hover:text-green-400 transition-colors duration-200">{item}</Link>
+                                    </li>
+                                ))}
+                            </ul>
                         </div>
                     </div>
-                </div>
-                <div>
-                    <div className="divider "></div>
-                    <p className="font-semibold text-center">© All Rights Reserved By BuildIQ</p>
+
+                    <div className="border-t border-gray-800 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+                        <p className="text-xs text-gray-500">© {new Date().getFullYear()} BuildIQ. All rights reserved.</p>
+                        <p className="text-xs text-gray-600">Built with ❤️ for modern living</p>
+                    </div>
                 </div>
             </Container>
-        </div>
+        </footer>
     );
 };
 
