@@ -45,38 +45,51 @@ const Profile = () => {
 
                 {/* Avatar and Info Block */}
                 <div className='px-6 sm:px-10 pb-8 sm:pb-10 relative'>
-                    <div className='flex flex-col sm:flex-row sm:items-end gap-5 sm:gap-6 -mt-16 sm:-mt-20 mb-6 sm:mb-8'>
-                        
-                        {/* Avatar Wrapper with glowing ring */}
-                        <div className='relative inline-block'>
-                            <div className="absolute inset-0 bg-green-500 rounded-2xl blur-md opacity-20"></div>
+                    
+                    {/* Upper row: Avatar pulling up over the banner */}
+                    <div className='-mt-16 sm:-mt-20 mb-4 sm:mb-6'>
+                        {/* Avatar Wrapper */}
+                        <div className='relative inline-block shrink-0 select-none'>
+                            <div className="absolute inset-0 bg-black/10 rounded-3xl blur-md translate-y-2"></div>
                             <img
-                                alt={user?.displayName}
-                                src={user?.photoURL}
+                                alt={user?.displayName || 'User'}
+                                src={user?.photoURL || 'https://i.ibb.co.com/F3x77jT/user.jpg'}
                                 referrerPolicy='no-referrer'
-                                className='relative z-10 w-24 h-24 sm:w-32 sm:h-32 rounded-2xl object-cover border-4 border-white shadow-xl'
+                                className='relative z-10 w-32 h-32 sm:w-40 sm:h-40 rounded-3xl object-cover border-[6px] border-white shadow-xl bg-gray-50'
                             />
-                            {/* Live status dot */}
-                            <div className="absolute bottom-2 right-2 z-20 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></div>
-                        </div>
-
-                        {/* Name and Title */}
-                        <div className='flex-1 pb-1 pt-4 sm:pt-0'>
-                            <div className="flex flex-col sm:flex-row sm:items-center gap-3 md:gap-4">
-                                <h2 className='text-3xl font-black text-gray-900 tracking-tight'>
-                                    {user?.displayName}
-                                </h2>
-                                <span className='inline-flex self-start items-center gap-1.5 font-bold uppercase tracking-widest bg-green-50 text-green-600 border border-green-200 px-3 py-1.5 rounded-full text-xs shadow-sm'>
-                                    <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
-                                    {role} Account
-                                </span>
+                            {/* Verified Badge */}
+                            <div className="absolute -bottom-2 -right-3 z-20 bg-green-500 border-4 border-white text-white text-[10px] font-black uppercase tracking-wider px-2.5 py-1 rounded-xl shadow-lg transform -rotate-3 hover:rotate-0 transition-transform cursor-default">
+                                Verified
                             </div>
-                            <p className='text-sm sm:text-base font-medium text-gray-500 mt-2'>{user?.email}</p>
+                        </div>
+                    </div>
+
+                    {/* Lower row: Info Block (Names, Badges, Buttons) isolated in the white space */}
+                    <div className='flex flex-col sm:flex-row sm:items-end justify-between gap-5 sm:gap-6 mb-6 sm:mb-8'>
+                        {/* Name and Title */}
+                        <div className='flex-1 pb-1 sm:pb-3'>
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-1.5">
+                                <h2 className='text-3xl sm:text-4xl font-black text-gray-900 tracking-tight leading-none'>
+                                    {user?.displayName || 'Unknown User'}
+                                </h2>
+                                
+                                {/* Dark Role Pill */}
+                                <div className='inline-flex self-start sm:self-auto items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 shadow-sm cursor-default hover:bg-slate-800 transition-colors'>
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                                    </span>
+                                    <span className='text-[10px] font-bold uppercase tracking-[0.2em] text-white'>
+                                        {role || 'User'}
+                                    </span>
+                                </div>
+                            </div>
+                            <p className='text-sm sm:text-base font-semibold text-gray-500'>{user?.email}</p>
                         </div>
 
                         {/* Actions (Desktop aligned right) */}
-                        <div className='flex sm:flex-col gap-3 shrink-0 pt-2 sm:pt-0'>
-                            <button className='w-full sm:w-auto text-sm font-bold text-white bg-gray-900 hover:bg-green-600 px-6 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5'>
+                        <div className='flex sm:flex-col gap-3 shrink-0 pt-2 sm:pt-0 sm:pb-2'>
+                            <button className='w-full sm:w-auto text-sm font-bold text-gray-700 bg-white border-2 border-gray-200 hover:border-gray-900 hover:bg-gray-900 hover:text-white px-6 py-3 rounded-xl transition-all duration-300 shadow-sm'>
                                 Edit Profile
                             </button>
                         </div>
@@ -145,15 +158,11 @@ const Profile = () => {
             {/* Admin Stats Dashboard Widget */}
             {role === 'admin' && (
                 <div className='mt-8 pt-4'>
-                    <div className="mb-6">
-                        <h3 className='text-lg font-extrabold text-gray-900 tracking-tight'>System Overview</h3>
-                        <p className="text-sm font-medium text-gray-500 mt-1">Real-time statistics for BuildIQ.</p>
-                    </div>
                     <AdminProfile />
                 </div>
             )}
         </div>
-    )
-}
+    );
+};
 
-export default Profile
+export default Profile;
