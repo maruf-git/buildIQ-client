@@ -82,7 +82,7 @@ const Register = () => {
   const inputClass = 'block w-full px-4 py-2.5 text-sm text-gray-800 bg-gray-50 border border-gray-200 rounded-lg focus:border-green-400 focus:bg-white transition';
 
   return (
-    <div className='min-h-[calc(100vh-80px)] flex items-center justify-center px-4 py-12 bg-gray-50'>
+    <div className='min-h-[calc(100vh-80px)] flex items-center justify-center px-4 pt-28 pb-12 bg-gray-50'>
       <Helmet><title>BuildIQ - Register</title></Helmet>
 
       <div className='w-full max-w-md'>
